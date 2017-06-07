@@ -7,7 +7,7 @@ title: Organisations
 
 
 <ul>
-{% for o in site.data.organisations %}
-<li>{{o[1].short}} ({{o[1].owns}})</li>
+{% for o in site.organisation %}
+<li><a href="/organisation/{{o.key}}.html">{{o.short}}</a> ({{o.owns}})</li>
 {% endfor%}
 </ul>

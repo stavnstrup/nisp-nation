@@ -10,5 +10,8 @@ collections:
     output: true
   capabilityprofile:
     output: true
+  organisation:
+    output: true
+
 
 exclude: ['Gemfile.*','gulpfile.js','*.xsl','package.json','node_modules','vendor/bundle']

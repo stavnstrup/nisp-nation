@@ -28,6 +28,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockqu
     font-size: 14px;
     direction: ltr;
 }
+
 .main-content {
   margin: 0 auto;
   max-width: 100%;
@@ -112,6 +113,20 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+    color: #a41;
+}
+
+a:link {
+    color: #c63;
+}
+
+a, a * {
+    text-decoration: underline;
+}
+
+
+
 .link-box {
   display: flex;
 }
@@ -144,6 +159,11 @@ a {
   width: 13em;
 
   a,
+  a * {
+    text-decoration: none;
+  }
+
+  a,
   a:hover,
   a:visited {
     color: black;
@@ -173,9 +193,11 @@ a {
 
 .collection-group {
   margin: 12px;
-
+  min-width: 30%;
+  border-bottom: solid 1px #ddd;
+//  border-width: 1px 0 0;
   h4 {
     margin-top: 0;
-    text-align: center;
+    // text-align: center;
   }
 }

@@ -4,22 +4,25 @@ permalink: /standard/index.html
 title: Standards
 ---
 
+
 <h2>{{ page.title }}</h2>
 
 <div class="collection-wrap">
 
 
-{% assign s_groups = (site.standard | group_by: "orgid") %}
+{% assign standard_groups = (site.standard | group_by: "orgid") %}
 
-{% for g in s_groups %}
+{% for grp in standard_groups %}
+
 
 <div class="collection-group">
-<h4>{{ g.name }}</h4>
+
+<h4><a href="/organisation/{{ grp.name }}.html">{{ site.data.orgs[grp.name].short }}</a></h4>
 
 <ul>
-{% for std in g.items %}
+{% for std in grp.items %}
 
-<li><a href="/standard/{{std.nisp-id}}.html">{{std.nisp-id}}</a></li>
+<li><a href="/standard/{{std.nisp-id}}.html">{% if std.document.pubnum != '' %}{{ std.document.pubnum }}{% else %}{{std.nisp-id}}{% endif %}</a></li>
 
 {% capture mod %}{{ forloop.index | modulo:10 }}{% endcapture %}
 {% if  mod == '0' %}    

@@ -10,8 +10,10 @@
 <xsl:template match="standards">
   <xsl:apply-templates select="records"/>
   <xsl:apply-templates select="organisations"/>
+  <xsl:apply-templates select="organisations" mode="data"/>
   <xsl:apply-templates select="responsibleparties"/>
   <xsl:apply-templates select="taxonomy" mode="nodes"/>
+  <xsl:apply-templates select="taxonomy"/>
   <xsl:result-document href="_data/stat.json">
     <xsl:text>{</xsl:text>
     <xsl:text>"capabilityprofiles": "</xsl:text><xsl:value-of select="count(records/capabilityprofile)"/><xsl:text>",</xsl:text>
@@ -109,10 +111,24 @@
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="profilespec"/>
+<xsl:if test="description">
+<xsl:text>description: &#x0A;</xsl:text>
+</xsl:if>
+<xsl:text>taxonomy:&#x0A;</xsl:text>
+<xsl:apply-templates select="reftaxonomy"/>
+<xsl:apply-templates select="obgroup"/>
 <xsl:apply-templates select="status"/>
 <xsl:apply-templates select="uuid"/>
 <xsl:text>---&#x0A;</xsl:text>
 </xsl:result-document>
+</xsl:template>
+
+<xsl:template match="reftaxonomy">
+<xsl:text>  - </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
+</xsl:template>
+
+<xsl:template match="obgroup">
+
 </xsl:template>
 
 
@@ -172,25 +188,49 @@
 <xsl:text>  version: </xsl:text><xsl:value-of select="@version"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
-<xsl:template match="organisations">
-  <xsl:result-document href="_data/organisations.json">
+
+<xsl:template match="organisations" mode="data">
+  <xsl:result-document href="_data/orgs.json">
     <xsl:text>{</xsl:text>
-    <xsl:apply-templates/>
+    <xsl:apply-templates mode="data"/>
     <xsl:text>}</xsl:text>
   </xsl:result-document>
 </xsl:template>
 
-<xsl:template match="orgkey">
+<xsl:template match="orgkey" mode="data">
   <xsl:variable name="mykey" select="@key"/>
   <xsl:text>"</xsl:text><xsl:value-of select="@key"/><xsl:text>": {</xsl:text>
   <xsl:text>"short": "</xsl:text><xsl:value-of select="@short"/><xsl:text>", </xsl:text>
   <xsl:text>"text": "</xsl:text><xsl:value-of select="@text"/><xsl:text>", </xsl:text>
+  <xsl:text>"uri": "</xsl:text><xsl:value-of select="@uri"/><xsl:text>", </xsl:text>
   <xsl:text>"owns": "</xsl:text><xsl:value-of
      select="count(/standards//document[@orgid=$mykey])+count(/standards//profilespec[@orgid=$mykey])"/><xsl:text>"}</xsl:text>
   <xsl:if test="not(position()=last())">
     <xsl:text>,</xsl:text>
   </xsl:if>
 </xsl:template>
+
+<xsl:template match="organisations">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="orgkey">
+<xsl:variable name="mykey" select="@key"/>
+<xsl:result-document href="_organisation/{@key}.md">
+<xsl:text>---&#x0A;</xsl:text>
+<xsl:text>layout: organisation&#x0A;</xsl:text>
+<xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>text: </xsl:text><xsl:value-of select="@text"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>uri: </xsl:text><xsl:value-of select="@uri"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>owns: </xsl:text><xsl:value-of
+       select="count(/standards//document[@orgid=$mykey])+count(/standards//profilespec[@orgid=$mykey])"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>---&#x0A;</xsl:text>
+</xsl:result-document>
+</xsl:template>
+
+
+
 
 <xsl:template match="responsibleparties">
   <xsl:result-document href="_data/rp.json">
