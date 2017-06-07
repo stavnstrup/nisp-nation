@@ -1,0 +1,181 @@
+// This is the main style file for thenispnation
+@charset 'utf-8';
+
+$background-color: #f8f8f8;
+
+$nisp-hero-bg: #222;
+$nisp-hero-color: #fff;
+$nisp-hero-bottom: #ffa500;
+
+
+$header-color: #222;
+
+* {
+  margin: 0;
+  passing: 0;
+}
+
+body {
+  background: $background-color;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
+
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    direction: ltr;
+}
+.main-content {
+  margin: 0 auto;
+  max-width: 100%;
+  min-width: 768px;
+  width: 1000px;
+}
+
+.nisp-hero {
+  background: $nisp-hero-bg url('/assets/images/skyline.jpg') no-repeat scroll 0% 60%;
+  border-bottom: 3px solid $nisp-hero-bottom;
+  height: 150px;
+  width: 100%;
+
+  h2 {
+    color: $nisp-hero-color;
+    margin-top: 0;
+    padding-left: 45px;
+    padding-top: 35px;
+  }
+}
+
+.nisp-content {
+  margin-top: 40px;
+  padding: 0 15px;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $header-color;
+  font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 14px;
+  margin-top: 14px;
+  text-rendering: optimizeLegibility;
+}
+
+h2 {
+  font-size: 37px;
+}
+
+h4 {
+  font-size: 23px;
+}
+
+
+p {
+  line-height: 1.6;
+  margin-bottom: 17px;
+}
+
+hr {
+  border: solid #ddd;
+  border-width: 1px 0 0;
+  clear: both;
+  margin: 22px 0 21px;
+  height: 0;
+}
+
+ul {
+  margin-left: 2em;
+}
+
+ul,
+ol,
+dl {
+  font-size: 14px;
+  line-height: 1.6;
+  list-style-position: outside;
+  margin-bottom: 17px;
+}
+
+a {
+  color: #2ba6cb;
+  line-height: inherit;
+  text-decoration: none;
+}
+
+.link-box {
+  display: flex;
+}
+
+.quick-links {
+  flex-grow: 1;
+}
+
+.git_links {
+  flex-grow: 2;
+}
+
+
+.statistics {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.stat-element {
+  background: #fff;
+  border: 2px solid #d1d1d1;
+  border-radius: 2px;
+  font-weight: 700;
+  margin: 12px;
+  padding: 1.43em 3%;
+  text-align: center;
+  width: 13em;
+
+  a,
+  a:hover,
+  a:visited {
+    color: black;
+  }
+}
+
+.number {
+  color: #f7751f;
+  font-size: 5em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.label {
+  font-size: 1.4em;
+}
+
+
+// Standard Collections
+
+.collection-wrap {
+  display: flex;
+  flex-flow: row;
+  flex-grow: 1;
+  flex-wrap: wrap;
+}
+
+.collection-group {
+  margin: 12px;
+
+  h4 {
+    margin-top: 0;
+    text-align: center;
+  }
+}

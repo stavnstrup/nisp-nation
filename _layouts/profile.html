@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<h4>{{page.title}}</h4>
+
+<p>Type: Profile</p>
+
+<p>ID: {{page.nisp-id}}</p>
+
+<h4>Standard</h4>
+
+<p>Org: {{site.data.orgs[page.profilespec.org].short}}
+
+<p>Title: {{page.profilespec.title}}
+
+<p>Date: {{page.profilespec.date}}</p>
+
+<p>Version: {{page.profilespec.version}}</p>
+
+<h4>Subprofiles</h4>
+
+<p>This Profile links to the following subprofiles</p>
+<ul>
+  {% for ref in page.subprofiles %}
+  <li>{{ref.refid}}</li>
+  {% endfor %}
+</ul>
+
+{%include status.html %}
+
+<p>UUID: {{page.uuid}}</p>

@@ -1,0 +1,22 @@
+<h4>Status</h4>
+
+<p>URI: {{page.uri}}<p>
+
+<h4>History</h4>
+
+<table border="1">
+  <tr>
+    <th>Flag</th>
+    <th>Date</th>
+    <th>RFCP</th>
+    <th>Version</th>
+  </tr>
+  {% for e in page.status.history %}
+  <tr>
+    <td>{{ e.flag }}</td>
+    <td>{{ e.date }}</td>
+    <td>{{ e.rfcp }}</td>
+    <td>{{ e.version }}</td>
+  </tr>
+  {% endfor %}
+</table>

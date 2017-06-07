@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<h4>{{page.title}}</h4>
+
+<p>Type: Serviceprofile</p>
+
+<p>ID: {{page.nisp-id}}</p>
+
+<p>Descriprion : {{ page.description }}</p>
+
+<h4>Standard</h4>
+
+<p>Org: {{site.data.orgs[page.profilespec.org].short}}
+
+<p>Title: {{page.profilespec.title}}
+
+<p>Date: {{page.profilespec.date}}</p>
+
+<p>Version: {{page.profilespec.version}}</p>
+
+<h4>Taxonomy</h4>
+
+<ul>
+{% for t in page.taxonomy %}
+<li>{{ site.data.nodes[t].title }}</li>
+{% endfor %}
+</ul>
+
+
+
+
+{%include status.html %}
+
+<p>UUID: {{page.uuid}}</p>

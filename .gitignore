@@ -1,0 +1,11 @@
+# Git ignore file for the nisp nation project
+*~
+_site
+.sass-cache
+.DS_Store
+.jekyll-metadata
+node_modules
+assets
+vendor
+.bundle
+.vagrant
