@@ -135,7 +135,7 @@ a, a * {
   flex-grow: 1;
 }
 
-.git_links {
+.git-links {
   flex-grow: 2;
 }
 
@@ -143,8 +143,8 @@ a, a * {
 .statistics {
   display: flex;
   flex-flow: row;
-  flex-wrap: wrap;
   flex-grow: 1;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -200,4 +200,10 @@ a, a * {
     margin-top: 0;
     // text-align: center;
   }
+}
+
+
+
+.taxonomy ul {
+  margin-bottom: 0;
 }

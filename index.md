@@ -48,7 +48,7 @@ The sources to both the documents and the database viewer are stored in a Git re
 
 </div>
 
-  <hr/>
+<hr/>
 
 #### Statistics
 
@@ -57,5 +57,8 @@ The sources to both the documents and the database viewer are stored in a Git re
 <hr />
 
 #### Debugging the NISP database
+
+* [Overview of all standards and profiles](/debug/overview.html)
+* [Events in the database](/debug/dates.html)
 
 <hr />

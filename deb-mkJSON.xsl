@@ -27,6 +27,27 @@
   </xsl:result-document>
 </xsl:template>
 
+<xsl:template match="taxonomy">
+  <xsl:result-document href="_includes/taxonomy.html">
+    <xsl:text>&lt;div class="taxonomy"&gt;&#x0A;</xsl:text>
+    <xsl:text>&lt;ul&gt;</xsl:text>
+    <xsl:apply-templates/>
+    <xsl:text>&lt;/ul&gt;</xsl:text>
+    <xsl:text>&lt;/div&gt;&#x0A;</xsl:text>
+  </xsl:result-document>
+</xsl:template>
+
+<xsl:template match="node">
+  <xsl:text>&lt;li&gt;[</xsl:text><xsl:value-of select="@level"/><xsl:text>] </xsl:text>
+  <xsl:apply-templates select="@title"/>
+  <xsl:if test="./node">
+    <xsl:text>&lt;ul&gt;</xsl:text>
+    <xsl:apply-templates select="node"/>
+    <xsl:text>&lt;/ul&gt;&#x0A;</xsl:text>
+  </xsl:if>
+  <xsl:text>&lt;/li&gt;&#x0A;</xsl:text>
+</xsl:template>
+
 
 <xsl:template match="taxonomy" mode="nodes">
   <xsl:result-document href="_data/nodes.json">
@@ -40,7 +61,7 @@
   <xsl:text>"</xsl:text><xsl:value-of select="@id"/><xsl:text>": {</xsl:text>
   <xsl:text>"title": "</xsl:text><xsl:value-of select="@title"/><xsl:text>",</xsl:text>
   <xsl:text>"level": "</xsl:text><xsl:value-of select="@level"/><xsl:text>"},</xsl:text>
-  <xsl:apply-templates mode="nodes"/>
+  <xsl:apply-templates select="node" mode="nodes"/>
 </xsl:template>
 
 <xsl:template match="records">
@@ -50,10 +71,10 @@
     <xsl:apply-templates select=".//event" mode="allevents">
       <xsl:sort select="@date" order="descending"/>
     </xsl:apply-templates>
+    <xsl:text>{"rec": "0"}</xsl:text>
     <xsl:text>]</xsl:text>
   </xsl:result-document>
 </xsl:template>
-
 
 
 <xsl:template match="event" mode="allevents">
@@ -67,7 +88,6 @@
   <xsl:text>"version": "</xsl:text><xsl:value-of select="@version"/><xsl:text>"</xsl:text>
   <xsl:text>},</xsl:text>
 </xsl:template>
-
 
 <xsl:template match="capabilityprofile">
 <xsl:result-document href="_capabilityprofile/{@id}.md">
