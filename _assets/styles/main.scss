@@ -114,15 +114,16 @@ a {
 }
 
 a:visited {
-    color: #a41;
+  color: #a41;
 }
 
 a:link {
     color: #c63;
 }
 
-a, a * {
-    text-decoration: underline;
+a,
+a * {
+  text-decoration: underline;
 }
 
 
@@ -202,8 +203,35 @@ a, a * {
   }
 }
 
-
-
 .taxonomy ul {
   margin-bottom: 0;
+}
+
+.reference {
+
+}
+
+.ref-meta {
+  display: flex;
+  flex-flow: row;
+}
+
+ .ref-org {
+   flex-glow: 1;
+ }
+
+  .ref-docnum {
+    flex-glow: 1;
+  }
+
+.ref-date {
+  flex-glow: 1;
+}
+
+.ref-version {
+  flex-glow: 1;
+}
+
+.element-content {
+  margin: 0 20px;
 }

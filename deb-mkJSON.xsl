@@ -53,6 +53,7 @@
   <xsl:result-document href="_data/nodes.json">
     <xsl:text>{</xsl:text>
     <xsl:apply-templates mode="nodes"/>
+    <xsl:text>"eof-node-tree": {}</xsl:text>
     <xsl:text>}</xsl:text>
   </xsl:result-document>
 </xsl:template>
@@ -71,7 +72,7 @@
     <xsl:apply-templates select=".//event" mode="allevents">
       <xsl:sort select="@date" order="descending"/>
     </xsl:apply-templates>
-    <xsl:text>{"rec": "0"}</xsl:text>
+    <xsl:text>{"rec": "0", "nisp-id": "", "tag": "", "date": "", "flag": "", "version": "0.0"}</xsl:text>
     <xsl:text>]</xsl:text>
   </xsl:result-document>
 </xsl:template>
@@ -81,7 +82,14 @@
   <xsl:text>{</xsl:text>
   <xsl:text>"rec": "</xsl:text><xsl:number from="standards" count="standard|serviceprofile|profile|capabilityprofile" format="1" level="any"/><xsl:text>", </xsl:text>
   <xsl:text>"nisp-id": "</xsl:text><xsl:value-of select="../../../@id"/><xsl:text>",</xsl:text>
-  <xsl:text>"tag": "</xsl:text><xsl:value-of select="../../../@tag"/><xsl:text>",</xsl:text>
+  <xsl:choose>
+    <xsl:when test="ancestor::standard">
+      <xsl:text>"tag": "</xsl:text><xsl:value-of select="../../../@tag"/><xsl:text>",</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>"tag": "</xsl:text><xsl:value-of select="../../../@title"/><xsl:text>",</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:text>"date": "</xsl:text><xsl:value-of select="@date"/><xsl:text>",</xsl:text>
   <xsl:text>"flag": "</xsl:text><xsl:value-of select="@flag"/><xsl:text>",</xsl:text>
   <xsl:text>"rfcp": "</xsl:text><xsl:value-of select="@rfcp"/><xsl:text>",</xsl:text>

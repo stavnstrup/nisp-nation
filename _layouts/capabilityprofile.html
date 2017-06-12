@@ -1,23 +1,57 @@
 ---
-layout: default
+layout: element
 ---
+
+
+
+<div>
+
+<p>Capabilityprofile</p>
 
 
 <h4>{{page.title}}</h4>
 
-<p>Type: Capabilityprofile</p>
-
 <p>ID: {{page.nisp-id}}</p>
 
-<h4>Standard</h4>
+</div>
 
-<p>Org: {{site.data.orgs[page.profilespec.org].short}}
 
-<p>Title: {{page.profilespec.title}}
+<div class="reference">
 
-<p>Date: {{page.profilespec.date}}</p>
+<b>Reference document</b>
 
-<p>Version: {{page.profilespec.version}}</p>
+<div class="ref-meta">
+
+<dl class"ref-org">
+  <dt>Org</dt>
+  <dd>{{site.data.orgs[page.profilespec.org].short}}</dd>
+</dl>
+
+<dl class="ref-pubnum">
+  <dt>Pubnum</dt>
+  <dd>{{page.profilespec.pubnum}}</dd>
+</dl>
+
+
+<dl class="ref-date">
+  <dt>Date</dt>
+  <dd>{{page.profilespec.date}}</dd>
+</dl>
+
+<dl class="ref-version">
+  <dt>Version</dt>
+  <dd>{{page.profilespec.version}}</dd>
+</dl>
+
+</div>
+
+<dl class="ref-title">
+  <dt>Title</dt>
+  <dd>{{page.profilespec.title}}</dd>
+</dl>
+
+</div>
+
 
 <h4>Subprofiles</h4>
 

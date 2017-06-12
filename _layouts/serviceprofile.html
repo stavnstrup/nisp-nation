@@ -10,15 +10,40 @@ layout: default
 
 <p>Descriprion : {{ page.description }}</p>
 
-<h4>Standard</h4>
 
-<p>Org: {{site.data.orgs[page.profilespec.org].short}}
+<div class="reference">
 
-<p>Title: {{page.profilespec.title}}
+<b>Reference document</b>
 
-<p>Date: {{page.profilespec.date}}</p>
+<dl>
+  <dt>Org</dt>
+  <dd>{{site.data.orgs[page.profilespec.org].short}}</dd>
+</dl>
 
-<p>Version: {{page.profilespec.version}}</p>
+<dl>
+  <dt>Pubnum</dt>
+  <dd>{{page.profilespec.pubnum}}</dd>
+</dl>
+
+
+<dl>
+  <dt>Date</dt>
+  <dd>{{page.profilespec.date}}</dd>
+</dl>
+
+<dl>
+  <dt>Version</dt>
+  <dd>{{page.profilespec.version}}</dd>
+</dl>
+
+<dl>
+  <dt>Title</dt>
+  <dd>{{page.profilespec.title}}</dd>
+</dl>
+
+</div>
+
+
 
 <h4>Taxonomy</h4>
 

@@ -20,6 +20,7 @@ layout: default
 
 
 {% for v in v_events %}
+{%if v.name == '0.0' %}{% break %}{% endif %}
 <tr><th class="versionhead" colspan="8">Version {{v.name}}</th></tr>
 {% for e in v.items %}
 <tr>
