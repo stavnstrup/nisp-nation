@@ -9,3 +9,10 @@ assets
 vendor
 .bundle
 .vagrant
+_capabilityprofile
+_profile
+_serviceprofile
+_standard
+_data
+_organisation
+_includes/taxonomy.html
