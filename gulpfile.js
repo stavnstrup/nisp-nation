@@ -386,6 +386,7 @@ gulp.task('serve', ['build:local'], function() {
         ghostMode: false, // Toggle to mirror clicks, reloads etc. (performance)
         logFileChanges: true,
         logLevel: 'debug',
+        port: 3000,
         open: true        // Toggle to automatically open page when starting.
     });
 
