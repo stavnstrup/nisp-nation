@@ -4,56 +4,49 @@ layout: element
 
 
 
-<div>
-
-<p>Capabilityprofile</p>
-
-
-<h4>{{page.title}}</h4>
-
-<p>ID: {{page.nisp-id}}</p>
-
-</div>
-
+<dl>
+  <dt class="data-label">Title</dt>
+  <dd class="data-value">{{page.title}}</dd>
+</dl>
 
 <div class="reference">
 
-<b>Reference document</b>
+<h3>Reference document</h3>
 
 <div class="ref-meta">
 
 <dl class="ref-org">
-  <dt>Org</dt>
-  <dd>{{site.data.orgs[page.profilespec.org].short}}</dd>
+  <dt class="data-label">Org</dt>
+  <dd class="data-value">{{site.data.orgs[page.profilespec.org].short}}</dd>
 </dl>
 
 <dl class="ref-pubnum">
-  <dt>Pubnum</dt>
-  <dd>{{page.profilespec.pubnum}}</dd>
+  <dt class="data-label">Pubnum</dt>
+  <dd class="data-value">{{page.profilespec.pubnum}}</dd>
 </dl>
 
 
 <dl class="ref-date">
-  <dt>Date</dt>
-  <dd>{{page.profilespec.date}}</dd>
+  <dt class="data-label">Date</dt>
+  <dd class="data-value">{{page.profilespec.date}}</dd>
 </dl>
 
 <dl class="ref-version">
-  <dt>Version</dt>
-  <dd>{{page.profilespec.version}}</dd>
+  <dt class="data-label">Version</dt>
+  <dd class="data-value">{{page.profilespec.version}}</dd>
 </dl>
 
 </div>
 
 <dl class="ref-title">
-  <dt>Title</dt>
-  <dd>{{page.profilespec.title}}</dd>
+  <dt class="data-label">Title</dt>
+  <dd class="data-value">{{page.profilespec.title}}</dd>
 </dl>
 
 </div>
 
 
-<h4>Subprofiles</h4>
+<h3>Subprofiles</h3>
 
 <p>This Capability profiles links to the following subprofiles</p>
 <ul>
@@ -64,4 +57,7 @@ layout: element
 
 {%include status.html %}
 
-<p>UUID: {{page.uuid}}</p>
+<dl>
+  <dt class="data-label">UUID</dt>
+  <dd class="data-value">{{page.uuid}}</dd>
+</dl>

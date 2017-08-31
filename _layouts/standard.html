@@ -4,7 +4,6 @@ layout: default
 
 
 
-
 <div>
 {{page.tag}}
 </div>
@@ -49,4 +48,4 @@ layout: default
 
 
 
-<p>Last updated on {{page.date}}</p>
+<p>Last updated on {{site.time | date_to_rfc822 }}</p>

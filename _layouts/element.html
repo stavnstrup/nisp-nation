@@ -2,8 +2,16 @@
 <html>
   {% include head.html %}
   <body>
-    <div class="element-content">
+    <div class="element-head">
+      <p class="type">Capabilityprofile</p>
+      <p class="id"><strong>ID:</strong> {{page.nisp-id}}</p>
+    </div>
+
+    <div class="main-content element-content">
       {{ content }}
+      <div class="footer">
+        <p>Last updated on {{ site.time | date_to_rfc822 }}</p>
+      </div>
     </div>
   </body>
 </html>
