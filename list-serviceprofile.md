@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: element
 element: Serviceprofiles
 permalink: /serviceprofile/index.html
 title: Service Profiles
