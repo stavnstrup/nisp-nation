@@ -2,7 +2,6 @@
 layout: element
 ---
 
-
 <div>
 {{page.tag}}
 </div>
@@ -36,15 +35,44 @@ layout: element
 
 </div>
 
+<div class="meta-block">
+
+<h3>Reference document</h3>
+
+<div class="meta-element-set">
+
+<dl class="ref-org">
+  <dt class="data-label">Org</dt>
+  <dd class="data-value">{{site.data.orgs[page.document.org].short}}</dd>
+</dl>
+
+<dl class="ref-pubnum">
+  <dt class="data-label">Pubnum</dt>
+  <dd class="data-value">{{page.document.pubnum}}</dd>
+</dl>
+
+<dl class="ref-date">
+  <dt class="data-label">Date</dt>
+  <dd class="data-value">{{page.document.date}}</dd>
+</dl>
+
+<dl class="ref-version">
+  <dt class="data-label">Version</dt>
+  <dd class="data-value">{{page.document.version}}</dd>
+</dl>
+
+</div>
+
+<dl>
+  <dt class="data-label">Title</dt>
+  <dd class="data-value">{{page.document.title}}</dd>
+</dl>
+
+</div>
 
 {%include status.html %}
-
 
 <dl>
   <dt>UUID</dt>
   <dd>{{page.uuid}}</dd>
 </dl>
-
-
-
-<p>Last updated on {{site.time | date_to_rfc822 }}</p>

@@ -2,9 +2,6 @@
 layout: element
 ---
 
-
-
-
 <dl>
   <dt class="data-label">Title</dt>
   <dd class="data-value">{{page.title}}</dd>
@@ -14,22 +11,26 @@ layout: element
   <dt class="data-label">Description</dt>
   <dd class="data-value">{{page.description}}</dd>
 </dl>
-<p>Descriprion : {{ page.description }}</p>
 
 {%include profilereference.html %}
 
 
 <h3>Taxonomy</h3>
 
-<ul>
+<ul class="taxonomy">
 {% for t in page.taxonomy %}
 <li>{{ site.data.nodes[t].title }}</li>
 {% endfor %}
 </ul>
 
 
-
-
 {%include status.html %}
 
-<p>UUID: {{page.uuid}}</p>
+<div class="meta-block">
+
+<dl>
+  <dt class="data-label">UUID</dt>
+  <dd class="data-value">{{page.uuid}}</dd>
+</dl>
+
+</div>

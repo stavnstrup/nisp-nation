@@ -1,6 +1,7 @@
 ---
 layout: home
 title: The NISP Nation
+debug-location: http://live.nisp.nw3.dk/debug
 ---
 
 
@@ -58,7 +59,19 @@ The sources to both the documents and the database viewer are stored in a Git re
 
 #### Debugging the NISP database
 
+* [Overview of all standards and profiles]({{page.debug-location}}/overview.html)
+* [Events in the database]({{page.debug-location}}/dates.html)
+* [Responsibleparties]({{page.debug-location}}/responsibleparties.html)
+* [Candidate and fading standards]({{page.debug-location}}/upcoming.html)
+* [Parent/Child relationships]({{page.debug-location}}/family.html)
+
+<!--
 * [Overview of all standards and profiles](/debug/overview.html)
 * [Events in the database](/debug/dates.html)
+-->
 
 <hr />
+
+<div class="footer">
+  <p>Last updated on {{ site.time | date_to_rfc822 }}</p>
+</div>

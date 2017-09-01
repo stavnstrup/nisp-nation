@@ -101,6 +101,7 @@
 <xsl:result-document href="_capabilityprofile/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: capabilityprofile&#x0A;</xsl:text>
+<xsl:text>element: Capabilityprofile&#x0A;</xsl:text>
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="profilespec"/>
@@ -117,6 +118,7 @@
 <xsl:result-document href="_profile/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: profile&#x0A;</xsl:text>
+<xsl:text>element: Profile&#x0A;</xsl:text>
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="profilespec"/>
@@ -141,6 +143,7 @@
 <xsl:result-document href="_serviceprofile/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: serviceprofile&#x0A;</xsl:text>
+<xsl:text>element: Serviceprofile&#x0A;</xsl:text>
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="profilespec"/>
@@ -170,6 +173,7 @@
 <xsl:result-document href="_standard/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: standard&#x0A;</xsl:text>
+<xsl:text>element: Standard&#x0A;</xsl:text>
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>tag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
@@ -252,6 +256,7 @@
 <xsl:result-document href="_organisation/{@key}.md">
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: organisation&#x0A;</xsl:text>
+<xsl:text>element: Organisations&#x0A;</xsl:text>
 <xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>text: </xsl:text><xsl:value-of select="@text"/><xsl:text>&#x0A;</xsl:text>
@@ -261,9 +266,6 @@
 <xsl:text>---&#x0A;</xsl:text>
 </xsl:result-document>
 </xsl:template>
-
-
-
 
 <xsl:template match="responsibleparties">
   <xsl:result-document href="_data/rp.json">

@@ -1,9 +1,9 @@
 ---
 layout: default
+element: Serviceprofiles
 permalink: /serviceprofile/index.html
 title: Service Profiles
 ---
-<h2>{{ page.title}}</h2>
 
 <ul>
 {% for sp in site.serviceprofile %}

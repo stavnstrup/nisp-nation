@@ -1,9 +1,8 @@
 ---
-layout: default
+layout: element
 permalink: /profile/index.html
-title: Profiles
+element: Profiles
 ---
-<h2>{{ page.title}}</h2>
 
 <ul>
 {% for p in site.profile %}

@@ -1,11 +1,9 @@
 ---
-layout: default
+layout: element
+element: Standards
 permalink: /standard/index.html
-title: Standards
+pagetype: Standards
 ---
-
-
-<h2>{{ page.title }}</h2>
 
 <div class="collection-wrap">
 

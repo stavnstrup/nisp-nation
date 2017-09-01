@@ -1,9 +1,8 @@
 ---
-layout: default
+layout: element
 permalink: /capabilityprofile/index.html
-title: Capability Profiles
+element: Capabilityprofiles
 ---
-<h2>{{ page.title}}</h2>
 
 <ul>
 {% for cp in site.capabilityprofile %}

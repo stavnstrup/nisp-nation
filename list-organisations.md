@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: element
 permalink: /organisation/index.html
-title: Organisations
+element: Organisations
 ---
-<h2>{{ page.title}}</h2>
-
 
 <ul>
 {% for o in site.organisation %}
