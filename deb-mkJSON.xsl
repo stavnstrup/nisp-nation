@@ -152,6 +152,7 @@
 </xsl:if>
 <xsl:text>taxonomy:&#x0A;</xsl:text>
 <xsl:apply-templates select="reftaxonomy"/>
+<xsl:text>obgroup:&#x0A;</xsl:text>
 <xsl:apply-templates select="obgroup"/>
 <xsl:apply-templates select="status"/>
 <xsl:apply-templates select="uuid"/>
@@ -164,9 +165,14 @@
 </xsl:template>
 
 <xsl:template match="obgroup">
-
+<xsl:text>  - obligation: </xsl:text><xsl:value-of select="@obligation"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    standards: </xsl:text><xsl:text>&#x0A;</xsl:text>
+<xsl:apply-templates select="refstandard"/>
 </xsl:template>
 
+<xsl:template match="refstandard">
+<xsl:text>    - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
+</xsl:template>
 
 <xsl:template match="standard">
 <xsl:if test="not(.//event[(position()=last()) and (@flag='deleted')])">
