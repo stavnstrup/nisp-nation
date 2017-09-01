@@ -2,62 +2,28 @@
 layout: element
 ---
 
-
-
 <dl>
   <dt class="data-label">Title</dt>
   <dd class="data-value">{{page.title}}</dd>
 </dl>
 
-<div class="reference">
-
-<h3>Reference document</h3>
-
-<div class="ref-meta">
-
-<dl class="ref-org">
-  <dt class="data-label">Org</dt>
-  <dd class="data-value">{{site.data.orgs[page.profilespec.org].short}}</dd>
-</dl>
-
-<dl class="ref-pubnum">
-  <dt class="data-label">Pubnum</dt>
-  <dd class="data-value">{{page.profilespec.pubnum}}</dd>
-</dl>
-
-
-<dl class="ref-date">
-  <dt class="data-label">Date</dt>
-  <dd class="data-value">{{page.profilespec.date}}</dd>
-</dl>
-
-<dl class="ref-version">
-  <dt class="data-label">Version</dt>
-  <dd class="data-value">{{page.profilespec.version}}</dd>
-</dl>
-
-</div>
-
-<dl class="ref-title">
-  <dt class="data-label">Title</dt>
-  <dd class="data-value">{{page.profilespec.title}}</dd>
-</dl>
-
-</div>
-
+{%include profilereference.html %}
 
 <h3>Subprofiles</h3>
 
-<p>This Capability profiles links to the following subprofiles</p>
-<ul>
+<ul class="subprofiles">
   {% for ref in page.subprofiles %}
-  <li>{{ref.refid}}</li>
+  <li><a href="/{{ref.type}}/{{ref.refid}}.html">{{ref.title}}</a> - (<strong>{{ref.type}}</strong>)</li>
   {% endfor %}
 </ul>
 
 {%include status.html %}
 
+<div class="meta-block">
+
 <dl>
   <dt class="data-label">UUID</dt>
   <dd class="data-value">{{page.uuid}}</dd>
 </dl>
+
+</div>

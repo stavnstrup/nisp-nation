@@ -120,6 +120,8 @@
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="profilespec"/>
+<xsl:text>subprofiles:&#x0A;</xsl:text>
+<xsl:apply-templates select="subprofiles"/>
 <xsl:apply-templates select="status"/>
 <xsl:apply-templates select="uuid"/>
 <xsl:text>---&#x0A;</xsl:text>
@@ -129,7 +131,10 @@
 <xsl:template match="subprofiles"><xsl:apply-templates/></xsl:template>
 
 <xsl:template match="refprofile">
+<xsl:variable name="refid" select="@refid"/>
 <xsl:text>  - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    type: </xsl:text><xsl:value-of select="local-name(/standards/records/*[@id=$refid])"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    title: </xsl:text><xsl:value-of select="/standards/records/*[@id=$refid]/@title"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
 <xsl:template match="serviceprofile">

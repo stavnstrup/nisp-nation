@@ -139,14 +139,19 @@ table tfoot {
   background: #f5f5f5;
 }
 
-table thead tr th, table tfoot tr th, table tbody tr td, table tr td, table tfoot tr td {
+table thead tr th,
+table tfoot tr th,
+table tbody tr td,
+table tr td,
+table tfoot tr td {
   display: table-cell;
   font-size: 16px;
   line-height: 18px;
-  text-align: left
+  text-align: left;
 }
 
-table thead tr th, table tfoot tr td {
+table thead tr th,
+table tfoot tr td {
   padding: 8px 10px 9px;
   font-size: 16px;
   font-weight: bold;
@@ -155,24 +160,27 @@ table thead tr th, table tfoot tr td {
 
 table thead tr th:first-child,
 table tfoot tr td:first-child {
-  border-left: none
+  border-left: none;
 }
 
 table thead tr th:last-child,
 table tfoot tr td:last-child {
-  border-right: none
+  border-right: none;
 }
+
 table tbody tr.even, table tbody tr.alt {
-  background: #f9f9f9
+  background: #f9f9f9;
 }
+
 table tbody tr:nth-child(even) {
-  background: #f9f9f9
+  background: #f9f9f9;
 }
+
 table tbody tr td {
   color: #333;
   padding: 9px 10px;
   vertical-align: top;
-  border: none
+  border: none;
 }
 
 
@@ -190,6 +198,7 @@ table tbody tr td {
   flex-grow: 2;
 }
 
+// Statistix boxes
 
 .statistics {
   display: flex;
@@ -232,7 +241,6 @@ table tbody tr td {
   font-size: 1.4em;
 }
 
-
 // Standard Collections
 
 .collection-wrap {
@@ -257,6 +265,8 @@ table tbody tr td {
   margin-bottom: 0;
 }
 
+// Element pages
+// Covers Capability Profile
 
 .data-label {
   font-weight: bold;
@@ -269,16 +279,16 @@ table tbody tr td {
   min-height: 25px;
   padding: 8px;
   background-color: rgba(255, 165, 0, 0.3);
+  flex-grow: 1;
 }
 
 
-
-.reference {
-  margin: 40px 0 16px;
+.meta-block {
+  margin: 0px 0 16px;
   padding: 8px 0;
 }
 
-.ref-meta {
+.meta-element-set {
   display: flex;
   flex-flow: row;
   margin-top: 20px;
@@ -307,7 +317,7 @@ table tbody tr td {
   .type {
     font-size: 1.4rem;
     font-weight: normal;
-    width: 100px;
+    width: 300px;
   }
 
   .id {
@@ -330,6 +340,8 @@ table tbody tr td {
   font-size: 1.8rem;
 }
 
+// dl { background-color: pink; }
+// h3 { background-color: #8fac9b;}
 
 h3 {
   border-bottom: 1px solid gray;
@@ -339,23 +351,33 @@ h3 {
   padding-bottom: 20px;
 }
 
+h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  padding-bottom: 6px;
+}
+
+ul.subprofiles {
+  margin-top: 16px;
+  list-style-position: inside;
+//  background-color: yellow;
+  //padding-left: 8px;
+  li {
+//    background-color: green;
+  }
+}
+
+
 .history-box {
   display: flex;
+  justify-content: left;
   //justify-content: center;
-  h4 {
-    display: block;
-    font-size: 1rem;
-    font-weight: bold;
-    padding-bottom: 6px;
-  }
 }
 
 .history {
   border-collapse: collapse;
   border: 1px solid #ddd;
-  margin: 0 10px;
-
-
+  margin: 8px 10px 0;
 }
 
 .footer {

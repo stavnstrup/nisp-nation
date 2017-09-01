@@ -1,53 +1,20 @@
 ---
-layout: default
+layout: element
 ---
 
-<h4>{{page.title}}</h4>
-
-<p>Type: Profile</p>
-
-<p>ID: {{page.nisp-id}}</p>
-
-
-
-<div class="reference">
-
-<b>Reference document</b>
-
 <dl>
-  <dt>Org</dt>
-  <dd>{{site.data.orgs[page.profilespec.org].short}}</dd>
-</dl>
-
-<dl>
-  <dt>Pubnum</dt>
-  <dd>{{page.profilespec.pubnum}}</dd>
+  <dt class="data-label">Title</dt>
+  <dd class="data-value">{{page.title}}</dd>
 </dl>
 
 
-<dl>
-  <dt>Date</dt>
-  <dd>{{page.profilespec.date}}</dd>
-</dl>
+{%include profilereference.html %}
 
-<dl>
-  <dt>Version</dt>
-  <dd>{{page.profilespec.version}}</dd>
-</dl>
+<h3>Subprofiles</h3>
 
-<dl>
-  <dt>Title</dt>
-  <dd>{{page.profilespec.title}}</dd>
-</dl>
-
-</div>
-
-<h4>Subprofiles</h4>
-
-<p>This Profile links to the following subprofiles</p>
-<ul>
+<ul class="subprofiles">
   {% for ref in page.subprofiles %}
-  <li>{{ref.refid}}</li>
+  <li><a href="/{{ref.type}}/{{ref.refid}}.html">{{ref.title}}</a> - (<strong>{{ref.type}}</strong>)</li>
   {% endfor %}
 </ul>
 
