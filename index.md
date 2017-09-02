@@ -1,9 +1,11 @@
 ---
 layout: home
 title: The NISP Nation
+live-location: http://live.nisp.nw3.dk/
 debug-location: http://live.nisp.nw3.dk/debug
----
 
+archive-location: http://archive.nisp.nw3.dk
+---
 
 The NISP tools and the NISP database viewer are continously being updated, but only released officially once a year.
 
@@ -24,16 +26,16 @@ The sources to both the documents and the database viewer are stored in a Git re
   <div class="quick-links">
     <h4>Go see draft stuff</h4>
     <ul class="daily">
-      <li><a href="http://live.nisp.nw3.dk/">See the latest draft of NISP</a></li>
+      <li><a href="{{ live-location }}">See the latest draft of NISP</a></li>
       <li><a href="http://noswg.nw3.dk/thenispnation/dailyviewer/">Use the database viewer</a></li>
       <li><a href="http://noswg.nw3.dk/thenispnation/dailyviewer.public/">Use the database viewer (public edition)</a></li>
     </ul>
     <h4>Official releases</h4>
     <ul>
-      <li><a href="../nisp-9.0/">NISP v9</a> - Jul. 4, 2016</li>
-      <li><a href="../nisp-8.0/">NISP v8</a> - Aug. 22, 2014</li>
-      <li><a href="../nisp-7.0/">NISP v7</a> - Mar. 22, 2013</li>
-      <li><a href="../nisp-6.0/">NISP v6</a> - Jan. 19, 2012</li>
+      <li><a href="{{ page.archive-location}}/nisp-9.0/">NISP v9</a> - Jul. 4, 2016</li>
+      <li><a href="{{ page.archive-location}}/nisp-8.0/">NISP v8</a> - Aug. 22, 2014</li>
+      <li><a href="{{ page.archive-location}}/nisp-7.0/">NISP v7</a> - Mar. 22, 2013</li>
+      <li><a href="{{ page.archive-location}}/nisp-6.0/">NISP v6</a> - Jan. 19, 2012</li>
     </ul>
 <!--
     <p><iframe src="https://spreadsheets.google.com/feeds/cells/11NmCRp1bc1Hbg38XM-lbKduwK9B3ibEyP5xMh88rB2M/1/public/full/Z332"><iframe></p>
@@ -61,9 +63,9 @@ The sources to both the documents and the database viewer are stored in a Git re
 
 * [Overview of all standards and profiles]({{page.debug-location}}/overview.html)
 * [Events in the database]({{page.debug-location}}/dates.html)
-* [Responsibleparties]({{page.debug-location}}/responsibleparties.html)
+* [Responsible parties]({{page.debug-location}}/responsibleparties.html)
 * [Candidate and fading standards]({{page.debug-location}}/upcoming.html)
-* [Parent/Child relationships]({{page.debug-location}}/family.html)
+* [Parent/child relationship]({{page.debug-location}}/family.html)
 
 <!--
 * [Overview of all standards and profiles](/debug/overview.html)
