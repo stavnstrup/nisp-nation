@@ -10,29 +10,29 @@ layout: element
 
 <dl class="ref-org">
   <dt class="data-label">Org</dt>
-  <dd class="data-value">{{site.data.orgs[page.document.org].short}}</dd>
+  <dd class="data-value">{{ site.data.orgs[page.document.org].short }}</dd>
 </dl>
 
 <dl class="ref-pubnum">
   <dt class="data-label">Pubnum</dt>
-  <dd class="data-value">{{page.document.pubnum}}</dd>
+  <dd class="data-value">{{ page.document.pubnum }}</dd>
 </dl>
 
 <dl class="ref-date">
   <dt class="data-label">Date</dt>
-  <dd class="data-value">{{page.document.date}}</dd>
+  <dd class="data-value">{{ page.document.date }}</dd>
 </dl>
 
 <dl class="ref-version">
   <dt class="data-label">Version</dt>
-  <dd class="data-value">{{page.document.version}}</dd>
+  <dd class="data-value">{{ page.document.version }}</dd>
 </dl>
 
 </div>
 
 <dl>
   <dt class="data-label">Title</dt>
-  <dd class="data-value">{{page.document.title}}</dd>
+  <dd class="data-value">{{ page.document.title }}</dd>
 </dl>
 
 </div>
@@ -40,6 +40,6 @@ layout: element
 {%include status.html %}
 
 <dl>
-  <dt>UUID</dt>
-  <dd>{{page.uuid}}</dd>
+  <dt class="data-label">UUID</dt>
+  <dd class="data-value">{{page.uuid}}</dd>
 </dl>

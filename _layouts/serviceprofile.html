@@ -17,7 +17,7 @@ layout: element
 
 <h3>Taxonomy</h3>
 
-<ul class="taxonomy">
+<ul>
 {% for t in page.taxonomy %}
 <li>{{ site.data.nodes[t].title }}</li>
 {% endfor %}
@@ -26,6 +26,12 @@ layout: element
 <h3>Standards</h3>
 
 {% for ob in page.obgroup %}
+<p><strong>{{ ob.obligation | capitalize }} Standards</strong></p>
+<ul>
+{% for std in ob.standards %}
+  <li><a href="/standard/{{std.refid}}.html">{{std.refid}}</a></li>
+{% endfor %}
+</ul>
 {% endfor %}
 
 {%include status.html %}

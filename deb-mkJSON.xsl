@@ -20,7 +20,7 @@
     <xsl:text>"profiles": "</xsl:text><xsl:value-of select="count(records/profile)"/><xsl:text>",</xsl:text>
     <xsl:text>"serviceprofiles": "</xsl:text><xsl:value-of select="count(records/serviceprofile)"/><xsl:text>",</xsl:text>
     <xsl:text>"standards": "</xsl:text><xsl:value-of select="count(records/standard)"/><xsl:text>",</xsl:text>
-    <xsl:text>"organisations": "</xsl:text><xsl:value-of select="count(organisations/orgkey)"/><xsl:text>",</xsl:text>
+    <xsl:text>"organizations": "</xsl:text><xsl:value-of select="count(organisations/orgkey)"/><xsl:text>",</xsl:text>
     <xsl:text>"responsibleparties": "</xsl:text><xsl:value-of select="count(responsibleparties/rpkey)"/><xsl:text>",</xsl:text>
     <xsl:text>"nodes": "</xsl:text><xsl:value-of select="count(taxonomy//node)"/><xsl:text>"</xsl:text>
     <xsl:text>}</xsl:text>
@@ -148,7 +148,7 @@
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="profilespec"/>
 <xsl:if test="description">
-<xsl:text>description: &#x0A;</xsl:text>
+<xsl:text>description: </xsl:text><xsl:apply-templates select="description"/><xsl:text>&#x0A;</xsl:text>
 </xsl:if>
 <xsl:text>taxonomy:&#x0A;</xsl:text>
 <xsl:apply-templates select="reftaxonomy"/>
@@ -168,7 +168,12 @@
 <xsl:text>  - obligation: </xsl:text><xsl:value-of select="@obligation"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>    standards: </xsl:text><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="refstandard"/>
+<xsl:text>    description: </xsl:text><xsl:apply-templates select="description"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
+
+
+<xsl:template match="description"><xsl:value-of select="normalize-space(.)"/></xsl:template>
+
 
 <xsl:template match="refstandard">
 <xsl:text>    - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
@@ -259,10 +264,10 @@
 
 <xsl:template match="orgkey">
 <xsl:variable name="mykey" select="@key"/>
-<xsl:result-document href="_organisation/{@key}.md">
+<xsl:result-document href="_organization/{@key}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: organisation&#x0A;</xsl:text>
-<xsl:text>element: Organisations&#x0A;</xsl:text>
+<xsl:text>layout: organization&#x0A;</xsl:text>
+<xsl:text>element: Organizations&#x0A;</xsl:text>
 <xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>text: </xsl:text><xsl:value-of select="@text"/><xsl:text>&#x0A;</xsl:text>

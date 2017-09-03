@@ -12,7 +12,7 @@ layout: element
 
 <h3>Subprofiles</h3>
 
-<ul class="subprofiles">
+<ul>
   {% for ref in page.subprofiles %}
   <li><a href="/{{ref.type}}/{{ref.refid}}.html">{{ref.title}}</a> - (<strong>{{ref.type}}</strong>)</li>
   {% endfor %}
