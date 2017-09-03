@@ -172,7 +172,7 @@
 </xsl:template>
 
 
-<xsl:template match="description"><xsl:value-of select="normalize-space(.)"/></xsl:template>
+<xsl:template match="description"><xsl:value-of select="translate(normalize-space(.),':',' ')"/></xsl:template>
 
 
 <xsl:template match="refstandard">
