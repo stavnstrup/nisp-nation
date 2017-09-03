@@ -5,7 +5,6 @@ _site
 .DS_Store
 .jekyll-metadata
 node_modules
-assets
 vendor
 .bundle
 .vagrant
