@@ -292,7 +292,7 @@
 <xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>long: </xsl:text><xsl:value-of select="@long"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>responsible: &#x0A;</xsl:text>
+<xsl:text>responsible: </xsl:text><xsl:value-of select="count(/standards//standard[responsibleparty/@rpref=$mykey])"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>---&#x0A;</xsl:text>
 </xsl:result-document>
 </xsl:template>
