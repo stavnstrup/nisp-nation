@@ -27,6 +27,7 @@ layout: element
 
 {% for ob in page.obgroup %}
 <p><strong>{{ ob.obligation | capitalize }} Standards</strong></p>
+<p>{{ob.description}}</p>
 <ul>
 {% for std in ob.standards %}
   <li><a href="/standard/{{std.refid}}.html">{{std.refid}}</a></li>
