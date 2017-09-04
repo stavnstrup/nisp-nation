@@ -12,6 +12,7 @@
   <xsl:apply-templates select="organisations"/>
   <xsl:apply-templates select="organisations" mode="data"/>
   <xsl:apply-templates select="responsibleparties"/>
+  <xsl:apply-templates select="responsibleparties" mode="data"/>
   <xsl:apply-templates select="taxonomy" mode="nodes"/>
   <xsl:apply-templates select="taxonomy"/>
   <xsl:result-document href="_data/stat.json">
@@ -279,14 +280,33 @@
 </xsl:template>
 
 <xsl:template match="responsibleparties">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="rpkey">
+<xsl:variable name="mykey" select="@key"/>
+<xsl:result-document href="_responsibleparty/{@key}.md">
+<xsl:text>---&#x0A;</xsl:text>
+<xsl:text>layout: responsibleparty&#x0A;</xsl:text>
+<xsl:text>element: Responsible Party&#x0A;</xsl:text>
+<xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>long: </xsl:text><xsl:value-of select="@long"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>responsible: &#x0A;</xsl:text>
+<xsl:text>---&#x0A;</xsl:text>
+</xsl:result-document>
+</xsl:template>
+
+
+<xsl:template match="responsibleparties" mode="data">
   <xsl:result-document href="_data/rp.json">
     <xsl:text>{</xsl:text>
-    <xsl:apply-templates/>
+    <xsl:apply-templates mode="data"/>
     <xsl:text>}</xsl:text>
   </xsl:result-document>
 </xsl:template>
 
-<xsl:template match="rpkey">
+<xsl:template match="rpkey" mode="data">
   <xsl:text>"</xsl:text><xsl:value-of select="@key"/><xsl:text>": {</xsl:text>
   <xsl:text>"short": "</xsl:text><xsl:value-of select="@short"/><xsl:text>", </xsl:text>
   <xsl:text>"long": "</xsl:text><xsl:value-of select="@long"/><xsl:text>"}</xsl:text>
