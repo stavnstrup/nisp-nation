@@ -30,7 +30,8 @@ layout: element
 <p>{{ob.description}}</p>
 <ul>
 {% for std in ob.standards %}
-  <li><a href="/standard/{{std.refid}}.html">{{std.refid}}</a></li>
+  {% assign s = site.standard | where:"nisp-id", std.refid | first %}
+  <li><a href="/standard/{{std.refid}}.html">{{s.document.title}} ({% if s.orgid %}{{site.data.orgs[s.orgid].short}} {% endif%}{{s.document.pubnum}}{%if s.date != '' %}:{{s.document.date | slice: 0,4}}{% endif%})</a></li>
 {% endfor %}
 </ul>
 {% endfor %}
