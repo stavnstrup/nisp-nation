@@ -15,7 +15,7 @@ pagetype: Standards
 
 <div class="collection-group">
 
-<h4><a href="/organisation/{{ grp.name }}.html">{{ site.data.orgs[grp.name].short }}</a></h4>
+<h4><a href="/organization/{{ grp.name }}.html">{{ site.data.orgs[grp.name].short }}</a></h4>
 
 <ul>
 {% for std in grp.items %}

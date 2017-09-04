@@ -1,8 +1,6 @@
 ---
-layout: default
-title: Taxonomy Nodes
+layout: element
+element: Taxonomy Nodes
 ---
-<h2>{{ page.title}}</h2>
-
 
 {% include taxonomy.html %}
