@@ -5,7 +5,7 @@
                 version='2.0'>
 
 
-<xsl:output saxon:next-in-chain="debug2.xsl"/>
+<xsl:output saxon:next-in-chain="db2data-p2.xsl"/>
 
 <xsl:template match="standard[status/@mode='deleted']"/>
 
