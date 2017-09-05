@@ -261,6 +261,24 @@ table tbody tr td {
   }
 }
 
+$std-complete: #39aa56;
+$std-incomplete: #db4545;
+
+.std-complete {
+  border-left: 7px solid $std-complete;
+  margin-bottom: 5px;
+  list-style-type: none;
+  padding-left: 8px;
+}
+
+.std-incomplete {
+  border-left: 7px solid $std-incomplete;
+  margin-bottom: 5px;
+  list-style-type: none;
+  padding-left: 8px;
+}
+
+
 .taxonomy ul {
   margin-bottom: 0;
 }

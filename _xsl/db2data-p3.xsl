@@ -186,6 +186,8 @@
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: standard&#x0A;</xsl:text>
 <xsl:text>element: Standard&#x0A;</xsl:text>
+<xsl:text>complete: </xsl:text><xsl:value-of select="(document/@orgid != '') and
+  (document/@pubnum != '') and (document/@title != '') and (document/@date != '')"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>tag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
