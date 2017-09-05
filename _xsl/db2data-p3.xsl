@@ -181,6 +181,7 @@
 </xsl:template>
 
 <xsl:template match="standard">
+<xsl:variable name="myid" select="@id"/>
 <xsl:if test="not(.//event[(position()=last()) and (@flag='deleted')])">
 <xsl:result-document href="_standard/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
@@ -200,9 +201,15 @@
 <xsl:text>rp: </xsl:text><xsl:value-of select="responsibleparty/@rpref"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="status"/>
 <xsl:apply-templates select="uuid"/>
+<xsl:text>consumers:&#x0A;</xsl:text>
+<xsl:apply-templates select="/*//serviceprofile/obgroup/refstandard[@refid=$myid]" mode="sp-to-sd"/>
 <xsl:text>---&#x0A;</xsl:text>
 </xsl:result-document>
 </xsl:if>
+</xsl:template>
+
+<xsl:template match="refstandard" mode="sp-to-sd">
+<xsl:text>  - </xsl:text><xsl:value-of select="../../@id"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
 

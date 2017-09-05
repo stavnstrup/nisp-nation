@@ -6,7 +6,7 @@
 
 <dl>
   <dt class="data-label">URI</dt>
-  <dd class="data-value">{{page.status.uri}}</dd>
+  <dd class="data-value">{% if page.status.uri != '' %}<a href="{{page.status.uri}}">{{ page.status.uri }}</a>{% endif %}</dd>
 </dl>
 
 <h4>History</h4>
@@ -16,7 +16,7 @@
     <tr>
       <th>Flag</th>
       <th>Date</th>
-      <th>RFCP</th>
+      <th>RFC</th>
       <th>Version</th>
     </tr>
   </thead>
