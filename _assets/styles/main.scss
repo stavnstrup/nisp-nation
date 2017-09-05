@@ -7,6 +7,8 @@ $nisp-hero-bg: #222;
 $nisp-hero-color: #fff;
 $nisp-hero-bottom: #ffa500;
 
+$std-complete: #39aa56;
+$std-incomplete: #db4545;
 
 $font-size: 16px;
 
@@ -254,30 +256,31 @@ table tbody tr td {
   border-bottom: solid 1px #ddd;
   margin: 12px;
   min-width: 30%;
-//  border-width: 1px 0 0;
   h4 {
     margin-top: 0;
     // text-align: center;
   }
+  ul {
+    margin-left: 16px;
+  }
 }
 
-$std-complete: #39aa56;
-$std-incomplete: #db4545;
+
+.collection-item {
+  list-style-type: none;
+  margin-bottom: 5px;
+  padding-left: 8px;
+
+}
 
 .std-complete {
   border-left: 7px solid $std-complete;
-  margin-bottom: 5px;
-  list-style-type: none;
-  padding-left: 8px;
 }
 
 .std-incomplete {
   border-left: 7px solid $std-incomplete;
-  margin-bottom: 5px;
-  list-style-type: none;
-  padding-left: 8px;
 }
-
+// Taxonomy
 
 .taxonomy ul {
   margin-bottom: 0;

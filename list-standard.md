@@ -17,7 +17,7 @@ pagetype: Standards
 
 <ul>
 {% for std in grp.items %}
-<li class="std-{%if std.complete %}complete{% else %}incomplete{% endif %}"><a href="/standard/{{std.nisp-id}}.html" title="{{std.document.title}}">{%   if std.document.pubnum != '' %}{{ std.document.pubnum }}{% else %}{{std.nisp-id}}{% endif %}</a></li>
+<li class="collection-item std-{%if std.complete %}complete{% else %}incomplete{% endif %}"><a href="/standard/{{std.nisp-id}}.html" title="{{std.document.title}}">{%   if std.document.pubnum != '' %}{{ std.document.pubnum }}{% else %}{{std.nisp-id}}{% endif %}</a></li>
 {% capture mod %}{{ forloop.index | modulo:10 }}{% endcapture %}
 {% if  mod == '0' %}    
 </ul>
