@@ -14,6 +14,8 @@ collections:
     output: true
   responsibleparty:
     output: true
+  node:
+    output: true
 
 
 exclude: ['README.md','Gemfile','Gemfile.*','gulpfile.js','package.json','node_modules','vendor/bundle']
