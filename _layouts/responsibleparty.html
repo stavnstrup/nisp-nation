@@ -6,4 +6,24 @@ element: Responsible Party
 <h4>{{ page.long }} ({{page.short}})</h4>
 
 
-<p>This responsible party is responsible for {{page.responsible}} standard{%if page.responsible > 1%}s{% endif %}.</p>
+<p>This responsible party is responsible for {{page.responsible.number}} standard{%if page.responsible.number > 1%}s{% endif %}.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Org</th>
+      <th>Pubnum</th>
+      <th>Title</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  {% for std in page.responsible.standards %}
+  {% assign s = site.standard | where:"nisp-id", std | first %}
+  <tr>
+    <td>{{s.orgid}}</td>
+    <td>{{s.document.pubnum}}</td>
+    <td>{{s.document.title}}</td>
+    <td>{{s.document.date}}</td>
+  </tr>
+  {% endfor %}
+</table>

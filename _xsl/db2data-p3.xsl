@@ -294,11 +294,17 @@
 <xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>long: </xsl:text><xsl:value-of select="@long"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>responsible: </xsl:text><xsl:value-of select="count(/standards//standard[responsibleparty/@rpref=$mykey])"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>responsible:&#x0A;</xsl:text>
+<xsl:text>  number: </xsl:text><xsl:value-of select="count(/standards//standard[responsibleparty/@rpref=$mykey])"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>  standards:&#x0A;</xsl:text>
+<xsl:apply-templates select="/*//standard/responsibleparty[@rpref=$mykey]" mode="liststandard"/>
 <xsl:text>---&#x0A;</xsl:text>
 </xsl:result-document>
 </xsl:template>
 
+<xsl:template match="responsibleparty" mode="liststandard">
+<xsl:text>    - </xsl:text><xsl:value-of select="../@id"/><xsl:text>&#x0A;</xsl:text>
+</xsl:template>
 
 <xsl:template match="responsibleparties" mode="data">
   <xsl:result-document href="_data/rp.json">
