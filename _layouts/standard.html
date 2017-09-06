@@ -47,12 +47,13 @@ layout: element
   <dd class="data-value">{{page.uuid}}</dd>
 </dl>
 
+{% if page.consumers.size > 0 %}
 <h3>Relationships</h3>
-
-<p>Profiles which uses this standard.</p>
+<p>Service profiles which uses this standard.</p>
 <ul>
 {% for sp in page.consumers %}
 {% assign sp-rec = site.serviceprofile | where:"nisp-id", sp | first %}
 <li><a href="/serviceprofile/{{ sp }}.html">{{sp-rec.title}}</a></li>
 {% endfor %}
 </ul>
+{% endif %}
