@@ -13,8 +13,9 @@
   <xsl:apply-templates select="organisations" mode="data"/>
   <xsl:apply-templates select="responsibleparties"/>
   <xsl:apply-templates select="responsibleparties" mode="data"/>
-  <xsl:apply-templates select="taxonomy" mode="nodes"/>
   <xsl:apply-templates select="taxonomy"/>
+  <xsl:apply-templates select="taxonomy" mode="data"/>
+  <xsl:apply-templates select="taxonomy" mode="taxonomy"/>
   <xsl:result-document href="_data/stat.json">
     <xsl:text>{</xsl:text>
     <xsl:text>"capabilityprofiles": "</xsl:text><xsl:value-of select="count(records/capabilityprofile)"/><xsl:text>",</xsl:text>
@@ -29,41 +30,65 @@
 </xsl:template>
 
 <xsl:template match="taxonomy">
+  <xsl:apply-templates select="node">
+    <xsl:with-param name="parent" select="'null'"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+<xsl:template match="node">
+<xsl:param name="parent"/>
+<xsl:result-document href="_node/{@id}.md">
+<xsl:text>---&#x0A;</xsl:text>
+<xsl:text>layout: element&#x0A;</xsl:text>
+<xsl:text>element: node&#x0A;</xsl:text>
+<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>parent: </xsl:text><xsl:value-of select="$parent"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>level: </xsl:text><xsl:value-of select="@level"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>emUUID: </xsl:text><xsl:value-of select="@emUUID"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>---&#x0A;</xsl:text>
+</xsl:result-document>
+<xsl:apply-templates select="node">
+  <xsl:with-param name="parent" select="@id"/>
+</xsl:apply-templates>
+</xsl:template>
+
+<xsl:template match="taxonomy" mode="taxonomy">
   <xsl:result-document href="_includes/taxonomy.html">
     <xsl:text>&lt;div class="taxonomy"&gt;&#x0A;</xsl:text>
     <xsl:text>&lt;ul&gt;</xsl:text>
-    <xsl:apply-templates/>
+    <xsl:apply-templates mode="taxonomy"/>
     <xsl:text>&lt;/ul&gt;</xsl:text>
     <xsl:text>&lt;/div&gt;&#x0A;</xsl:text>
   </xsl:result-document>
 </xsl:template>
 
-<xsl:template match="node">
+<xsl:template match="node" mode="taxonomy">
   <xsl:text>&lt;li&gt;[</xsl:text><xsl:value-of select="@level"/><xsl:text>] </xsl:text>
   <xsl:apply-templates select="@title"/>
   <xsl:if test="./node">
     <xsl:text>&lt;ul&gt;</xsl:text>
-    <xsl:apply-templates select="node"/>
+    <xsl:apply-templates select="node" mode="taxonomy"/>
     <xsl:text>&lt;/ul&gt;&#x0A;</xsl:text>
   </xsl:if>
   <xsl:text>&lt;/li&gt;&#x0A;</xsl:text>
 </xsl:template>
 
 
-<xsl:template match="taxonomy" mode="nodes">
+<xsl:template match="taxonomy" mode="data">
   <xsl:result-document href="_data/nodes.json">
     <xsl:text>{</xsl:text>
-    <xsl:apply-templates mode="nodes"/>
+    <xsl:apply-templates mode="data"/>
     <xsl:text>"eof-node-tree": {}</xsl:text>
     <xsl:text>}</xsl:text>
   </xsl:result-document>
 </xsl:template>
 
-<xsl:template match="node" mode="nodes">
+<xsl:template match="node" mode="data">
   <xsl:text>"</xsl:text><xsl:value-of select="@id"/><xsl:text>": {</xsl:text>
   <xsl:text>"title": "</xsl:text><xsl:value-of select="@title"/><xsl:text>",</xsl:text>
   <xsl:text>"level": "</xsl:text><xsl:value-of select="@level"/><xsl:text>"},</xsl:text>
-  <xsl:apply-templates select="node" mode="nodes"/>
+  <xsl:apply-templates select="node" mode="data"/>
 </xsl:template>
 
 <xsl:template match="records">
@@ -282,10 +307,38 @@
 <xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>text: </xsl:text><xsl:value-of select="@text"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>uri: </xsl:text><xsl:value-of select="@uri"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>owns: </xsl:text><xsl:value-of
-       select="count(/standards//document[@orgid=$mykey])+count(/standards//profilespec[@orgid=$mykey])"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>stuff:&#x0A;</xsl:text>
+<xsl:text>  standards:&#x0A;</xsl:text>
+<xsl:text>    owns: </xsl:text><xsl:value-of
+       select="count(/standards//document[@orgid=$mykey])"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    references:&#x0A;</xsl:text>
+<xsl:apply-templates select="/*//standard/document[@orgid=$mykey]" mode="liststandard"/>
+<xsl:text>  capabilityprofiles:&#x0A;</xsl:text>
+<xsl:text>    owns: </xsl:text><xsl:value-of
+       select="count(/standards//capabilityprofile/profilespec[@orgid=$mykey])"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    references:&#x0A;</xsl:text>
+<xsl:apply-templates select="/*//capabilityprofile/profilespec[@orgid=$mykey]" mode="listprofile"/>
+<xsl:text>  profiles:&#x0A;</xsl:text>
+<xsl:text>    owns: </xsl:text><xsl:value-of
+       select="count(/standards//profile/profilespec[@orgid=$mykey])"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    references:&#x0A;</xsl:text>
+<xsl:apply-templates select="/*//profile/profilespec[@orgid=$mykey]" mode="listprofile"/>
+<xsl:text>  serviceprofiles:&#x0A;</xsl:text>
+<xsl:text>    owns: </xsl:text><xsl:value-of
+       select="count(/standards//serviceprofile/profilespec[@orgid=$mykey])"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    references:&#x0A;</xsl:text>
+<xsl:apply-templates select="/*//serviceprofile/profilespec[@orgid=$mykey]" mode="listprofile"/>
 <xsl:text>---&#x0A;</xsl:text>
 </xsl:result-document>
+</xsl:template>
+
+
+<xsl:template match="document" mode="liststandard">
+<xsl:text>    - </xsl:text><xsl:value-of select="../@id"/><xsl:text>&#x0A;</xsl:text>
+</xsl:template>
+
+<xsl:template match="profilespec" mode="listprofile">
+<xsl:text>    - </xsl:text><xsl:value-of select="../@id"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
 <xsl:template match="responsibleparties">
