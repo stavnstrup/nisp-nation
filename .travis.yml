@@ -1,0 +1,33 @@
+
+
+sudo: required
+
+language: java
+
+jdk:
+  - oraclejdk8
+
+before_install:
+ - sudo apt-get -qq update
+
+install:
+  - sudo apt-get install -qq libxml2-utils libsaxonb-java
+  - bundle install
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+
+script:
+  - curl -o _standards.xml https://raw.githubusercontent.com/stavnstrup/nisp-tools/master/src/standards/standards.xml
+  - xmllint --noout --valid src/standards/standards.xml
+  - saxonb-xslt -ext:on _standards.xml _xsl/db2data.xsl
+  - bundle exec jekyll build
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: "./_scripts/deploy-nisp-nation.sh"
+    on:
+      branch: master
