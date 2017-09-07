@@ -21,7 +21,7 @@ notifications:
 
 script:
   - curl -o _standards.xml https://raw.githubusercontent.com/stavnstrup/nisp-tools/master/src/standards/standards.xml
-  - xmllint --noout --valid src/standards/standards.xml
+  - sed -i.bak -e '2,4d' _standards.xml
   - saxonb-xslt -ext:on _standards.xml _xsl/db2data.xsl
   - bundle exec jekyll build
 
