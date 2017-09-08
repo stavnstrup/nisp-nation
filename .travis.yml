@@ -11,7 +11,7 @@ before_install:
  - sudo apt-get -qq update
 
 install:
-  - sudo apt-get install -qq libxml2-utils libsaxonb-java
+  - sudo apt-get install -qq libxml2-utils libsaxonb-java docbook-xml
   - bundle install
 
 notifications:
@@ -20,10 +20,11 @@ notifications:
     on_failure: change
 
 script:
-  - curl -o _standards.xml https://raw.githubusercontent.com/stavnstrup/nisp-tools/master/src/standards/standards.xml
-  - sed -i.bak -e '2,4d' _standards.xml
-  - saxonb-xslt -ext:on _standards.xml _xsl/db2data.xsl
-  - cat _profile/fmn2-pr-uni-collab.md
+  - mkdir _temp _temp/standards/ _temp/schema/ _temp/schema/dtd/ _temp/schema/dtd/docbkx45/
+  - curl -o _temp/standards/standards.xml https://raw.githubusercontent.com/stavnstrup/nisp-tools/master/src/standards/standards.xml
+  - cp -r /usr/share/xml/docbook/schema/dtd/4.5/* _temp/schema/dtd/docbkx45/
+  - curl -o _temp/schema/dtd/stddb43.dtd https://raw.githubusercontent.com/stavnstrup/nisp-tools/master/src/schema/dtd/stddb43.dtd
+  - saxonb-xslt -ext:on _temp/standards/standards.xml _xsl/db2data.xsl
   - bundle exec jekyll build
 
 deploy:
