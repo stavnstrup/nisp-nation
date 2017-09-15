@@ -10,7 +10,6 @@ element: Responsible Party
 <table>
   <thead>
     <tr>
-      <th>Org</th>
       <th>Pubnum</th>
       <th>Title</th>
       <th>Date</th>
@@ -19,7 +18,6 @@ element: Responsible Party
   {% for std in page.responsible.standards %}
   {% assign s = site.standard | where:"nisp-id", std | first %}
   <tr>
-    <td>{{site.data.orgs[s.orgid].short}}</td>
     <td>{{s.document.pubnum}}</td>
     <td><a href="/standard/{{ std }}.html">{{s.document.title}}</a></td>
     <td>{{s.document.date | slice: 0,4}}</td>

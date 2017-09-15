@@ -17,7 +17,6 @@ element: Organization
 <table>
   <thead>
     <tr>
-      <th>Org</th>
       <th>Pubnum</th>
       <th>Title</th>
       <th>Date</th>
@@ -26,7 +25,6 @@ element: Organization
   {% for std in page.stuff.standards.references %}
   {% assign s = site.standard | where:"nisp-id", std | first %}
   <tr>
-    <td>{{site.data.orgs[s.orgid].short}}</td>
     <td>{{s.document.pubnum}}</td>
     <td><a href="/standard/{{ std }}.html">{{s.document.title}}</a></td>
     <td>{{s.document.date | slice: 0,4}}</td>
@@ -44,7 +42,6 @@ element: Organization
 <table>
   <thead>
     <tr>
-      <th>Org</th>
       <th>Pubnum</th>
       <th>Title</th>
       <th>Date</th>
@@ -53,7 +50,6 @@ element: Organization
   {% for std in page.stuff.capabilityprofiles.references %}
   {% assign s = site.capabilityprofile | where:"nisp-id", std | first %}
   <tr>
-    <td>{{site.data.orgs[s.profilespec.org  ].short}}</td>
     <td>{{s.profilespec.pubnum}}</td>
     <td><a href="/capabilityprofile/{{ std }}.html">{{s.title}}</a></td>
     <td>{{s.profilespec.date | slice: 0,4}}</td>
@@ -69,7 +65,6 @@ element: Organization
 <table>
   <thead>
     <tr>
-      <th>Org</th>
       <th>Pubnum</th>
       <th>Title</th>
       <th>Date</th>
@@ -78,7 +73,6 @@ element: Organization
   {% for std in page.stuff.profiles.references %}
   {% assign s = site.profile | where:"nisp-id", std | first %}
   <tr>
-    <td>{{site.data.orgs[s.profilespec.org  ].short}}</td>
     <td>{{s.profilespec.pubnum}}</td>
     <td><a href="/profile/{{ std }}.html">{{s.title}}</a></td>
     <td>{{s.profilespec.date | slice: 0,4}}</td>
@@ -94,7 +88,6 @@ element: Organization
 <table>
   <thead>
     <tr>
-      <th>Org</th>
       <th>Pubnum</th>
       <th>Title</th>
       <th>Date</th>
@@ -103,7 +96,6 @@ element: Organization
   {% for std in page.stuff.serviceprofiles.references %}
   {% assign s = site.serviceprofile | where:"nisp-id", std | first %}
   <tr>
-    <td>{{site.data.orgs[s.profilespec.org  ].short}}</td>
     <td>{{s.profilespec.pubnum}}</td>
     <td><a href="/serviceprofile/{{ std }}.html">{{s.title}}</a></td>
     <td>{{s.profilespec.date | slice: 0,4}}</td>
