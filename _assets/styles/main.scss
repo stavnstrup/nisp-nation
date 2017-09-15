@@ -1,6 +1,7 @@
 // This is the main style file for thenispnation
 @charset 'utf-8';
 
+@import 'tree';
 
 $nisp-orange: #f7751f;
 
@@ -390,9 +391,9 @@ h4 {
   padding-bottom: 6px;
 }
 
-ul {
-  margin-top: 16px;
+.stdgroup {
   list-style-position: inside;
+  margin-top: 16px;
 }
 
 .history-box {

@@ -8,7 +8,6 @@
 <xsl:output method="text" indent="yes"/>
 
 <xsl:template match="standards">
-
   <xsl:apply-templates select="records"/>
   <xsl:apply-templates select="organisations"/>
   <xsl:apply-templates select="organisations" mode="data"/>
@@ -30,11 +29,49 @@
   </xsl:result-document>
 </xsl:template>
 
+<!-- Create a graph illustrating the composite structure of profiles -->
+
+<xsl:template match="capabilityprofile" mode="makegraph">
+<xsl:result-document href="_includes/graph-{@id}.html" method="html">
+<ul class="tree">
+  <li><a href="/capabilityprofile/{@id}.html"><xsl:value-of select="@title"/></a>
+  <ul>
+    <xsl:for-each select="subprofiles/refprofile">
+      <xsl:variable name="thisref" select="@refid"/>
+      <xsl:apply-templates select="/standards//profile[@id=$thisref]" mode="makegraph"/>
+      <xsl:apply-templates select="/standards//serviceprofile[@id=$thisref]" mode="makegraph"/>
+    </xsl:for-each>
+  </ul>
+  </li>
+</ul>
+</xsl:result-document>
+</xsl:template>
+
+<xsl:template match="profile" mode="makegraph">
+  <li><a href="/profile/{@id}.html"><xsl:value-of select="@title"/></a>
+    <ul>
+      <xsl:for-each select="subprofiles/refprofile">
+        <xsl:variable name="thisref" select="@refid"/>
+        <xsl:apply-templates select="/standards//profile[@id=$thisref]" mode="makegraph"/>
+        <xsl:apply-templates select="/standards//serviceprofile[@id=$thisref]" mode="makegraph"/>
+      </xsl:for-each>
+    </ul>
+  </li>
+</xsl:template>
+
+
+<xsl:template match="serviceprofile" mode="makegraph">
+  <li><a href="/serviceprofile/{@id}.html"><xsl:value-of select="@title"/></a></li>
+</xsl:template>
+
+<!-- Create Node descriptions -->
+
 <xsl:template match="taxonomy">
   <xsl:apply-templates select="node">
     <xsl:with-param name="parent" select="'null'"/>
   </xsl:apply-templates>
 </xsl:template>
+
 
 <xsl:template match="node">
 <xsl:param name="parent"/>
@@ -99,6 +136,7 @@
 
 
 <xsl:template match="records">
+  <xsl:apply-templates select="capabilityprofile" mode="makegraph"/>
   <!-- Process all standard and profiles -->
   <xsl:apply-templates/>
   <!-- List all events in descending order in all standards and profiles -->
