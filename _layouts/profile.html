@@ -28,3 +28,13 @@ layout: element
 </dl>
 
 </div>
+
+<h3>Utilization</h3>
+
+This profile is used by the following profiles:
+
+<ul>
+  {% for ref in page.parents %}
+  <li><a href="/{{ref.type}}/{{ref.refid}}.html">{{ref.title}}</a> - (<strong>{{ref.type}}</strong>)</li>
+  {% endfor %}
+</ul>

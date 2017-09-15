@@ -8,14 +8,15 @@
 <xsl:output method="text" indent="yes"/>
 
 <xsl:template match="standards">
+
   <xsl:apply-templates select="records"/>
   <xsl:apply-templates select="organisations"/>
   <xsl:apply-templates select="organisations" mode="data"/>
   <xsl:apply-templates select="responsibleparties"/>
   <xsl:apply-templates select="responsibleparties" mode="data"/>
   <xsl:apply-templates select="taxonomy"/>
-  <xsl:apply-templates select="taxonomy" mode="data"/>
   <xsl:apply-templates select="taxonomy" mode="taxonomy"/>
+  <xsl:apply-templates select="taxonomy" mode="data"/>
   <xsl:result-document href="_data/stat.json">
     <xsl:text>{</xsl:text>
     <xsl:text>"capabilityprofiles": "</xsl:text><xsl:value-of select="count(records/capabilityprofile)"/><xsl:text>",</xsl:text>
@@ -53,6 +54,9 @@
 </xsl:apply-templates>
 </xsl:template>
 
+
+<!-- Create Taxonomy Tree -->
+
 <xsl:template match="taxonomy" mode="taxonomy">
   <xsl:result-document href="_includes/taxonomy.html">
     <xsl:text>&lt;div class="taxonomy"&gt;&#x0A;</xsl:text>
@@ -62,6 +66,7 @@
     <xsl:text>&lt;/div&gt;&#x0A;</xsl:text>
   </xsl:result-document>
 </xsl:template>
+
 
 <xsl:template match="node" mode="taxonomy">
   <xsl:text>&lt;li&gt;[</xsl:text><xsl:value-of select="@level"/><xsl:text>] </xsl:text>
@@ -84,6 +89,7 @@
   </xsl:result-document>
 </xsl:template>
 
+
 <xsl:template match="node" mode="data">
   <xsl:text>"</xsl:text><xsl:value-of select="@id"/><xsl:text>": {</xsl:text>
   <xsl:text>"title": "</xsl:text><xsl:value-of select="@title"/><xsl:text>",</xsl:text>
@@ -91,8 +97,11 @@
   <xsl:apply-templates select="node" mode="data"/>
 </xsl:template>
 
+
 <xsl:template match="records">
+  <!-- Process all standard and profiles -->
   <xsl:apply-templates/>
+  <!-- List all events in descending order in all standards and profiles -->
   <xsl:result-document href="_data/events.json">
     <xsl:text>[</xsl:text>
     <xsl:apply-templates select=".//event" mode="allevents">
@@ -123,6 +132,7 @@
   <xsl:text>},</xsl:text>
 </xsl:template>
 
+
 <xsl:template match="capabilityprofile">
 <xsl:result-document href="_capabilityprofile/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
@@ -141,6 +151,7 @@
 
 
 <xsl:template match="profile">
+<xsl:variable name="myid" select="@id"/>
 <xsl:result-document href="_profile/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: profile&#x0A;</xsl:text>
@@ -152,11 +163,21 @@
 <xsl:apply-templates select="subprofiles"/>
 <xsl:apply-templates select="status"/>
 <xsl:apply-templates select="uuid"/>
+<xsl:text>parents:&#x0A;</xsl:text>
+<xsl:apply-templates select="/standards//refprofile[@refid=$myid]" mode="listparent"/>
 <xsl:text>---&#x0A;</xsl:text>
 </xsl:result-document>
 </xsl:template>
 
+
 <xsl:template match="subprofiles"><xsl:apply-templates/></xsl:template>
+
+<xsl:template match="refprofile" mode="listparent">
+<xsl:text>  - refid: </xsl:text><xsl:value-of select="../../@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    type: </xsl:text><xsl:value-of select="local-name(../..)"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    title: </xsl:text><xsl:value-of select="../../@title"/><xsl:text>&#x0A;</xsl:text>
+</xsl:template>
+
 
 <xsl:template match="refprofile">
 <xsl:variable name="refid" select="@refid"/>
@@ -165,7 +186,9 @@
 <xsl:text>    title: </xsl:text><xsl:value-of select="/standards/records/*[@id=$refid]/@title"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
+
 <xsl:template match="serviceprofile">
+<xsl:variable name="myid" select="@id"/>
 <xsl:result-document href="_serviceprofile/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: serviceprofile&#x0A;</xsl:text>
@@ -182,13 +205,17 @@
 <xsl:apply-templates select="obgroup"/>
 <xsl:apply-templates select="status"/>
 <xsl:apply-templates select="uuid"/>
+<xsl:text>parents:&#x0A;</xsl:text>
+<xsl:apply-templates select="/standards//refprofile[@refid=$myid]" mode="listparent"/>
 <xsl:text>---&#x0A;</xsl:text>
 </xsl:result-document>
 </xsl:template>
 
+
 <xsl:template match="reftaxonomy">
 <xsl:text>  - </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
+
 
 <xsl:template match="obgroup">
 <xsl:text>  - obligation: </xsl:text><xsl:value-of select="@obligation"/><xsl:text>&#x0A;</xsl:text>
@@ -200,10 +227,10 @@
 
 <xsl:template match="description"><xsl:value-of select="translate(normalize-space(.),':',' ')"/></xsl:template>
 
-
 <xsl:template match="refstandard">
 <xsl:text>    - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
+
 
 <xsl:template match="standard">
 <xsl:variable name="myid" select="@id"/>
