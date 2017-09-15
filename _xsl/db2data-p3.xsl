@@ -94,26 +94,34 @@
 
 <!-- Create Taxonomy Tree -->
 
+
 <xsl:template match="taxonomy" mode="taxonomy">
-  <xsl:result-document href="_includes/taxonomy.html">
-    <xsl:text>&lt;div class="taxonomy"&gt;&#x0A;</xsl:text>
-    <xsl:text>&lt;ul&gt;</xsl:text>
-    <xsl:apply-templates mode="taxonomy"/>
-    <xsl:text>&lt;/ul&gt;</xsl:text>
-    <xsl:text>&lt;/div&gt;&#x0A;</xsl:text>
+  <xsl:result-document href="_includes/taxonomy.html" method="html">
+    <div class="taxonomy">
+      <ul>
+        <xsl:apply-templates mode="taxonomy"/>
+      </ul>
+    </div>
   </xsl:result-document>
 </xsl:template>
 
 
 <xsl:template match="node" mode="taxonomy">
-  <xsl:text>&lt;li&gt;[</xsl:text><xsl:value-of select="@level"/><xsl:text>] </xsl:text>
-  <xsl:apply-templates select="@title"/>
+  <li>[<xsl:value-of select="@level"/><xsl:text>] </xsl:text>
+  <a>
+    <xsl:attribute name="href">
+      <xsl:text>/node/</xsl:text>
+      <xsl:value-of select="@id"/>
+      <xsl:text>.html</xsl:text>
+    </xsl:attribute>
+    <xsl:apply-templates select="@title"/>
+  </a>
   <xsl:if test="./node">
-    <xsl:text>&lt;ul&gt;</xsl:text>
-    <xsl:apply-templates select="node" mode="taxonomy"/>
-    <xsl:text>&lt;/ul&gt;&#x0A;</xsl:text>
+    <ul>
+      <xsl:apply-templates select="node" mode="taxonomy"/>
+    </ul>
   </xsl:if>
-  <xsl:text>&lt;/li&gt;&#x0A;</xsl:text>
+  </li>
 </xsl:template>
 
 
