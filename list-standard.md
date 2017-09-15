@@ -15,7 +15,7 @@ pagetype: Standards
 
 <h4><a href="/organization/{{ grp.name }}.html">{{ site.data.orgs[grp.name].short }}</a></h4>
 
-<ul>
+<ul class="stdgroup">
 {% for std in grp.items %}
 <li class="collection-item std-{%if std.complete %}complete{% else %}incomplete{% endif %}"><a href="/standard/{{std.nisp-id}}.html" title="{{std.document.title}}">{%   if std.document.pubnum != '' %}{{ std.document.pubnum }}{% else %}{{std.nisp-id}}{% endif %}</a></li>
 {% capture mod %}{{ forloop.index | modulo:10 }}{% endcapture %}
