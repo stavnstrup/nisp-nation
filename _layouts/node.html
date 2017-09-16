@@ -1,0 +1,45 @@
+---
+layout: element
+---
+
+<h3>Reference document</h3>
+
+
+<dl>
+  <dt class="data-label">Title</dt>
+  <dd class="data-value">{{page.title}}</dd>
+</dl>
+
+
+<dl>
+  <dt class="data-label">Description</dt>
+  <dd class="data-value"></dd>
+</dl>
+
+<dl>
+  <dt class="data-label">Level</dt>
+  <dd class="data-value">{{page.level}}</dd>
+</dl>
+
+<dl>
+  <dt class="data-label">emUUID</dt>
+  <dd class="data-value">{{page.emUUID}}</dd>
+</dl>
+
+
+<h3>Parent</h3>
+
+<dl>
+  <dt class="data-label">Parent ID</dt>
+  <dd class="data-value">{{page.parent}}</dd>
+</dl>
+{% if page.consumers.size > 0 %}
+<h3>Relationships</h3>
+<p>Service profiles which uses this standard.</p>
+<ul>
+{% for sp in page.consumers %}
+{% assign sp-rec = site.serviceprofile | where:"nisp-id", sp | first %}
+<li><a href="/serviceprofile/{{ sp }}.html">{{sp-rec.title}}</a></li>
+{% endfor %}
+</ul>
+{% endif %}

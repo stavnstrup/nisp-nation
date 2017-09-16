@@ -1,6 +1,6 @@
 ---
 layout: element
-element: Taxonomy Node
+element: Taxonomy Nodes
 permalink: /node/index.html
 ---
 

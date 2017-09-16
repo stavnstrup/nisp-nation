@@ -77,7 +77,7 @@
 <xsl:param name="parent"/>
 <xsl:result-document href="_node/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: element&#x0A;</xsl:text>
+<xsl:text>layout: node&#x0A;</xsl:text>
 <xsl:text>element: node&#x0A;</xsl:text>
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>parent: </xsl:text><xsl:value-of select="$parent"/><xsl:text>&#x0A;</xsl:text>
