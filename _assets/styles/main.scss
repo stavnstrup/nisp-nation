@@ -255,6 +255,7 @@ table tbody tr td {
   flex-flow: row;
   flex-grow: 1;
   flex-wrap: wrap;
+  margin-top: 24px;
 }
 
 .collection-group {
@@ -413,4 +414,19 @@ h4 {
   margin-top: 20px;
   //border-top: 1px solid black;
   padding-top: 8px;
+}
+
+// Legend box used in Standards list
+
+.legendbox {
+  border: 1px solid #ddd;
+  padding: 8px;
+  display: inline;
+  list-style: none;
+  li {
+    border-left-width: 24px;
+    padding-left: 8px;
+    padding-right: 32px;
+    display: inline;
+  }
 }

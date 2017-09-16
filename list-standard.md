@@ -2,8 +2,14 @@
 layout: element
 element: Standards
 permalink: /standard/index.html
-pagetype: Standards
 ---
+
+<p>
+<ul class="legendbox">
+  <li class="std-complete">Complete</li>
+  <li class="std-incomplete">Incomplete</li>
+</ul>
+</p>
 
 <div class="collection-wrap">
 
