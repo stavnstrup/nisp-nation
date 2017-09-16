@@ -34,7 +34,7 @@
 <xsl:template match="capabilityprofile" mode="makegraph">
 <xsl:result-document href="_includes/graph-{@id}.html" method="html">
 <ul class="tree">
-  <li><a href="/capabilityprofile/{@id}.html"><xsl:value-of select="@title"/></a>
+  <li class="capability-color"><a href="/capabilityprofile/{@id}.html"><xsl:value-of select="@title"/></a>
   <ul>
     <xsl:for-each select="subprofiles/refprofile">
       <xsl:variable name="thisref" select="@refid"/>
@@ -48,7 +48,7 @@
 </xsl:template>
 
 <xsl:template match="profile" mode="makegraph">
-  <li><a href="/profile/{@id}.html"><xsl:value-of select="@title"/></a>
+  <li class="profile-color"><a href="/profile/{@id}.html"><xsl:value-of select="@title"/></a>
     <ul>
       <xsl:for-each select="subprofiles/refprofile">
         <xsl:variable name="thisref" select="@refid"/>
@@ -59,9 +59,8 @@
   </li>
 </xsl:template>
 
-
 <xsl:template match="serviceprofile" mode="makegraph">
-  <li><a href="/serviceprofile/{@id}.html"><xsl:value-of select="@title"/></a></li>
+  <li class="service-color"><a href="/serviceprofile/{@id}.html"><xsl:value-of select="@title"/></a></li>
 </xsl:template>
 
 <!-- Create Node descriptions -->

@@ -2,29 +2,43 @@
 layout: element
 ---
 
-<dl>
-  <dt class="data-label">Title</dt>
-  <dd class="data-value">{{page.title}}</dd>
-</dl>
+<main>
 
+  <input id="tab1" type="radio" name="tabs" checked>
+  <label for="tab1">Record</label>
 
-{%include profilereference.html %}
+  <input id="tab2" type="radio" name="tabs">
+  <label for="tab2">Topography</label>
 
-<h3>Subprofiles</h3>
+  <input id="tab3" type="radio" name="tabs">
+  <label for="tab3">Table</label>
 
-<ul>
-  {% for ref in page.subprofiles %}
-  <li><a href="/{{ref.type}}/{{ref.refid}}.html">{{ref.title}}</a> - (<strong>{{ref.type}}</strong>)</li>
-  {% endfor %}
-</ul>
+  <section id="content1">
 
-{%include status.html %}
+    <dl>
+      <dt class="data-label">Title</dt>
+      <dd class="data-value">{{page.title}}</dd>
+    </dl>
+    {%include profilereference.html %}
+    <h3>Subprofiles</h3>
+    <ul>
+      {% for ref in page.subprofiles %}
+      <li><a href="/{{ref.type}}/{{ref.refid}}.html">{{ref.title}}</a> - (<strong>{{ref.type}}</strong>)</li>
+      {% endfor %}
+    </ul>
+    {%include status.html %}
+    <div class="meta-block">
+      <dl>
+        <dt class="data-label">UUID</dt>
+        <dd class="data-value">{{page.uuid}}</dd>
+      </dl>
+    </div>
 
-<div class="meta-block">
-
-<dl>
-  <dt class="data-label">UUID</dt>
-  <dd class="data-value">{{page.uuid}}</dd>
-</dl>
-
-</div>
+  </section>
+  <section id="content2">
+    {%include graph-{{page.nisp-id}}.html %}
+  </section>
+  <section id="content3">
+    <p>TBD</p>
+  </section>
+</main>
