@@ -7,8 +7,8 @@ title: Service Profiles
 
 <table>
 <tr>
-  <th>Organisation</th>
-  <th>Title of Service Profile</th>
+  <th>Organization</th>
+  <th>Title of Service Profiles</th>
 </tr>
 {% for sp in site.serviceprofile %}
 <tr>

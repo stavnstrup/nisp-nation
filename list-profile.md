@@ -6,8 +6,8 @@ element: Profiles
 
 <table>
 <tr>
-  <th>Organisation</th>
-  <th>Title of Profile</th>
+  <th>Organization</th>
+  <th>Title of Profiles</th>
 </tr>
 {% for p in site.profile %}
 <tr>

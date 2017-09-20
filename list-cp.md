@@ -6,8 +6,8 @@ element: Capability Profiles
 
 <table>
 <tr>
-  <th>Orgnization</th>
-  <th>Title of Capability Profile</th>
+  <th>Organization</th>
+  <th>Title of Capability Profiles</th>
 </tr>
 {% for cp in site.capabilityprofile %}
 <tr>
