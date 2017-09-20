@@ -11,7 +11,7 @@ element: Capability Profiles
 </tr>
 {% for cp in site.capabilityprofile %}
 <tr>
-  <td>{{site.data.orgs[cp.profilespec.org].short}}</td>
+  <td><a href="/organization/{{sp.profilespec.org}}.html">{{site.data.orgs[cp.profilespec.org].short}}</a></td>
   <td><a href="/capabilityprofile/{{cp.nisp-id}}.html">{{cp.title}}</a></td>
 </tr>
 {% endfor %}

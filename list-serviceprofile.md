@@ -12,7 +12,7 @@ title: Service Profiles
 </tr>
 {% for sp in site.serviceprofile %}
 <tr>
-  <td>{{site.data.orgs[sp.profilespec.org].short}}</td>
+  <td><a href="/organization/{{sp.profilespec.org}}.html">{{site.data.orgs[sp.profilespec.org].short}}</a></td>
   <td><a href="/serviceprofile/{{sp.nisp-id}}.html">{{sp.title}}</a></td>
 </tr>
 {% endfor %}

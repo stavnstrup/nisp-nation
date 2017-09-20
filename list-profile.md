@@ -11,7 +11,7 @@ element: Profiles
 </tr>
 {% for p in site.profile %}
 <tr>
-  <td>{{site.data.orgs[p.profilespec.org].short}}</td>
+  <td><a href="/organization/{{sp.profilespec.org}}.html">{{site.data.orgs[p.profilespec.org].short}}</a></td>
   <td><a href="/profile/{{p.nisp-id}}.html">{{p.title}}</a></td>
 </tr>
 {% endfor %}
