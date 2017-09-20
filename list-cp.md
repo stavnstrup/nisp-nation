@@ -1,11 +1,18 @@
 ---
 layout: element
 permalink: /capabilityprofile/index.html
-element: Capabilityprofiles
+element: Capability Profiles
 ---
 
-<ul>
+<table>
+<tr>
+  <th>Orgnization</th>
+  <th>Title of Capability Profile</th>
+</tr>
 {% for cp in site.capabilityprofile %}
-<li><a href="/capabilityprofile/{{cp.nisp-id}}.html">{{site.data.orgs[cp.profilespec.org].short}}: {{cp.title}}</a></li>
-{% endfor%}
-</ul>
+<tr>
+  <td>{{site.data.orgs[cp.profilespec.org].short}}</td>
+  <td><a href="/capabilityprofile/{{cp.nisp-id}}.html">{{cp.title}}</a></td>
+</tr>
+{% endfor %}
+</table>

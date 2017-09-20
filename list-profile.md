@@ -4,8 +4,15 @@ permalink: /profile/index.html
 element: Profiles
 ---
 
-<ul>
+<table>
+<tr>
+  <th>Organisation</th>
+  <th>Title of Profile</th>
+</tr>
 {% for p in site.profile %}
-<li><a href="/profile/{{p.nisp-id}}.html">{{site.data.orgs[p.profilespec.org].short}}: {{p.title}}</a></li>
+<tr>
+  <td>{{site.data.orgs[p.profilespec.org].short}}</td>
+  <td><a href="/profile/{{p.nisp-id}}.html">{{p.title}}</a></td>
+</tr>
 {% endfor %}
-</ul>
+</table>

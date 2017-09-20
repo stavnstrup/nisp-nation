@@ -1,12 +1,19 @@
 ---
 layout: element
-element: Serviceprofiles
+element: Service Profiles
 permalink: /serviceprofile/index.html
 title: Service Profiles
 ---
 
-<ul>
+<table>
+<tr>
+  <th>Organisation</th>
+  <th>Title of Service Profile</th>
+</tr>
 {% for sp in site.serviceprofile %}
-<li><a href="/serviceprofile/{{sp.nisp-id}}.html">{{site.data.orgs[sp.profilespec.org].short}}: {{sp.title}}</a></li>
+<tr>
+  <td>{{site.data.orgs[sp.profilespec.org].short}}</td>
+  <td><a href="/serviceprofile/{{sp.nisp-id}}.html">{{sp.title}}</a></td>
+</tr>
 {% endfor %}
-</ul>
+</table>
