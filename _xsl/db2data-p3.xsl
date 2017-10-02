@@ -81,7 +81,7 @@
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>parent: </xsl:text><xsl:value-of select="$parent"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>description: </xsl:text><xsl:value-of select="@description"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>description: </xsl:text><xsl:value-of select="translate(normalize-space(@description),':',' ')"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>level: </xsl:text><xsl:value-of select="@level"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>emUUID: </xsl:text><xsl:value-of select="@emUUID"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>---&#x0A;</xsl:text>
