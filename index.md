@@ -12,7 +12,7 @@ In order for the members of IP CaT to keep up with the development, this page pr
 
 The sources to both the documents and the database viewer are stored in a Git repository at Github.
 
-* Any change to the NISP tool/document/database repository will immediately trigger a continous integration / continous delivery pipeline, which result in a new version of NISP and an updated statistical overview of the standards and profiles.
+* Any change to the NISP tool/document/database repository will immediately trigger a continous integration / continous delivery pipeline. This results in a new version of NISP and an updated statistical overview of the standards and profiles.
 * A local copy of the NISP database viewer is synchronized with the Github master twice a day - at 05:00 CET and 17:00 CET - and subsequently transformed and made availible on this page.
 
 
