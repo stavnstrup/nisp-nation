@@ -36,9 +36,6 @@ The sources to both the documents and the database viewer are stored in a Git re
       <li><a href="{{ page.archive-location}}/nisp-6.0/">NISP v6</a> - Jan. 19, 2012</li>
 -->
     </ul>
-<!--
-    <p><iframe src="https://spreadsheets.google.com/feeds/cells/11NmCRp1bc1Hbg38XM-lbKduwK9B3ibEyP5xMh88rB2M/1/public/full/Z332"><iframe></p>
--->
   </div>
 
   <div class="git-links">
