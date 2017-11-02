@@ -20,7 +20,7 @@ notifications:
     on_failure: change
 
 script:
-  - mkdir _temp _temp/standards/ _temp/schema/ _temp/schema/dtd/ _temp/schema/dtd/docbkx45/
+  - mkdir -p _temp/standards/ _temp/schema/dtd/docbkx45/
   - curl -o _temp/standards/standards.xml https://raw.githubusercontent.com/stavnstrup/nisp-tools/master/src/standards/standards.xml
   - cp -r /usr/share/xml/docbook/schema/dtd/4.5/* _temp/schema/dtd/docbkx45/
   - curl -o _temp/schema/dtd/stddb43.dtd https://raw.githubusercontent.com/stavnstrup/nisp-tools/master/src/schema/dtd/stddb43.dtd
