@@ -116,6 +116,7 @@
     </xsl:attribute>
     <xsl:apply-templates select="@title"/>
   </a>
+  <xsl:apply-templates select="." mode="count-stuff"/>
   <xsl:if test="./node">
     <ul>
       <xsl:apply-templates select="node" mode="taxonomy"/>
@@ -124,6 +125,13 @@
   </li>
 </xsl:template>
 
+<xsl:template match="node" mode="count-stuff">
+  <xsl:variable name="myid" select="@id"/>
+  <xsl:if test="count(/standards/bestpracticeprofile/bpserviceprofile[@tref=$myid])+
+                count(/standards/records/serviceprofile/reftaxonomy[@refid=$myid])">
+    <xsl:text> *</xsl:text>
+  </xsl:if>
+</xsl:template>
 
 <xsl:template match="taxonomy" mode="data">
   <xsl:result-document href="_data/nodes.json">
