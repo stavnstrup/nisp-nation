@@ -127,9 +127,17 @@
 
 <xsl:template match="node" mode="count-stuff">
   <xsl:variable name="myid" select="@id"/>
-  <xsl:if test="count(/standards/bestpracticeprofile/bpserviceprofile[@tref=$myid])+
-                count(/standards/records/serviceprofile/reftaxonomy[@refid=$myid])">
-    <xsl:text> *</xsl:text>
+  <xsl:variable name="mandatory" select="count(//bprefstandard[(../../@tref=$myid) and (../@mode='mandatory')])"/>
+  <xsl:variable name="candidate" select="count(//bprefstandard[(../../@tref=$myid) and (../@mode='candidate')])"/>
+  <xsl:variable name="services" select="count(//reftaxonomy[@refid=$myid])"/>
+  <xsl:if test="$mandatory+$candidate+$services &gt; 0">
+    <xsl:text> (</xsl:text>
+    <xsl:value-of select="$mandatory"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$candidate"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$services"/>
+    <xsl:text>)</xsl:text>
   </xsl:if>
 </xsl:template>
 
