@@ -9,7 +9,7 @@
 }
 
 .collection-group {
-  border-bottom: solid 1px #ddd;
+  border-bottom: solid 1px $nisp-gray;
   margin: 12px;
   min-width: 30%;
 
@@ -42,7 +42,7 @@
 // Legend box used in Standards list
 
 .legendbox {
-  border: 1px solid #ddd;
+  border: 1px solid $nisp-gray;
   display: inline;
   list-style: none;
   //margin-right: -32px;

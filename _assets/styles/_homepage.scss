@@ -21,7 +21,7 @@
 }
 
 .stat-element {
-  background: #fff;
+  background: $nisp-box-bg;
   border: 2px solid #d1d1d1;
   border-radius: 2px;
   font-weight: 700;
@@ -44,7 +44,7 @@
 }
 
 .number {
-  color: #f7751f;
+  color: $nisp-big-number;
   font-size: 5em;
   font-weight: 700;
   line-height: 1;

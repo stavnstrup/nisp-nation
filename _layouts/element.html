@@ -3,12 +3,11 @@
   {% include head.html %}
   <body>
     <div class="element-head">
-      <p class="type"><a href="/"><img class="home_icon" src="/assets/images/home.svg" /></a> NISP {{page.element}}</p>
+      <p class="type"><a href="/"><img class="home-icon" src="/assets/images/home.svg" /></a> NISP {{page.element}}</p>
       {% if page.nisp-id %}
       <p class="id"><strong>ID:</strong> {{page.nisp-id}}</p>
       {% endif %}
     </div>
-
     <div class="main-content element-content">
       {{ content }}
       <div class="footer">

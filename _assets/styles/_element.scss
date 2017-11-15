@@ -59,17 +59,24 @@
   }
 }
 
-.home_icon {
-  margin-right: 8px;
+.home-icon {
   display: inline-block;
-  width: 24px;
   height: 24px;
+  margin-right: 8px;
+  width: 24px;
 }
 
 .element-content {
   margin-top: 32px;
 
-  h1, h2, h3, h4, h5, td, dd, dt {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  td,
+  dd,
+  dt {
     // font-size: 1.4rem;
     margin: 0 16px;
   }
@@ -84,7 +91,7 @@
 // h3 { background-color: #8fac9b;}
 
 h3 {
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid $nisp-gray;
   font-size: 24px;
   font-weight: normal;
   margin-top: 40px;
@@ -109,7 +116,7 @@ h4 {
 }
 
 .history {
-  border: 1px solid #ddd;
+  border: 1px solid $nisp-gray;
   border-collapse: collapse;
   margin: 8px 10px 0;
 }

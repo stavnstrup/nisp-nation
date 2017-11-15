@@ -6,6 +6,12 @@ $nisp-hero-bg: #222;
 $nisp-hero-color: #fff;
 $nisp-hero-bottom: #ffa500;
 
+$nisp-big-number: #f7751f;
+
+$nisp-gray: #ddd;
+
+$nisp-box-bg: #fff;
+
 $std-complete: #39aa56;
 $std-incomplete: #db4545;
 
@@ -18,14 +24,33 @@ $header-color: #222;
   padding: 0;
 }
 
-html, body {
+html,
+body {
   background: $background-color;
   font-family: 'Open Sans', sans-serif;
   font-size: $font-size;
 }
 
 
-div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td {
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+p,
+blockquote,
+th,
+td {
   font-size: 1rem;
   margin: 0;
   padding: 0;
@@ -35,6 +60,7 @@ div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, t
   margin: 0 auto;
   max-width: 100%;
   min-width: 768px;
+  padding: 0 8px;
   width: 1000px;
 }
 
@@ -47,14 +73,14 @@ div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, t
   h2 {
     color: $nisp-hero-color;
     margin-top: 0;
-    padding-left: 45px;
-    padding-top: 35px;
+    padding-left: 40px;
+    padding-top: 36px;
   }
 }
 
 .nisp-content {
-  margin-top: 40px;
-  padding: 0 15px;
+  margin-top: 32px;
+  padding: 0 16px;
 }
 
 
@@ -69,31 +95,31 @@ h6 {
   font-style: normal;
   font-weight: bold;
   line-height: 1.1;
-  margin-bottom: 14px;
-  margin-top: 14px;
+  margin-bottom: 16px;
+  margin-top: 16px;
   text-rendering: optimizeLegibility;
 }
 
 h2 {
-  font-size: 37px;
+  font-size: 32px;
 }
 
 h4 {
-  font-size: 23px;
+  font-size: 24px;
 }
 
 
 p {
   line-height: 1.6;
-  margin-bottom: 17px;
+  margin-bottom: 16px;
 }
 
 hr {
-  border: solid #ddd;
+  border: solid $nisp-gray;
   border-width: 1px 0 0;
   clear: both;
-  margin: 22px 0 21px;
   height: 0;
+  margin: 22px 0 16px;
 }
 
 ul {
@@ -106,7 +132,7 @@ dl {
   font-size: 14px;
   line-height: 1.6;
   list-style-position: outside;
-  margin-bottom: 17px;
+  margin-bottom: 16px;
 }
 
 a {
