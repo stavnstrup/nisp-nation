@@ -4,9 +4,10 @@
 
 @import 'bourbon/bourbon';
 @import 'base';
-// @import 'table';
-// @import 'homepage';
-// @import 'standardslist';
-// @import 'element';
+@import 'table';
+@import 'homepage';
+@import 'standardslist';
+@import 'element';
+@import 'taxonomy';
 @import 'tree';
 @import 'accordion';
