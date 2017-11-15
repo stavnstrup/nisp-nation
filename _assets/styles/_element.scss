@@ -1,0 +1,127 @@
+// Element pages
+// Covers Capability Profile
+
+.data-label {
+  font-weight: bold;
+  padding-bottom: 6px;
+}
+
+.data-value {
+  background-color: rgba(255, 165, 0, 0.3);
+  border: 1px solid rgb(209, 213, 218);
+  border-radius: 3px;
+  flex-grow: 1;
+  min-height: 25px;
+  padding: 8px;
+}
+
+
+.meta-block {
+  margin: 0 0 16px;
+  padding: 8px 0;
+}
+
+.meta-element-set {
+  display: flex;
+  flex-flow: row;
+  margin-top: 20px;
+}
+
+.ref-org,
+.ref-date,
+.ref-version {
+  flex-grow: 1;
+}
+
+.ref-pubnum {
+  flex-grow: 3;
+}
+
+
+// Element specification
+
+
+.element-head {
+  background-color: $nisp-hero-bottom;
+  color: $nisp-hero-color;
+  display: flex;
+  padding: 8px 8px 0;
+
+  .type {
+    font-size: 1.4rem;
+    font-weight: normal;
+    width: 300px;
+  }
+
+  .id {
+    font-size: 1.4rem;
+    margin-left: auto;
+  }
+}
+
+.home_icon {
+  margin-right: 8px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.element-content {
+  margin-top: 32px;
+
+  h1, h2, h3, h4, h5, td, dd, dt {
+    // font-size: 1.4rem;
+    margin: 0 16px;
+  }
+}
+
+
+.element-title {
+  font-size: 1.8rem;
+}
+
+// dl { background-color: pink; }
+// h3 { background-color: #8fac9b;}
+
+h3 {
+  border-bottom: 1px solid gray;
+  font-size: 24px;
+  font-weight: normal;
+  margin-top: 40px;
+  padding-bottom: 20px;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  padding-bottom: 6px;
+}
+
+.stdgroup {
+  list-style-position: inside;
+  margin-top: 16px;
+}
+
+.history-box {
+  display: flex;
+  justify-content: left;
+  //justify-content: center;
+}
+
+.history {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  margin: 8px 10px 0;
+}
+
+.footer {
+  margin-top: 20px;
+  //border-top: 1px solid black;
+  padding-top: 8px;
+}
+
+
+
+// .capability-color {
+//   background-color: red;
+// }

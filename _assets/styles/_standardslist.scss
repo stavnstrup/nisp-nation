@@ -1,0 +1,58 @@
+// Standard Collections
+
+.collection-wrap {
+  display: flex;
+  flex-flow: row;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.collection-group {
+  border-bottom: solid 1px #ddd;
+  margin: 12px;
+  min-width: 30%;
+
+  h4 {
+    margin-top: 0;
+    // text-align: center;
+  }
+
+  ul {
+    margin-left: 16px;
+  }
+}
+
+
+.collection-item {
+  list-style-type: none;
+  margin-bottom: 5px;
+  padding-left: 8px;
+
+}
+
+.std-complete {
+  border-left: 7px solid $std-complete;
+}
+
+.std-incomplete {
+  border-left: 7px solid $std-incomplete;
+}
+
+// Legend box used in Standards list
+
+.legendbox {
+  border: 1px solid #ddd;
+  display: inline;
+  list-style: none;
+  //margin-right: -32px;
+  padding: 8px;
+  padding-right: 0;
+
+  li {
+    border-left-width: 24px;
+    display: inline;
+    padding-left: 8px;
+    padding-right: 32px;
+  }
+}

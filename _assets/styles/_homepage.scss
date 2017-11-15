@@ -1,0 +1,55 @@
+.link-box {
+  display: flex;
+}
+
+.quick-links {
+  flex-grow: 1;
+}
+
+.git-links {
+  flex-grow: 2;
+}
+
+// Statistix boxes
+
+.statistics {
+  display: flex;
+  flex-flow: row;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stat-element {
+  background: #fff;
+  border: 2px solid #d1d1d1;
+  border-radius: 2px;
+  font-weight: 700;
+  margin: 12px;
+  padding: 1.43em 3%;
+  text-align: center;
+  width: 13em;
+  // min-height: 230px;
+
+  a,
+  a * {
+    text-decoration: none;
+  }
+
+  a,
+  a:hover,
+  a:visited {
+    color: black;
+  }
+}
+
+.number {
+  color: #f7751f;
+  font-size: 5em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.label {
+  font-size: 1.4em;
+}
