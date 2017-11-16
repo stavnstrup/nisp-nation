@@ -60,7 +60,8 @@ paths.imageFilesGlob = paths.imageFiles + paths.imagePattern;
 
 // Jekyll files globs
 paths.jekyllPostFilesGlob  = paths.jekyllPostFiles  + paths.markdownPattern;
-paths.jekyllDraftFilesGlob = paths.jekyllDraftFiles + paths.markdownPattern;
+//paths.jekyllDraftFilesGlob = paths.jekyllDraftFiles + paths.markdownPattern;
+paths.jekyllDraftFilesGlob = paths.jekyllDir        + paths.markdownPattern;
 paths.jekyllHtmlFilesGlob  = paths.jekyllDir        + paths.htmlPattern;
 paths.jekyllXmlFilesGlob   = paths.jekyllDir        + paths.xmlPattern;
 paths.jekyllImageFilesGlob = paths.jekyllImageFiles + paths.imagePattern;
