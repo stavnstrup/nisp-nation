@@ -17,6 +17,15 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template match="rpkey">
+  <xsl:variable name="mykey" select="@key"/>
+  <xsl:if test="count(/standards//responsibleparty[@rpref=$mykey])>0">
+    <rpkey>
+      <xsl:apply-templates select="@*"/>
+    </rpkey>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template match="node">
   <xsl:variable name="myid" select="@id"/>
   <node>
