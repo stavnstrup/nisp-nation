@@ -7,7 +7,7 @@
 
 <xsl:output saxon:next-in-chain="db2data-p2.xsl"/>
 
-<xsl:template match="standard[status/@mode='deleted']"/>
+<xsl:template match="*[status/@mode='deleted']"/>
 
 <xsl:template match="standards">
   <standards>
