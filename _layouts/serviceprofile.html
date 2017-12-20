@@ -19,7 +19,7 @@ layout: element
 
 <ul>
 {% for t in page.taxonomy %}
-<li>{{ site.data.nodes[t].title }}</li>
+<li><a href="/node/{{t}}.html">{{ site.data.nodes[t].title }}</a></li>
 {% endfor %}
 </ul>
 
