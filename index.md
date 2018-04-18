@@ -63,7 +63,7 @@ The sources to both the documents and the database viewer are stored in a Git re
 
 <hr />
 
-#### Debugging the NISP database
+#### Coherency Checks of the NISP Database
 
 * [Overview of all standards and profiles incl. deleted elements]({{page.debug-location}}/overview.html)
 * [Overview of all standards and profiles]({{page.debug-location}}/current.html)
