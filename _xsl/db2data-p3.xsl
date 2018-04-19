@@ -373,7 +373,7 @@
   <xsl:variable name="mykey" select="@key"/>
   <xsl:text>"</xsl:text><xsl:value-of select="@key"/><xsl:text>": {</xsl:text>
   <xsl:text>"short": "</xsl:text><xsl:value-of select="@short"/><xsl:text>", </xsl:text>
-  <xsl:text>"text": "</xsl:text><xsl:value-of select="@text"/><xsl:text>", </xsl:text>
+  <xsl:text>"long": "</xsl:text><xsl:value-of select="@long"/><xsl:text>", </xsl:text>
   <xsl:text>"uri": "</xsl:text><xsl:value-of select="@uri"/><xsl:text>", </xsl:text>
   <xsl:text>"owns": "</xsl:text><xsl:value-of
      select="count(/standards//document[@orgid=$mykey])+count(/standards//profilespec[@orgid=$mykey])"/><xsl:text>"}</xsl:text>
