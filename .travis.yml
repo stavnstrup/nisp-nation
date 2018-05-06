@@ -7,6 +7,8 @@ language: java
 jdk:
   - oraclejdk8
 
+cache: bundler
+
 before_install:
  - sudo apt-get -qq update
 
