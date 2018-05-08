@@ -74,6 +74,7 @@
 
 <xsl:template match="node">
 <xsl:param name="parent"/>
+<xsl:variable name="myid" select="@id"/>
 <xsl:result-document href="_node/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: node&#x0A;</xsl:text>
@@ -84,6 +85,17 @@
 <xsl:text>description: </xsl:text><xsl:value-of select="translate(normalize-space(@description),':',' ')"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>level: </xsl:text><xsl:value-of select="@level"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>emUUID: </xsl:text><xsl:value-of select="@emUUID"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>usage:&#x0A;</xsl:text>
+<xsl:if test="count(//bprefstandard[(../../@tref=$myid) and (../@mode='mandatory')]) > 0">
+<xsl:text>  mandatory:&#x0A;</xsl:text>
+<xsl:apply-templates select="//bprefstandard[(../@mode='mandatory') and (../../@tref=$myid)]" mode="listbpstandards"/>
+</xsl:if>
+<xsl:if test="count(//bprefstandard[(../../@tref=$myid) and (../@mode='candidate')]) > 0">
+<xsl:text>  candidate:&#x0A;</xsl:text>
+<xsl:apply-templates select="//bprefstandard[(../@mode='candidate') and (../../@tref=$myid)]" mode="listbpstandards"/>
+</xsl:if>
+<xsl:text>  serviceprofiles:&#x0A;</xsl:text>
+<xsl:apply-templates select="//reftaxonomy[@refid=$myid]" mode="nodeserviceprofiles"/>
 <xsl:text>---&#x0A;</xsl:text>
 </xsl:result-document>
 <xsl:apply-templates select="node">
@@ -91,6 +103,17 @@
 </xsl:apply-templates>
 </xsl:template>
 
+<xsl:template match="bprefstandard" mode="listbpstandards">
+  <xsl:text>    - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
+</xsl:template>
+
+<xsl:template match="reftaxonomy[../name()='serviceprofile']" mode="nodeserviceprofiles">
+<xsl:text>    - spid: </xsl:text><xsl:value-of select="../@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>      standards:&#x0A;</xsl:text>
+<xsl:for-each select="../obgroup[@obligation='mandatory']/refstandard">
+<xsl:text>        - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
+</xsl:for-each>
+</xsl:template>
 
 <!-- Create Taxonomy Tree -->
 
