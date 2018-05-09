@@ -9,7 +9,7 @@ jdk:
 
 cache:
   directories:
-    - "vendor"
+    - /home/travis/.rvm/
     - "node_modules"
 
 before_install:
