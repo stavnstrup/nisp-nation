@@ -217,6 +217,7 @@
   <xsl:text>},</xsl:text>
 </xsl:template>
 
+<!-- Create Capability Profiles -->
 
 <xsl:template match="capabilityprofile">
 <xsl:result-document href="_capabilityprofile/{@id}.md">
@@ -234,6 +235,7 @@
 </xsl:result-document>
 </xsl:template>
 
+<!-- Create Profiles -->
 
 <xsl:template match="profile">
 <xsl:variable name="myid" select="@id"/>
@@ -271,6 +273,7 @@
 <xsl:text>    title: </xsl:text><xsl:value-of select="/standards/records/*[@id=$refid]/@title"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
+<!-- Create Service  Profiles -->
 
 <xsl:template match="serviceprofile">
 <xsl:variable name="myid" select="@id"/>
@@ -316,6 +319,8 @@
 <xsl:text>    - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
+
+<!-- Create Standards -->
 
 <xsl:template match="standard">
 <xsl:variable name="myid" select="@id"/>
@@ -383,6 +388,7 @@
 <xsl:text>  version: </xsl:text><xsl:value-of select="@version"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
+<!-- Create Organisations -->
 
 <xsl:template match="organisations" mode="data">
   <xsl:result-document href="_data/orgs.json">
