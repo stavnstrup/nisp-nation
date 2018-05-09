@@ -4,7 +4,7 @@ layout: default
 
 <h2>Dates</h2>
 
-{% assign v_events = (site.data.events | group_by: "version") %}
+{% assign v_events = site.data.events | group_by: "version" %}
 
 <table border="1" width="100%">
 <tr>

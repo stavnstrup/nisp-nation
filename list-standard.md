@@ -14,7 +14,7 @@ permalink: /standard/index.html
 <div class="collection-wrap">
 
 
-{% assign standard_groups = (site.standard | group_by: "orgid") %}
+{% assign standard_groups = site.standard | group_by: "orgid" %}
 {% for grp in standard_groups %}
 
 <div class="collection-group">
