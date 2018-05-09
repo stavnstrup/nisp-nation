@@ -14,10 +14,11 @@ cache:
 
 before_install:
  - sudo apt-get -qq update
+ - gem install bundler
+ - bundle check || bundle install
 
 install:
   - sudo apt-get install -qq libxml2-utils libsaxonb-java docbook-xml
-  - bundle install
 
 notifications:
   email:

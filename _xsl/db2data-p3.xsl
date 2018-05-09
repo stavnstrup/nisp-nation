@@ -460,6 +460,7 @@
 
 <xsl:template match="rpkey">
 <xsl:variable name="mykey" select="@key"/>
+<xsl:if test="count(/standards//standard[responsibleparty/@rpref=$mykey]) > 0">
 <xsl:result-document href="_responsibleparty/{@key}.md">
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: responsibleparty&#x0A;</xsl:text>
@@ -474,6 +475,7 @@
 <xsl:apply-templates select="/*//standard/responsibleparty[@rpref=$mykey]" mode="liststandard"/>
 <xsl:text>---&#x0A;</xsl:text>
 </xsl:result-document>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="responsibleparty" mode="liststandard">
