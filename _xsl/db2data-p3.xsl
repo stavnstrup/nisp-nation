@@ -29,7 +29,7 @@
   </xsl:result-document>
 </xsl:template>
 
-<!-- Create a graph illustrating the composite structure of profiles -->
+<!-- Create a graph illustrating the composite structure of capability profiles -->
 
 <xsl:template match="capabilityprofile" mode="makegraph">
 <xsl:result-document href="_includes/graph-{@id}.html" method="html">
@@ -63,124 +63,8 @@
   <li class="service-color"><a href="/serviceprofile/{@id}.html"><xsl:value-of select="@title"/></a></li>
 </xsl:template>
 
-<!-- Create Node descriptions -->
 
-<xsl:template match="taxonomy">
-  <xsl:apply-templates select="node">
-    <xsl:with-param name="parent" select="'null'"/>
-  </xsl:apply-templates>
-</xsl:template>
-
-
-<xsl:template match="node">
-<xsl:param name="parent"/>
-<xsl:variable name="myid" select="@id"/>
-<xsl:result-document href="_node/{@id}.md">
-<xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: node&#x0A;</xsl:text>
-<xsl:text>element: node&#x0A;</xsl:text>
-<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>parent: </xsl:text><xsl:value-of select="$parent"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>description: </xsl:text><xsl:value-of select="translate(normalize-space(@description),':',' ')"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>level: </xsl:text><xsl:value-of select="@level"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>emUUID: </xsl:text><xsl:value-of select="@emUUID"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>usage:&#x0A;</xsl:text>
-<xsl:if test="count(//bprefstandard[(../../@tref=$myid) and (../@mode='mandatory')]) > 0">
-<xsl:text>  mandatory:&#x0A;</xsl:text>
-<xsl:apply-templates select="//bprefstandard[(../@mode='mandatory') and (../../@tref=$myid)]" mode="listbpstandards"/>
-</xsl:if>
-<xsl:if test="count(//bprefstandard[(../../@tref=$myid) and (../@mode='candidate')]) > 0">
-<xsl:text>  candidate:&#x0A;</xsl:text>
-<xsl:apply-templates select="//bprefstandard[(../@mode='candidate') and (../../@tref=$myid)]" mode="listbpstandards"/>
-</xsl:if>
-<xsl:text>  serviceprofiles:&#x0A;</xsl:text>
-<xsl:apply-templates select="//reftaxonomy[@refid=$myid]" mode="nodeserviceprofiles"/>
-<xsl:text>---&#x0A;</xsl:text>
-</xsl:result-document>
-<xsl:apply-templates select="node">
-  <xsl:with-param name="parent" select="@id"/>
-</xsl:apply-templates>
-</xsl:template>
-
-<xsl:template match="bprefstandard" mode="listbpstandards">
-  <xsl:text>    - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
-</xsl:template>
-
-<xsl:template match="reftaxonomy[../name()='serviceprofile']" mode="nodeserviceprofiles">
-<xsl:text>    - spid: </xsl:text><xsl:value-of select="../@id"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>      standards:&#x0A;</xsl:text>
-<xsl:for-each select="../obgroup[@obligation='mandatory']/refstandard">
-<xsl:text>        - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
-</xsl:for-each>
-</xsl:template>
-
-<!-- Create Taxonomy Tree -->
-
-
-<xsl:template match="taxonomy" mode="taxonomy">
-  <xsl:result-document href="_includes/taxonomy.html" method="html">
-    <div class="taxonomy">
-      <ul>
-        <xsl:apply-templates mode="taxonomy"/>
-      </ul>
-    </div>
-  </xsl:result-document>
-</xsl:template>
-
-
-<xsl:template match="node" mode="taxonomy">
-  <li>[<xsl:value-of select="@level"/><xsl:text>] </xsl:text>
-  <a>
-    <xsl:attribute name="href">
-      <xsl:text>/node/</xsl:text>
-      <xsl:value-of select="@id"/>
-      <xsl:text>.html</xsl:text>
-    </xsl:attribute>
-    <xsl:apply-templates select="@title"/>
-  </a>
-  <xsl:apply-templates select="." mode="count-stuff"/>
-  <xsl:if test="./node">
-    <ul>
-      <xsl:apply-templates select="node" mode="taxonomy"/>
-    </ul>
-  </xsl:if>
-  </li>
-</xsl:template>
-
-<xsl:template match="node" mode="count-stuff">
-  <xsl:variable name="myid" select="@id"/>
-  <xsl:variable name="mandatory" select="count(//bprefstandard[(../../@tref=$myid) and (../@mode='mandatory')])"/>
-  <xsl:variable name="candidate" select="count(//bprefstandard[(../../@tref=$myid) and (../@mode='candidate')])"/>
-  <xsl:variable name="services" select="count(//reftaxonomy[@refid=$myid])"/>
-  <xsl:if test="$mandatory+$candidate+$services &gt; 0">
-    <xsl:text> (</xsl:text>
-    <xsl:value-of select="$mandatory"/>
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="$candidate"/>
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="$services"/>
-    <xsl:text>)</xsl:text>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template match="taxonomy" mode="data">
-  <xsl:result-document href="_data/nodes.json">
-    <xsl:text>{</xsl:text>
-    <xsl:apply-templates mode="data"/>
-    <xsl:text>"eof-node-tree": {}</xsl:text>
-    <xsl:text>}</xsl:text>
-  </xsl:result-document>
-</xsl:template>
-
-
-<xsl:template match="node" mode="data">
-  <xsl:text>"</xsl:text><xsl:value-of select="@id"/><xsl:text>": {</xsl:text>
-  <xsl:text>"title": "</xsl:text><xsl:value-of select="@title"/><xsl:text>",</xsl:text>
-  <xsl:text>"level": "</xsl:text><xsl:value-of select="@level"/><xsl:text>"},</xsl:text>
-  <xsl:apply-templates select="node" mode="data"/>
-</xsl:template>
-
+<!-- Process all standards and profiles -->
 
 <xsl:template match="records">
   <xsl:apply-templates select="capabilityprofile" mode="makegraph"/>
@@ -217,7 +101,7 @@
   <xsl:text>},</xsl:text>
 </xsl:template>
 
-<!-- Create Capability Profiles -->
+<!-- Create a YAML page of a Capability Profile -->
 
 <xsl:template match="capabilityprofile">
 <xsl:result-document href="_capabilityprofile/{@id}.md">
@@ -235,7 +119,7 @@
 </xsl:result-document>
 </xsl:template>
 
-<!-- Create Profiles -->
+<!-- Create a YAML page of a Profile -->
 
 <xsl:template match="profile">
 <xsl:variable name="myid" select="@id"/>
@@ -273,7 +157,7 @@
 <xsl:text>    title: </xsl:text><xsl:value-of select="/standards/records/*[@id=$refid]/@title"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
-<!-- Create Service  Profiles -->
+<!-- Create a YAML page of a Service  Profile -->
 
 <xsl:template match="serviceprofile">
 <xsl:variable name="myid" select="@id"/>
@@ -388,28 +272,7 @@
 <xsl:text>  version: </xsl:text><xsl:value-of select="@version"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
-<!-- Create Organisations -->
-
-<xsl:template match="organisations" mode="data">
-  <xsl:result-document href="_data/orgs.json">
-    <xsl:text>{</xsl:text>
-    <xsl:apply-templates mode="data"/>
-    <xsl:text>}</xsl:text>
-  </xsl:result-document>
-</xsl:template>
-
-<xsl:template match="orgkey" mode="data">
-  <xsl:variable name="mykey" select="@key"/>
-  <xsl:text>"</xsl:text><xsl:value-of select="@key"/><xsl:text>": {</xsl:text>
-  <xsl:text>"short": "</xsl:text><xsl:value-of select="@short"/><xsl:text>", </xsl:text>
-  <xsl:text>"long": "</xsl:text><xsl:value-of select="@long"/><xsl:text>", </xsl:text>
-  <xsl:text>"uri": "</xsl:text><xsl:value-of select="@uri"/><xsl:text>", </xsl:text>
-  <xsl:text>"owns": "</xsl:text><xsl:value-of
-     select="count(/standards//document[@orgid=$mykey])+count(/standards//profilespec[@orgid=$mykey])"/><xsl:text>"}</xsl:text>
-  <xsl:if test="not(position()=last())">
-    <xsl:text>,</xsl:text>
-  </xsl:if>
-</xsl:template>
+<!-- Create a YAML page for each organisation -->
 
 <xsl:template match="organisations">
   <xsl:apply-templates/>
@@ -451,7 +314,6 @@
 </xsl:result-document>
 </xsl:template>
 
-
 <xsl:template match="document" mode="liststandard">
 <xsl:text>    - </xsl:text><xsl:value-of select="../@id"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
@@ -459,6 +321,31 @@
 <xsl:template match="profilespec" mode="listprofile">
 <xsl:text>    - </xsl:text><xsl:value-of select="../@id"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
+
+<!-- Create JSON file with all organisations -->
+
+<xsl:template match="organisations" mode="data">
+  <xsl:result-document href="_data/orgs.json">
+    <xsl:text>{</xsl:text>
+    <xsl:apply-templates mode="data"/>
+    <xsl:text>}</xsl:text>
+  </xsl:result-document>
+</xsl:template>
+
+<xsl:template match="orgkey" mode="data">
+  <xsl:variable name="mykey" select="@key"/>
+  <xsl:text>"</xsl:text><xsl:value-of select="@key"/><xsl:text>": {</xsl:text>
+  <xsl:text>"short": "</xsl:text><xsl:value-of select="@short"/><xsl:text>", </xsl:text>
+  <xsl:text>"long": "</xsl:text><xsl:value-of select="@long"/><xsl:text>", </xsl:text>
+  <xsl:text>"uri": "</xsl:text><xsl:value-of select="@uri"/><xsl:text>", </xsl:text>
+  <xsl:text>"owns": "</xsl:text><xsl:value-of
+     select="count(/standards//document[@orgid=$mykey])+count(/standards//profilespec[@orgid=$mykey])"/><xsl:text>"}</xsl:text>
+  <xsl:if test="not(position()=last())">
+    <xsl:text>,</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+<!-- Create a YAML page for each responsible party -->
 
 <xsl:template match="responsibleparties">
   <xsl:apply-templates/>
@@ -488,6 +375,8 @@
 <xsl:text>    - </xsl:text><xsl:value-of select="../@id"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
+<!-- Create JSON file listing all responsible parties -->
+
 <xsl:template match="responsibleparties" mode="data">
   <xsl:result-document href="_data/rp.json">
     <xsl:text>{</xsl:text>
@@ -504,5 +393,124 @@
     <xsl:text>,</xsl:text>
   </xsl:if>
 </xsl:template>
+
+<!-- Create a YAML page for each taxaonomy node -->
+
+<xsl:template match="taxonomy">
+  <xsl:apply-templates select="node">
+    <xsl:with-param name="parent" select="'null'"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+<xsl:template match="node">
+<xsl:param name="parent"/>
+<xsl:variable name="myid" select="@id"/>
+<xsl:result-document href="_node/{@id}.md">
+<xsl:text>---&#x0A;</xsl:text>
+<xsl:text>layout: node&#x0A;</xsl:text>
+<xsl:text>element: node&#x0A;</xsl:text>
+<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>parent: </xsl:text><xsl:value-of select="$parent"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>description: </xsl:text><xsl:value-of select="translate(normalize-space(@description),':',' ')"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>level: </xsl:text><xsl:value-of select="@level"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>emUUID: </xsl:text><xsl:value-of select="@emUUID"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>usage:&#x0A;</xsl:text>
+<xsl:if test="count(//bprefstandard[(../../@tref=$myid) and (../@mode='mandatory')]) > 0">
+<xsl:text>  mandatory:&#x0A;</xsl:text>
+<xsl:apply-templates select="//bprefstandard[(../@mode='mandatory') and (../../@tref=$myid)]" mode="listbpstandards"/>
+</xsl:if>
+<xsl:if test="count(//bprefstandard[(../../@tref=$myid) and (../@mode='candidate')]) > 0">
+<xsl:text>  candidate:&#x0A;</xsl:text>
+<xsl:apply-templates select="//bprefstandard[(../@mode='candidate') and (../../@tref=$myid)]" mode="listbpstandards"/>
+</xsl:if>
+<xsl:text>  serviceprofiles:&#x0A;</xsl:text>
+<xsl:apply-templates select="//reftaxonomy[@refid=$myid]" mode="nodeserviceprofiles"/>
+<xsl:text>---&#x0A;</xsl:text>
+</xsl:result-document>
+<xsl:apply-templates select="node">
+  <xsl:with-param name="parent" select="@id"/>
+</xsl:apply-templates>
+</xsl:template>
+
+<xsl:template match="bprefstandard" mode="listbpstandards">
+  <xsl:text>    - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
+</xsl:template>
+
+<xsl:template match="reftaxonomy[../name()='serviceprofile']" mode="nodeserviceprofiles">
+<xsl:text>    - spid: </xsl:text><xsl:value-of select="../@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>      standards:&#x0A;</xsl:text>
+<xsl:for-each select="../obgroup[@obligation='mandatory']/refstandard">
+<xsl:text>        - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
+</xsl:for-each>
+</xsl:template>
+
+<!-- Create Taxonomy Tree -->
+
+<xsl:template match="taxonomy" mode="taxonomy">
+  <xsl:result-document href="_includes/taxonomy.html" method="html">
+    <div class="taxonomy">
+      <ul>
+        <xsl:apply-templates mode="taxonomy"/>
+      </ul>
+    </div>
+  </xsl:result-document>
+</xsl:template>
+
+
+<xsl:template match="node" mode="taxonomy">
+  <li>[<xsl:value-of select="@level"/><xsl:text>] </xsl:text>
+  <a>
+    <xsl:attribute name="href">
+      <xsl:text>/node/</xsl:text>
+      <xsl:value-of select="@id"/>
+      <xsl:text>.html</xsl:text>
+    </xsl:attribute>
+    <xsl:apply-templates select="@title"/>
+  </a>
+  <xsl:apply-templates select="." mode="count-stuff"/>
+  <xsl:if test="./node">
+    <ul>
+      <xsl:apply-templates select="node" mode="taxonomy"/>
+    </ul>
+  </xsl:if>
+  </li>
+</xsl:template>
+
+<xsl:template match="node" mode="count-stuff">
+  <xsl:variable name="myid" select="@id"/>
+  <xsl:variable name="mandatory" select="count(//bprefstandard[(../../@tref=$myid) and (../@mode='mandatory')])"/>
+  <xsl:variable name="candidate" select="count(//bprefstandard[(../../@tref=$myid) and (../@mode='candidate')])"/>
+  <xsl:variable name="services" select="count(//reftaxonomy[@refid=$myid])"/>
+  <xsl:if test="$mandatory+$candidate+$services &gt; 0">
+    <xsl:text> (</xsl:text>
+    <xsl:value-of select="$mandatory"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$candidate"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$services"/>
+    <xsl:text>)</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+<!-- Create JSON representation of the taxonomy -->
+
+<xsl:template match="taxonomy" mode="data">
+  <xsl:result-document href="_data/nodes.json">
+    <xsl:text>{</xsl:text>
+    <xsl:apply-templates mode="data"/>
+    <xsl:text>"eof-node-tree": {}</xsl:text>
+    <xsl:text>}</xsl:text>
+  </xsl:result-document>
+</xsl:template>
+
+
+<xsl:template match="node" mode="data">
+  <xsl:text>"</xsl:text><xsl:value-of select="@id"/><xsl:text>": {</xsl:text>
+  <xsl:text>"title": "</xsl:text><xsl:value-of select="@title"/><xsl:text>",</xsl:text>
+  <xsl:text>"level": "</xsl:text><xsl:value-of select="@level"/><xsl:text>"},</xsl:text>
+  <xsl:apply-templates select="node" mode="data"/>
+</xsl:template>
+
 
 </xsl:stylesheet>
