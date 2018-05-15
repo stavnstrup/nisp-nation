@@ -43,7 +43,7 @@ The sources to both the documents and the database viewer are stored in a Git re
 <h4>Official releases</h4>
 <ul>
   <li><a href="{{ page.archive-location}}/nisp-11.0/">DRAFT NISP v11 submitted to the C3B</a> -
-  May. 15, 2018  - also as <a href="{{ page.archive-location}}/nisp-web-11.0-release.zip">web archive</a></li>
+  May. 15, 2018  - also as <a href="{{ page.archive-location}}/nisp-web-11.0.zip">web archive</a></li>
   <li><a href="{{ page.archive-location}}/nisp-10.0/">NISP v10</a> -
   Oct. 2, 2017  - also as <a href="{{ page.archive-location}}/nisp-web-10.0-release.zip">web archive</a></li>
   <li><a href="{{ page.archive-location}}/nisp-9.0/">NISP v9</a> -
