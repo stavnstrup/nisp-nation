@@ -15,7 +15,6 @@ The sources to both the documents and the database viewer are stored in a Git re
 * Any change to the NISP tool/document/database repository will immediately trigger a continous integration / continous delivery pipeline. This results in a new version of NISP and an updated statistical overview of the standards and profiles.
 * A local copy of the NISP database viewer is synchronized with the Github master twice a day - at 05:00 CET and 17:00 CET - and subsequently transformed and made availible on this page.
 
-
 <hr />
 
 <div class="link-box">
@@ -38,8 +37,6 @@ The sources to both the documents and the database viewer are stored in a Git re
   </div>
 </div>
 
-
-
 <h4>Official releases</h4>
 <ul>
   <li><a href="{{ page.archive-location}}/nisp-11.0/">DRAFT NISP v11 submitted to the C3B</a> -
@@ -52,12 +49,11 @@ The sources to both the documents and the database viewer are stored in a Git re
   Aug. 22, 2014  - also as <a href="{{ page.archive-location}}/nisp-web-8.0-release.zip">web archive</a></li>
   <li><a href="{{ page.archive-location}}/nisp-7.0/">NISP v7</a> -
   Mar. 22, 2013 - also as <a href="{{ page.archive-location}}/nisp-web-7.0-release.zip">web archive</a></li>
-<!--    
+<!--
   <li><a href="{{ page.archive-location}}/nisp-6.0/">NISP v6</a> -
   Jan. 19, 2012 (also as <a href="{{ page.archive-location}}/nisp-web-6.0-release.zip">archive</a>)</li>
 -->
 </ul>
-
 
 <hr/>
 
