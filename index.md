@@ -32,7 +32,7 @@ The sources to both the documents and the database viewer are stored in a Git re
   <div class="git-links">
     <h4>Get the sources</h4>
 
-    <p>The NISP sources are freely availible at <a href="https://github.com/stavnstrup/nisp-tools">Github</a></p>
+    <p>The NISP sources are freely available at <a href="https://github.com/stavnstrup/nisp-tools">Github</a></p>
     <p>If you want to contribute to the NISP project, you can submit a <a href="https://help.github.com/articles/creating-a-pull-request/">pull request</a> to the repository.</p>
   </div>
 </div>
