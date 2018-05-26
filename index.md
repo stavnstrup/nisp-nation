@@ -1,9 +1,9 @@
 ---
 layout: home
 title: The NISP Nation
-live-location: http://live.nisp.nw3.dk/
-debug-location: http://live.nisp.nw3.dk/debug
-archive-location: http://archive.nisp.nw3.dk
+live-location: https://live.nisp.nw3.dk/
+debug-location: https://live.nisp.nw3.dk/debug
+archive-location: https://archive.nisp.nw3.dk
 ---
 
 The NISP tools and the NISP database viewer are continously being updated, but only released officially once a year.
