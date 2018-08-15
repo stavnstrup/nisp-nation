@@ -8,6 +8,7 @@ node_modules
 vendor
 .bundle
 .vagrant
+_bsp
 _capabilityprofile
 _profile
 _serviceprofile

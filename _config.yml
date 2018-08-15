@@ -4,6 +4,8 @@
 collections:
   standard:
     output: true
+  bsp:
+    output: true
   serviceprofile:
     output: true
   profile:

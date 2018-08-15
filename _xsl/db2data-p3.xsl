@@ -8,6 +8,7 @@
 <xsl:output method="text" indent="yes"/>
 
 <xsl:template match="standards">
+  <xsl:apply-templates select="bestpracticeprofile"/>
   <xsl:apply-templates select="records"/>
   <xsl:apply-templates select="organisations"/>
   <xsl:apply-templates select="organisations" mode="data"/>
@@ -22,11 +23,42 @@
     <xsl:text>"profiles": "</xsl:text><xsl:value-of select="count(records/profile)"/><xsl:text>",</xsl:text>
     <xsl:text>"serviceprofiles": "</xsl:text><xsl:value-of select="count(records/serviceprofile)"/><xsl:text>",</xsl:text>
     <xsl:text>"standards": "</xsl:text><xsl:value-of select="count(records/standard)"/><xsl:text>",</xsl:text>
+    <xsl:text>"basicstandardsserviceprofiles": "</xsl:text><xsl:value-of select="count(bestpracticeprofile/bpserviceprofile[count(bpgroup)>0])"/><xsl:text>",</xsl:text>
     <xsl:text>"organizations": "</xsl:text><xsl:value-of select="count(organisations/orgkey)"/><xsl:text>",</xsl:text>
     <xsl:text>"responsibleparties": "</xsl:text><xsl:value-of select="count(responsibleparties/rpkey)"/><xsl:text>",</xsl:text>
     <xsl:text>"nodes": "</xsl:text><xsl:value-of select="count(taxonomy//node)"/><xsl:text>"</xsl:text>
     <xsl:text>}</xsl:text>
   </xsl:result-document>
+</xsl:template>
+
+<!-- Create Basic Standards Service profiles -->
+
+<xsl:template match="bpserviceprofile">
+<xsl:if test="count(./bpgroup)>0">
+<xsl:variable name="myref" select="@tref"/>
+<xsl:variable name="nodename" select="translate(/standards/taxonomy//node[@id=$myref]/@title, ' ()', '_')"/>
+<xsl:result-document href="_bsp/{$nodename}.md">
+<xsl:text>---&#x0A;</xsl:text>
+<xsl:text>layout: bsp&#x0A;</xsl:text>
+<xsl:text>element: BSP&#x0A;</xsl:text>
+<xsl:text>nisp-id: ?&#x0A;</xsl:text>
+<xsl:text>taxonomy: </xsl:text><xsl:value-of select="@tref"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>bpgroup:&#x0A;</xsl:text>
+<xsl:apply-templates/>
+<xsl:text>---&#x0A;</xsl:text>
+</xsl:result-document>
+</xsl:if>
+</xsl:template>
+
+
+<xsl:template match="bpgroup">
+<xsl:text>  - obligation: </xsl:text><xsl:value-of select="@mode"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    standards:&#x0A;</xsl:text>
+<xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="bprefstandard">
+<xsl:text>      - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
 <!-- Create a graph illustrating the composite structure of capability profiles -->
