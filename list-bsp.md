@@ -1,6 +1,6 @@
 ---
 layout: element
 element: Basic Standards Service Profiles
-permalink: /basicstandardsserviceprofile/index.html
+permalink: /basicstandardsprofile/index.html
 title: Service Profiles
 ---
