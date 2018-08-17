@@ -41,7 +41,6 @@
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: bsp&#x0A;</xsl:text>
 <xsl:text>element: BSP&#x0A;</xsl:text>
-<xsl:text>nisp-id: ?&#x0A;</xsl:text>
 <xsl:text>taxonomy: </xsl:text><xsl:value-of select="@tref"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>bpgroup:&#x0A;</xsl:text>
 <xsl:apply-templates/>
