@@ -254,7 +254,7 @@
 <xsl:text>  pubnum: "</xsl:text><xsl:value-of select="document/@pubnum"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>  title: "</xsl:text><xsl:value-of select="document/@title"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>  date: </xsl:text><xsl:value-of select="document/@date"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>applicability: </xsl:text><xsl:apply-templates select="applicability"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>applicability:</xsl:text><xsl:apply-templates select="applicability"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>rp: </xsl:text><xsl:value-of select="responsibleparty/@rpref"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="status"/>
 <xsl:apply-templates select="uuid"/>
@@ -290,9 +290,36 @@
 <xsl:text>      version: </xsl:text><xsl:value-of select="@version"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
-<xsl:template match="applicability2"><xsl:value-of select="."/></xsl:template>
+<xsl:template match="applicability">
+<xsl:if test="count(./node()) &gt; 0">
+<xsl:text> >2&#x0A;</xsl:text>
+<xsl:apply-templates/>
+</xsl:if>
+</xsl:template>
 
-<xsl:template match="applicability"/>
+
+<xsl:template match="itemizedlist|orderedlist">
+<xsl:text>&#x0A;&#x0A;</xsl:text>
+<xsl:apply-templates/>
+</xsl:template>
+
+
+<xsl:template match="listitem">
+<xsl:text>  *</xsl:text><xsl:apply-templates/><xsl:text>&#x0A;&#x0A;</xsl:text>
+</xsl:template>
+
+<xsl:template match="listitem/para"><xsl:text>  </xsl:text><xsl:apply-templates/></xsl:template>
+
+
+<xsl:template match="para"><xsl:text>  </xsl:text><xsl:apply-templates/><xsl:text>&#x0A;&#x0A;</xsl:text></xsl:template>
+
+
+<xsl:template match="text()">
+<xsl:variable name="escapeChars" select="'\&quot;'"/>
+<xsl:if test="name(..)='applicability'"><xsl:text>  </xsl:text></xsl:if>
+<xsl:value-of select="translate(translate(normalize-space(),':',' '), $escapeChars, ' ')"/>
+</xsl:template>
+
 
 <xsl:template match="profilespec">
 <xsl:text>profilespec:&#x0A;</xsl:text>
