@@ -49,10 +49,8 @@ The sources to both the documents and the database viewer are stored in a Git re
   Aug. 22, 2014  - also as <a href="{{ page.archive-location}}/nisp-web-8.0-release.zip">web archive</a></li>
   <li><a href="{{ page.archive-location}}/nisp-7.0/">NISP v7</a> -
   Mar. 22, 2013 - also as <a href="{{ page.archive-location}}/nisp-web-7.0-release.zip">web archive</a></li>
-<!--
   <li><a href="{{ page.archive-location}}/nisp-6.0/">NISP v6</a> -
   Jan. 19, 2012 (also as <a href="{{ page.archive-location}}/nisp-web-6.0-release.zip">archive</a>)</li>
--->
 </ul>
 
 <hr/>

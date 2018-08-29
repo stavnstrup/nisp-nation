@@ -36,12 +36,15 @@
 <xsl:template match="bpserviceprofile">
 <xsl:if test="count(./bpgroup)>0">
 <xsl:variable name="myref" select="@tref"/>
-<xsl:variable name="nodename" select="translate(/standards/taxonomy//node[@id=$myref]/@title, ' ()', '_')"/>
+<xsl:variable name="nodetitle" select="/standards/taxonomy//node[@id=$myref]/@title"/>
+<xsl:variable name="nodename" select="translate($nodetitle, ' ()', '_')"/>
 <xsl:result-document href="_bsp/{$nodename}.md">
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: bsp&#x0A;</xsl:text>
 <xsl:text>element: BSP&#x0A;</xsl:text>
-<xsl:text>taxonomy: </xsl:text><xsl:value-of select="@tref"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>taxonomy: </xsl:text><xsl:value-of select="$myref"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>node-title: </xsl:text><xsl:value-of select="$nodetitle"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>node-name: </xsl:text><xsl:value-of select="$nodename"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>bpgroup:&#x0A;</xsl:text>
 <xsl:apply-templates/>
 <xsl:text>---&#x0A;</xsl:text>
@@ -50,7 +53,7 @@
 </xsl:template>
 
 
-<xsl:template match="bpgroup">
+<xsl:template match="bpgroup[@mode != 'fading']">
 <xsl:text>  - obligation: </xsl:text><xsl:value-of select="@mode"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>    standards:&#x0A;</xsl:text>
 <xsl:apply-templates/>
