@@ -13,7 +13,7 @@ layout: element
 
 <dl>
   <dt class="data-label">Description</dt>
-  <dd class="data-value">{{page.description}}</dd>
+  <dd class="data-value">{{page.description | replace: '&#xA;', '\n\n' | markdownify }}</dd>
 </dl>
 
 <dl>
@@ -26,12 +26,9 @@ layout: element
   <dd class="data-value">{{page.emUUID}}</dd>
 </dl>
 
-
-<h3>Parent</h3>
-
 <dl>
-  <dt class="data-label">Parent ID</dt>
-  <dd class="data-value">{{page.parent}}</dd>
+  <dt class="data-label">Parent</dt>
+  <dd class="data-value"><a href="/node/{{page.parent}}.html">{{site.data.nodes[page.parent].title}}</a></dd>
 </dl>
 {% if page.consumers.size > 0 %}
 <h3>Relationships</h3>
