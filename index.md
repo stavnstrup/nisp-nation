@@ -45,7 +45,7 @@ The sources to both the documents and the database viewer are stored in a Git re
   Oct. 2, 2017  - also as <a href="{{ page.archive-location}}/nisp-web-10.0-release.zip">web archive</a></li>
   <li><a href="{{ page.archive-location}}/nisp-9.0/">NISP v9 / ADatP-34(I)</a> -
   Jul. 4, 2016 - also as <a href="{{ page.archive-location}}/nisp-web-9.0-release.zip">web archive</a></li>
-  <li><a href="{{ page.archive-location}}/nisp-8.0/">NISP v8 / ADatP-34(G)</a> -
+  <li><a href="{{ page.archive-location}}/nisp-8.0/">NISP v8 / ADatP-34(H)</a> -
   Aug. 22, 2014  - also as <a href="{{ page.archive-location}}/nisp-web-8.0-release.zip">web archive</a></li>
   <li><a href="{{ page.archive-location}}/nisp-7.0/">NISP v7 / ADatP-34(G)</a> -
   Mar. 22, 2013 - also as <a href="{{ page.archive-location}}/nisp-web-7.0-release.zip">web archive</a></li>
