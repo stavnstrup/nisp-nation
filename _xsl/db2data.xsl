@@ -9,6 +9,29 @@
 
 <xsl:template match="*[status/@mode='deleted']"/>
 
+<!-- ==================================================================== -->
+
+<!-- Add type attribute to all service profile, to be able to differentiate serviceprofiles,
+     which are part of the Base Standards Profile and those which are not -->
+
+<xsl:template match="serviceprofile">
+  <xsl:variable name="myid" select="@id"/>
+  <serviceprofile>
+    <xsl:attribute name="type">
+      <xsl:choose>
+        <xsl:when test="/standards//capabilityprofile[@id='bsp']//refprofile[@refid=$myid]">
+          <xsl:text>bsp</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>coi</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
+    <xsl:apply-templates select="@*"/>
+    <xsl:apply-templates/>
+  </serviceprofile>
+</xsl:template>
+
 <xsl:template match="standards">
   <standards>
     <xsl:apply-templates/>
@@ -21,7 +44,6 @@
 <xsl:template match="orgkey" mode="mirror">
   <rpkey key="{@key}" short="{@short}" long="{@long}"/>
 </xsl:template>
-
 
 <xsl:template match="@*|node()">
   <xsl:copy>

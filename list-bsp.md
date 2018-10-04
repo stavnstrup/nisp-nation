@@ -10,10 +10,10 @@ title: Basic Standards Service Profiles
   <th>Taxonomy Node</th>
   <th></th>
 </tr>
-{% for b in site.bsp %}
-<tr>
-  <td><a href="/bsp/{{ b.node-name }}.html">{{ b.node-title }}</a></td>
+{% for sp in site.serviceprofile %}
+{% if sp.type == 'bsp' %}<tr>
+  <td><a href="{{ sp.id }}.html">{{ sp.title }}</a></td>
   <td></td>
-</tr>
+</tr>{% endif %}
 {% endfor %}
 </table>

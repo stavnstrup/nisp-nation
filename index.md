@@ -6,14 +6,14 @@ debug-location: https://live.nisp.nw3.dk/debug
 archive-location: https://archive.nisp.nw3.dk
 ---
 
-The NISP tools and the NISP database viewer are continously being updated, but only released officially once a year.
+The NISP tools and the NISP database viewer are continously being updated, but only officially released once a year.
 
 In order for the members of IP CaT to keep up with the development, this page provides online access to draft HTML5 and PDF editions of the NISP and the database viewer.
 
-The sources to both the documents and the database viewer are stored in a Git repository at Github.
+The sources to both the documents and the database viewer are stored in a Git repository at GitHub.
 
 * Any change to the NISP tool/document/database repository will immediately trigger a continous integration / continous delivery pipeline. This results in a new version of NISP and an updated statistical overview of the standards and profiles.
-* A local copy of the NISP database viewer is synchronized with the Github master twice a day - at 05:00 CET and 17:00 CET - and subsequently transformed and made availible on this page.
+* A local copy of the NISP database viewer is synchronized with the GitHub master twice a day - at 05:00 CET and 17:00 CET - and subsequently transformed and made availible on this page.
 
 <hr />
 
@@ -32,7 +32,7 @@ The sources to both the documents and the database viewer are stored in a Git re
   <div class="git-links">
     <h4>Get the sources</h4>
 
-    <p>The NISP sources are freely available at <a href="https://github.com/stavnstrup/nisp-tools">Github</a></p>
+    <p>The NISP sources are freely available at <a href="https://github.com/stavnstrup/nisp-tools">GitHub</a></p>
     <p>If you want to contribute to the NISP project, you can submit a <a href="https://help.github.com/articles/creating-a-pull-request/">pull request</a> to the repository.</p>
   </div>
 </div>
@@ -56,7 +56,7 @@ The sources to both the documents and the database viewer are stored in a Git re
 <hr/>
 
 #### Statistics
-
+ 
 {% include stat.html %}
 
 <hr />
