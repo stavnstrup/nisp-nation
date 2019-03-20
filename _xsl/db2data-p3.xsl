@@ -179,8 +179,8 @@
 </xsl:if>
 <xsl:text>taxonomy:&#x0A;</xsl:text>
 <xsl:apply-templates select="reftaxonomy"/>
-<xsl:text>obgroup:&#x0A;</xsl:text>
-<xsl:apply-templates select="obgroup"/>
+<xsl:text>refgroup:&#x0A;</xsl:text>
+<xsl:apply-templates select="refgroup"/>
 <xsl:apply-templates select="status"/>
 <xsl:apply-templates select="uuid"/>
 <xsl:text>parents:&#x0A;</xsl:text>
@@ -195,8 +195,9 @@
 </xsl:template>
 
 
-<xsl:template match="obgroup">
+<xsl:template match="refgroup">
 <xsl:text>  - obligation: </xsl:text><xsl:value-of select="@obligation"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    lifecycle: </xsl:text><xsl:value-of select="@lifecycle"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>    standards: </xsl:text><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="refstandard"/>
 <xsl:text>    description: </xsl:text><xsl:apply-templates select="description"/><xsl:text>&#x0A;</xsl:text>
@@ -234,7 +235,7 @@
 <xsl:apply-templates select="status"/>
 <xsl:apply-templates select="uuid"/>
 <xsl:text>consumers:&#x0A;</xsl:text>
-<xsl:apply-templates select="/*//serviceprofile/obgroup/refstandard[@refid=$myid]" mode="sp-to-sd"/>
+<xsl:apply-templates select="/*//serviceprofile/refgroup/refstandard[@refid=$myid]" mode="sp-to-sd"/>
 <xsl:text>---&#x0A;</xsl:text>
 </xsl:result-document>
 </xsl:if>
@@ -473,7 +474,7 @@
 <xsl:template match="reftaxonomy[../name()='serviceprofile']" mode="nodeserviceprofiles">
 <xsl:text>    - spid: </xsl:text><xsl:value-of select="../@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>      standards:&#x0A;</xsl:text>
-<xsl:for-each select="../obgroup[@obligation='mandatory']/refstandard">
+<xsl:for-each select="../refgroup[@obligation='mandatory']/refstandard">
 <xsl:text>        - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
 </xsl:for-each>
 </xsl:template>
