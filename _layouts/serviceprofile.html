@@ -28,7 +28,7 @@ layout: element
 <div class="meta-list">
 
 {% for rg in page.refgroup %}
-<p><strong>{{ rg.obligation | capitalize }} Standards</strong></p>
+<p><strong>Obligation</strong>: {{ rg.obligation | capitalize }}, <strong>Lifecycle</strong>: {{ rg.lifecycle | capitalize }}</p>
 <p>{{rg.description}}</p>
 <ul>
 {% for std in rg.standards %}
