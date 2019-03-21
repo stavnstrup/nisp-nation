@@ -52,16 +52,18 @@
   display: flex;
   justify-content: space-between;
   padding: 8px 8px 0;
-  width: 100vw;
+  width: 100%;
 
   .type {
     font-size: 1.4rem;
     font-weight: normal;
+    align-self: flex-start;
   }
 
   .id {
     font-size: 1.4rem;
     padding-right: 1rem;
+    margin-left: auto;
   }
 }
 
