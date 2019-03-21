@@ -17,11 +17,13 @@ layout: element
 
 <h3>Taxonomy</h3>
 
+<div class="meta-list">
 <ul>
 {% for t in page.taxonomy %}
 <li><a href="/node/{{t}}.html">{{ site.data.nodes[t].title }}</a></li>
 {% endfor %}
 </ul>
+</div>
 
 <h3>Standards</h3>
 

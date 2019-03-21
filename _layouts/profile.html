@@ -12,11 +12,13 @@ layout: element
 
 <h3>Subprofiles</h3>
 
+<div class="meta-list">
 <ul>
   {% for ref in page.subprofiles %}
   <li><a href="/{{ref.type}}/{{ref.refid}}.html">{{ref.title}}</a> - (<strong>{{ref.type}}</strong>)</li>
   {% endfor %}
 </ul>
+</div>
 
 {%include status.html %}
 
@@ -31,10 +33,12 @@ layout: element
 
 <h3>Utilization</h3>
 
-This profile is used by the following profiles:
+<div class="meta-list">
+<p>This profile is used by the following profiles:</p>
 
 <ul>
   {% for ref in page.parents %}
   <li><a href="/{{ref.type}}/{{ref.refid}}.html">{{ref.title}}</a> - (<strong>{{ref.type}}</strong>)</li>
   {% endfor %}
 </ul>
+</div>

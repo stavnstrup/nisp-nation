@@ -21,11 +21,13 @@ layout: element
     </dl>
     {%include profilereference.html %}
     <h3>Subprofiles</h3>
+    <div class="meta-list">
     <ul>
       {% for ref in page.subprofiles %}
       <li><a href="/{{ref.type}}/{{ref.refid}}.html">{{ref.title}}</a> - (<strong>{{ref.type}}</strong>)</li>
       {% endfor %}
     </ul>
+    </div>
     {%include status.html %}
     <div class="meta-block">
       <dl>
