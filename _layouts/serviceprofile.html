@@ -8,7 +8,7 @@ layout: element
 </dl>
 
 <dl>
-  <dt class="data-label">Description</dt>
+  <dt class="data-label">Description</dt><
   <dd class="data-value">{{page.description}}</dd>
 </dl>
 
@@ -25,16 +25,20 @@ layout: element
 
 <h3>Standards</h3>
 
-{% for ob in page.obgroup %}
-<p><strong>{{ ob.obligation | capitalize }} Standards</strong></p>
-<p>{{ob.description}}</p>
+<div class="meta-list">
+
+{% for rg in page.refgroup %}
+<p><strong>{{ rg.obligation | capitalize }} Standards</strong></p>
+<p>{{rg.description}}</p>
 <ul>
-{% for std in ob.standards %}
+{% for std in rg.standards %}
   {% assign s = site.standard | where:"nisp-id", std.refid | first %}
   <li><a href="/standard/{{std.refid}}.html">{{s.document.title}} ({% if s.orgid %}{{site.data.orgs[s.orgid].short}} {% endif%}{{s.document.pubnum}}{%if s.date != '' %}:{{s.document.date | slice: 0,4}}{% endif%})</a></li>
 {% endfor %}
 </ul>
 {% endfor %}
+
+</div>
 
 {%include status.html %}
 
@@ -49,10 +53,14 @@ layout: element
 
 <h3>Utilization</h3>
 
-This profile is used by the following profiles:
+<div class="meta-list">
+
+<p>This profile is used by the following profiles:</p>
 
 <ul>
   {% for ref in page.parents %}
   <li><a href="/{{ref.type}}/{{ref.refid}}.html">{{ref.title}}</a> - (<strong>{{ref.type}}</strong>)</li>
   {% endfor %}
 </ul>
+
+</div>
