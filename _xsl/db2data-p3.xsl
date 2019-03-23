@@ -37,11 +37,7 @@
 <ul class="tree">
   <li class="capability-color"><a href="/capabilityprofile/{@id}.html"><xsl:value-of select="@title"/></a>
   <ul>
-    <xsl:for-each select="subprofiles/refprofile">
-      <xsl:variable name="thisref" select="@refid"/>
-      <xsl:apply-templates select="/standards//profile[@id=$thisref]" mode="makegraph"/>
-      <xsl:apply-templates select="/standards//serviceprofile[@id=$thisref]" mode="makegraph"/>
-    </xsl:for-each>
+
   </ul>
   </li>
 </ul>
@@ -64,11 +60,42 @@
   <li class="service-color"><a href="/serviceprofile/{@id}.html"><xsl:value-of select="@title"/></a></li>
 </xsl:template>
 
+<!-- Create a page illustrating the composite structure of capability profiles -->
+
+<xsl:template match="capabilityprofile" mode="makepage">
+<xsl:result-document href="_includes/page-{@id}.html" method="html">
+  <h1><xsl:value-of select="@title"/></h1>
+  <xsl:for-each select="subprofiles/refprofile">
+    <xsl:variable name="thisref" select="@refid"/>
+    <xsl:apply-templates select="/standards//profile[@id=$thisref]" mode="makepage"/>
+    <xsl:if test="count(/standards//serviceprofile[@id=$thisref])>0">
+      <xsl:apply-templates select="/standards//serviceprofile[@id=$thisref]" mode="makepage"/>
+    </xsl:if>
+  </xsl:for-each>
+</xsl:result-document>
+</xsl:template>
+
+<xsl:template match="profile" mode="makepage">
+  <h2><xsl:value-of select="@title"/></h2>
+  <xsl:for-each select="subprofiles/refprofile">
+    <xsl:variable name="thisref" select="@refid"/>
+    <xsl:apply-templates select="/standards//profile[@id=$thisref]" mode="makepage"/>
+    <xsl:if test="count(/standards//serviceprofile[@id=$thisref])>0">
+      <xsl:apply-templates select="/standards//serviceprofile[@id=$thisref]" mode="makepage"/>
+    </xsl:if>
+  </xsl:for-each>
+</xsl:template>
+
+<xsl:template match="serviceprofile" mode="makepage">
+
+</xsl:template>
+
 
 <!-- Process all standards and profiles -->
 
 <xsl:template match="records">
   <xsl:apply-templates select="capabilityprofile" mode="makegraph"/>
+  <xsl:apply-templates select="capabilityprofile" mode="makepage"/>
   <!-- Process all standard and profiles -->
   <xsl:apply-templates/>
   <!-- List all events in descending order in all standards and profiles -->
