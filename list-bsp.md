@@ -7,13 +7,11 @@ title: Basic Standards Service Profiles
 
 <table>
 <tr>
-  <th>Taxonomy Node</th>
-  <th></th>
+  <th>Basic Standards Service Profiles</th>
 </tr>
 {% for sp in site.serviceprofile %}
 {% if sp.type == 'bsp' %}<tr>
   <td><a href="{{ sp.id }}.html">{{ sp.title }}</a></td>
-  <td></td>
 </tr>{% endif %}
 {% endfor %}
 </table>
