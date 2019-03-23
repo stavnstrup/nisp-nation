@@ -18,4 +18,5 @@ _organization
 _responsibleparty
 _node
 _includes/taxonomy.html
-_includes/graph*.html
+_includes/graph-*.html
+_includes/page-*.html
