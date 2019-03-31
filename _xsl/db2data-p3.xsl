@@ -37,7 +37,11 @@
 <ul class="tree">
   <li class="capability-color"><a href="/capabilityprofile/{@id}.html"><xsl:value-of select="@title"/></a>
   <ul>
-
+    <xsl:for-each select="subprofiles/refprofile">
+      <xsl:variable name="thisref" select="@refid"/>
+      <xsl:apply-templates select="/standards//profile[@id=$thisref]" mode="makegraph"/>
+      <xsl:apply-templates select="/standards//serviceprofile[@id=$thisref]" mode="makegraph"/>
+    </xsl:for-each>
   </ul>
   </li>
 </ul>
@@ -64,30 +68,144 @@
 
 <xsl:template match="capabilityprofile" mode="makepage">
 <xsl:result-document href="_includes/page-{@id}.html" method="html">
-  <h1><xsl:value-of select="@title"/></h1>
+  <h2><xsl:value-of select="@title"/></h2>
   <xsl:for-each select="subprofiles/refprofile">
     <xsl:variable name="thisref" select="@refid"/>
     <xsl:apply-templates select="/standards//profile[@id=$thisref]" mode="makepage"/>
-    <xsl:if test="count(/standards//serviceprofile[@id=$thisref])>0">
-      <xsl:apply-templates select="/standards//serviceprofile[@id=$thisref]" mode="makepage"/>
-    </xsl:if>
+    <xsl:apply-templates select="/standards//serviceprofile[@id=$thisref]" mode="makepage"/>
   </xsl:for-each>
 </xsl:result-document>
 </xsl:template>
 
 <xsl:template match="profile" mode="makepage">
-  <h2><xsl:value-of select="@title"/></h2>
-  <xsl:for-each select="subprofiles/refprofile">
-    <xsl:variable name="thisref" select="@refid"/>
-    <xsl:apply-templates select="/standards//profile[@id=$thisref]" mode="makepage"/>
-    <xsl:if test="count(/standards//serviceprofile[@id=$thisref])>0">
-      <xsl:apply-templates select="/standards//serviceprofile[@id=$thisref]" mode="makepage"/>
-    </xsl:if>
-  </xsl:for-each>
+  <h3><xsl:value-of select="@title"/></h3>
+
+  <!-- Identify type of the element referenced from the first refprofile element -->
+  <xsl:variable name="firstrefid" select="subprofiles/refprofile[1]/@refid"/>
+  <xsl:variable name="elementname" select="name(/standards//profile[@id=$firstrefid])"/>
+
+  <xsl:choose>
+    <xsl:when test="$elementname= 'profile'">
+      <xsl:for-each select="subprofiles/refprofile">
+        <xsl:variable name="thisref" select="@refid"/>
+        <xsl:apply-templates select="/standards//profile[@id=$thisref]" mode="makepage"/>
+     </xsl:for-each>
+    </xsl:when>
+    <xsl:otherwise>
+      <table>
+        <colgroup>
+          <col style="width: 18%;"/>
+          <col style="width: 44%;"/>
+          <col style="width: 38%;"/>
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Standard</th>
+            <th>Implementation Guidance</th>
+          </tr>
+        </thead>
+        <tbody>
+        <xsl:for-each select="subprofiles/refprofile">
+          <xsl:variable name="thisref" select="@refid"/>
+          <xsl:apply-templates select="/standards//serviceprofile[@id=$thisref]" mode="makepage"/>
+        </xsl:for-each>
+        </tbody>
+      </table>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="serviceprofile" mode="makepage">
+  <tr>
+    <td colspan="3"><p><strong><xsl:value-of select="@title"/></strong></p>
+     <p><xsl:value-of select="description"/></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <xsl:if test="not(count(reftaxonomy))">
+        <xsl:text>UNKNOWN SERVICE</xsl:text>
+      </xsl:if>
+      <xsl:apply-templates select="reftaxonomy" mode="makepage"/>
+    </td>
+    <td><xsl:apply-templates select="refgroup" mode="makepage"/></td>
+    <td><xsl:apply-templates select="guide" mode="makepage"/></td>
+  </tr>
+</xsl:template>
 
+<xsl:template match="reftaxonomy" mode="makepage">
+  <xsl:variable name="myrefid" select="@refid"/>
+  <p>
+    <xsl:value-of select="/standards//node[@id=$myrefid]/@title"/>
+    <xsl:if test="following-sibling::reftaxonomy">
+      <xsl:text>, </xsl:text>
+    </xsl:if>
+  </p>
+</xsl:template>
+
+<xsl:template match="refgroup"  mode="makepage">
+  <p><em>
+    <xsl:choose>
+      <xsl:when test="@obligation='mandatory'">Mandatory</xsl:when>
+      <xsl:when test="@obligation='recommended'">Recommended</xsl:when>
+      <xsl:when test="@obligation='optional'">Optional</xsl:when>
+      <xsl:when test="@obligation='conditional'">Conditional</xsl:when>
+      <xsl:otherwise>ERROR</xsl:otherwise>
+    </xsl:choose>
+  </em></p>
+  <xsl:if test="./description">
+    <p><xsl:value-of select="./description"/></p>
+  </xsl:if>
+  <ul spacing="compact">
+    <xsl:apply-templates select="refstandard" mode="makepage"/>
+  </ul>
+</xsl:template>
+
+
+<xsl:template match="refstandard"  mode="makepage">
+  <xsl:variable name="myrefid" select="@refid"/>
+  <li><xsl:apply-templates select="/standards//standard[@id=$myrefid]"  mode="makepage"/></li>
+</xsl:template>
+
+
+<xsl:template match="standard" mode="makepage">
+  <xsl:variable name="myorg" select="document/@orgid"/>
+  <xsl:variable name="orgname" select="ancestor::standards/organisations/orgkey[@key=$myorg]/@short"/>
+  <xsl:if test="$orgname">
+    <xsl:value-of select="$orgname"/>
+    <xsl:text> </xsl:text>
+  </xsl:if>
+  <xsl:value-of select="document/@pubnum"/>
+  <xsl:text> - </xsl:text>
+  <xsl:value-of select="document/@title"/>
+</xsl:template>
+
+
+<xsl:template match="guide" mode="makepage">
+  <p><xsl:apply-templates mode="makepage"/></p>
+</xsl:template>
+
+
+<xsl:template match="itemizedlist|orderedlist" mode="makepage">
+<ul><xsl:apply-templates mode="makepage"/></ul>
+</xsl:template>
+
+
+<xsl:template match="listitem" mode="makepage">
+<li><xsl:apply-templates mode="makepage"/></li>
+</xsl:template>
+
+<xsl:template match="listitem/para" mode="makepage"><xsl:apply-templates mode="makepage"/></xsl:template>
+
+
+<xsl:template match="para" mode="makepage"><xsl:apply-templates mode="makepage"/></xsl:template>
+
+
+<xsl:template match="text()" mode="makepage">
+<xsl:variable name="escapeChars" select="'\&quot;'"/>
+<xsl:if test="name(..)='applicability'"> </xsl:if>
+<xsl:value-of select="translate(translate(normalize-space(),':',' '), $escapeChars, ' ')"/>
 </xsl:template>
 
 
