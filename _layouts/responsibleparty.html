@@ -21,7 +21,7 @@ element: Responsible Party
   <tr>
     <td>{{site.data.orgs[s.orgid].short}}</td>
     <td>{{s.document.pubnum}}</td>
-    <td><a href="/standard/{{ std }}.html">{{s.document.title}}</a></td>
+    <td><a href="/standard/{{ std }}.html">{{s.document.title}} {{s.document.version}}</a></td>
     <td>{{s.document.date | slice: 0,4}}</td>
   </tr>
   {% endfor %}
