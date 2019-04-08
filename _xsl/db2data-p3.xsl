@@ -172,13 +172,30 @@
 <xsl:template match="standard" mode="makepage">
   <xsl:variable name="myorg" select="document/@orgid"/>
   <xsl:variable name="orgname" select="ancestor::standards/organisations/orgkey[@key=$myorg]/@short"/>
-  <xsl:if test="$orgname">
-    <xsl:value-of select="$orgname"/>
-    <xsl:text> </xsl:text>
-  </xsl:if>
-  <xsl:value-of select="document/@pubnum"/>
-  <xsl:text> - </xsl:text>
-  <xsl:value-of select="document/@title"/>
+  <xsl:variable name="url" select="status/uri"/>
+  <xsl:choose>
+    <xsl:when test="status/url=''">
+      <xsl:if test="$orgname">
+        <xsl:value-of select="$orgname"/>
+        <xsl:text> </xsl:text>
+      </xsl:if>
+      <xsl:value-of select="document/@pubnum"/>
+      <xsl:text> - </xsl:text>
+      <xsl:value-of select="document/@title"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <a>
+        <xsl:attribute name="href"><xsl:value-of select="$url"/></xsl:attribute>
+        <xsl:if test="$orgname">
+          <xsl:value-of select="$orgname"/>
+          <xsl:text> </xsl:text>
+        </xsl:if>
+        <xsl:value-of select="document/@pubnum"/>
+        <xsl:text> - </xsl:text>
+        <xsl:value-of select="document/@title"/>
+      </a>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 
