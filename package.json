@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git@github.com:nispworld/nispworld.github.io.git"
   },
-  "author": "Aggerbaek <contact@aggerbaek.fk>",
+  "author": "Jens Stavnstrup <stavnstrup@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^6.4.0",
