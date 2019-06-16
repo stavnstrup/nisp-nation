@@ -18,7 +18,7 @@
   <xsl:apply-templates select="taxonomy" mode="data"/>
   <xsl:result-document href="_data/stat.json">
     <xsl:text>{</xsl:text>
-    <xsl:text>"capabilityprofiles": "</xsl:text><xsl:value-of select="count(records/capabilityprofile)"/><xsl:text>",</xsl:text>
+    <xsl:text>"capabilityprofiles": "</xsl:text><xsl:value-of select="count(records/profile[@toplevel='yes'])"/><xsl:text>",</xsl:text>
     <xsl:text>"profiles": "</xsl:text><xsl:value-of select="count(records/profile)"/><xsl:text>",</xsl:text>
     <xsl:text>"serviceprofiles": "</xsl:text><xsl:value-of select="count(records/serviceprofile)"/><xsl:text>",</xsl:text>
     <xsl:text>"basicstandardsprofile": "1",</xsl:text>
@@ -30,9 +30,9 @@
   </xsl:result-document>
 </xsl:template>
 
-<!-- Create a graph illustrating the composite structure of capability profiles -->
+<!-- Create a graph illustrating the composite structure of profile with toplevel="yes" (capability profiles) -->
 
-<xsl:template match="capabilityprofile" mode="makegraph">
+<xsl:template match="profile[@toplevel='yes']" mode="makegraph">
 <xsl:result-document href="_includes/graph-{@id}.html" method="html">
 <ul class="tree">
   <li class="capability-color"><a href="/capabilityprofile/{@id}.html"><xsl:value-of select="@title"/></a>
@@ -66,7 +66,7 @@
 
 <!-- Create a page illustrating the composite structure of capability profiles -->
 
-<xsl:template match="capabilityprofile" mode="makepage">
+<xsl:template match="profile[@toplevel='yes']" mode="makepage">
 <xsl:result-document href="_includes/page-{@id}.html" method="html">
   <h2><xsl:value-of select="@title"/></h2>
   <xsl:for-each select="subprofiles/refprofile">
@@ -229,10 +229,12 @@
 <!-- Process all standards and profiles -->
 
 <xsl:template match="records">
-  <xsl:apply-templates select="capabilityprofile" mode="makegraph"/>
-  <xsl:apply-templates select="capabilityprofile" mode="makepage"/>
+  <xsl:apply-templates select="profile[@toplevel='yes']" mode="makegraph"/>
+  <xsl:apply-templates select="profile[@toplevel='yes']" mode="makepage"/>
   <!-- Process all standard and profiles -->
-  <xsl:apply-templates/>
+  <xsl:apply-templates select="standard"/>
+  <xsl:apply-templates select="profile"/>
+    <xsl:apply-templates select="serviceprofile"/>
   <!-- List all events in descending order in all standards and profiles -->
   <xsl:result-document href="_data/events.json">
     <xsl:text>[</xsl:text>
@@ -247,7 +249,7 @@
 
 <xsl:template match="event" mode="allevents">
   <xsl:text>{</xsl:text>
-  <xsl:text>"rec": "</xsl:text><xsl:number from="standards" count="standard|serviceprofile|profile|capabilityprofile" format="1" level="any"/><xsl:text>", </xsl:text>
+  <xsl:text>"rec": "</xsl:text><xsl:number from="standards" count="standard|serviceprofile|profile" format="1" level="any"/><xsl:text>", </xsl:text>
   <xsl:text>"nisp-id": "</xsl:text><xsl:value-of select="../../../@id"/><xsl:text>",</xsl:text>
   <xsl:choose>
     <xsl:when test="ancestor::standard">
@@ -266,16 +268,16 @@
 
 <!-- Create a YAML page of a Capability Profile -->
 
-<xsl:template match="capabilityprofile[@type='bsp']"/>
+<xsl:template match="profile[@type='bsp']"/>
 
-<xsl:template match="capabilityprofile">
+<xsl:template match="profile[@toplevel='yes']">
 <xsl:result-document href="_capabilityprofile/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: capabilityprofile&#x0A;</xsl:text>
 <xsl:text>element: Capabilityprofile&#x0A;</xsl:text>
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
-<xsl:apply-templates select="profilespec"/>
+<xsl:apply-templates select="refprofilespec"/>
 <xsl:text>subprofiles:&#x0A;</xsl:text>
 <xsl:apply-templates select="subprofiles"/>
 <xsl:apply-templates select="status"/>
@@ -294,7 +296,7 @@
 <xsl:text>element: Profile&#x0A;</xsl:text>
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
-<xsl:apply-templates select="profilespec"/>
+<xsl:apply-templates select="refprofilespec"/>
 <xsl:text>subprofiles:&#x0A;</xsl:text>
 <xsl:apply-templates select="subprofiles"/>
 <xsl:apply-templates select="status"/>
@@ -335,7 +337,7 @@
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>type: </xsl:text><xsl:value-of select="@type"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
-<xsl:apply-templates select="profilespec"/>
+<xsl:apply-templates select="refprofilespec"/>
 <xsl:if test="description">
 <xsl:text>description: </xsl:text><xsl:apply-templates select="description"/><xsl:text>&#x0A;</xsl:text>
 </xsl:if>
@@ -459,6 +461,10 @@
 <xsl:value-of select="translate(translate(normalize-space(),':',' '), $escapeChars, ' ')"/>
 </xsl:template>
 
+<xsl:template match="refprofilespec">
+  <xsl:variable name="myrefid" select="@refid"/>
+  <xsl:apply-templates select="/standards/records/profilespec[@id=$myrefid]"/>
+</xsl:template>
 
 <xsl:template match="profilespec">
 <xsl:text>profilespec:&#x0A;</xsl:text>

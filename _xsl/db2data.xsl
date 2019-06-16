@@ -19,7 +19,7 @@
   <serviceprofile>
     <xsl:attribute name="type">
       <xsl:choose>
-        <xsl:when test="/standards//capabilityprofile[@id='bsp']//refprofile[@refid=$myid]">
+        <xsl:when test="/standards//profile[@id='bsp']//refprofile[@refid=$myid]">
           <xsl:text>bsp</xsl:text>
         </xsl:when>
         <xsl:otherwise>
