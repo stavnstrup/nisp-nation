@@ -4,6 +4,8 @@ permalink: /capabilityprofile/index.html
 element: Capability Profiles
 ---
 
+A capability profile is an alias for a toplevel profile. You will therefore see these profiles are also listed at the the [profile](/profile/) page.
+
 <table>
 <tr>
   <th>Organization</th>
