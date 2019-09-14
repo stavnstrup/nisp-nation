@@ -1,4 +1,8 @@
 # nisp-nation
+
+
+[![Linux Build Status](https://travis-ci.org/stavnstrup/nisp-nation.svg?branch=master)](https://travis-ci.org/stavnstrup/nisp-nation)
+
 Jekyll based generation of the NISP website
 
 The XSLT stylesheet is used to transform the NISP database, fetched by travis at http://github.com/stavnstrup/nisp-tools in the directory src/standards/.
