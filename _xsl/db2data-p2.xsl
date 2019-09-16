@@ -5,7 +5,7 @@
                 version='2.0'>
 
 
-<xsl:output saxon:next-in-chain="db2data-p3.xsl"/>
+<xsl:output indent="yes" saxon:next-in-chain="db2data-p3.xsl"/>
 
 
 <xsl:template match="orgkey">
@@ -32,11 +32,17 @@
     <xsl:apply-templates select="@*"/>
     <xsl:apply-templates/>
     <!-- Which standards in the best practiceprofile is referencing this node -->
-    <xsl:apply-templates select="/standards/bestpracticeprofile//bprefstandard[ancestor::bpserviceprofile/@tref=$myid]"/>
+    <xsl:apply-templates select="/standards//serviceprofile[@type='bsp']//refstandard[../../reftaxonomy/@refid=$myid]" mode="counting"/>
     <!-- Which standards in a serviceprofile is referencing this node -->
     <xsl:apply-templates select="/standards//refstandard[ancestor::serviceprofile/reftaxonomy/@refid=$myid]"/>
   </node>
 </xsl:template>
+
+
+<xsl:template match="refstandard" mode="counting">
+  <refstandard refid="{@refid}" obligation="{../@obligation}" lifecycle="{../@lifecycle}"/>
+</xsl:template>
+
 
 
 <xsl:template match="@*|node()">

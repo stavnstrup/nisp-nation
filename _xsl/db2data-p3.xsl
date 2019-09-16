@@ -682,8 +682,8 @@
 
 <xsl:template match="node" mode="count-stuff">
   <xsl:variable name="myid" select="@id"/>
-  <xsl:variable name="mandatory" select="count(//bprefstandard[(../../@tref=$myid) and (../@mode='mandatory')])"/>
-  <xsl:variable name="candidate" select="count(//bprefstandard[(../../@tref=$myid) and (../@mode='candidate')])"/>
+  <xsl:variable name="mandatory" select="count(refstandard[(@obligation='mandatory') and (@lifecycle='current')])"/>
+  <xsl:variable name="candidate" select="count(.//refstandard[@lifecycle='candidate'])"/>
   <xsl:variable name="services" select="count(//reftaxonomy[@refid=$myid])"/>
   <xsl:if test="$mandatory+$candidate+$services &gt; 0">
     <xsl:text> (</xsl:text>
