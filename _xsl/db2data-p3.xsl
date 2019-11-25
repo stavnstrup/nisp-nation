@@ -23,6 +23,8 @@
     <xsl:text>"serviceprofiles": "</xsl:text><xsl:value-of select="count(records/serviceprofile)"/><xsl:text>",</xsl:text>
     <xsl:text>"basicstandardsprofile": "1",</xsl:text>
     <xsl:text>"standards": "</xsl:text><xsl:value-of select="count(records/standard)"/><xsl:text>",</xsl:text>
+    <xsl:text>"coverpages": "</xsl:text><xsl:value-of select="count(records/coverpage)"/><xsl:text>",</xsl:text>
+    <xsl:text>"profilespecs": "</xsl:text><xsl:value-of select="count(records/profilespec)"/><xsl:text>",</xsl:text>
     <xsl:text>"organizations": "</xsl:text><xsl:value-of select="count(organisations/orgkey)"/><xsl:text>",</xsl:text>
     <xsl:text>"responsibleparties": "</xsl:text><xsl:value-of select="count(responsibleparties/rpkey)"/><xsl:text>",</xsl:text>
     <xsl:text>"nodes": "</xsl:text><xsl:value-of select="count(taxonomy//node)"/><xsl:text>"</xsl:text>
