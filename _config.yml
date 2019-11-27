@@ -4,6 +4,10 @@
 collections:
   standard:
     output: true
+  coverpage:
+    output: true
+  profilespec:
+    output: true
   bsp:
     output: true
   serviceprofile:
