@@ -236,7 +236,8 @@
   <!-- Process all standard and profiles -->
   <xsl:apply-templates select="standard"/>
   <xsl:apply-templates select="profile"/>
-    <xsl:apply-templates select="serviceprofile"/>
+  <xsl:apply-templates select="serviceprofile"/>
+  <xsl:apply-templates select="profilespec"/>
   <!-- List all events in descending order in all standards and profiles -->
   <xsl:result-document href="_data/events.json">
     <xsl:text>[</xsl:text>
@@ -376,8 +377,60 @@
 <xsl:text>    - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
+<!-- Create a YAML page of a coverpage -->
 
-<!-- Create Standards -->
+<xsl:template match="coverpage">
+<xsl:variable name="myid" select="@id"/>
+<xsl:if test="not(.//event[(position()=last()) and (@flag='deleted')])">
+<xsl:result-document href="_coverpage/{@id}.md">
+<xsl:text>---&#x0A;</xsl:text>
+<xsl:text>layout: coverpage&#x0A;</xsl:text>
+<xsl:text>element: Coverpage&#x0A;</xsl:text>
+<xsl:text>complete: </xsl:text><xsl:value-of select="(document/@orgid != '') and
+  (document/@pubnum != '') and (document/@title != '') and (document/@date != '')"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>tag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
+<xsl:text>orgid: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>document:&#x0A;</xsl:text>
+<xsl:text>  org: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>  pubnum: "</xsl:text><xsl:value-of select="document/@pubnum"/><xsl:text>"&#x0A;</xsl:text>
+<xsl:text>  title: "</xsl:text><xsl:value-of select="normalize-space(document/@title)"/><xsl:text>"&#x0A;</xsl:text>
+<xsl:text>  date: </xsl:text><xsl:value-of select="document/@date"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>  version: "</xsl:text><xsl:value-of select="document/@version"/><xsl:text>"&#x0A;</xsl:text>
+<xsl:text>coverpages:&#x0A;</xsl:text>
+<xsl:apply-templates select="coverpages"/>
+<xsl:text>rp: </xsl:text><xsl:value-of select="responsibleparty/@rpref"/><xsl:text>&#x0A;</xsl:text>
+<xsl:apply-templates select="status"/>
+<xsl:apply-templates select="uuid"/>
+<xsl:text>consumers:&#x0A;</xsl:text>
+<xsl:apply-templates select="/*//serviceprofile/refgroup/refstandard[@refid=$myid]" mode="sp-to-sd"/>
+<xsl:text>---&#x0A;</xsl:text>
+</xsl:result-document>
+</xsl:if>
+</xsl:template>
+
+
+<!-- Create a YAML page of a profilespec -->
+
+<xsl:template match="profilespec">
+<xsl:variable name="myid" select="@myid"/>
+<xsl:result-document href="_profilespec/{@id}.md">
+<xsl:text>---&#x0A;</xsl:text>
+<xsl:text>layout: profilespec&#x0A;</xsl:text>
+<xsl:text>element: Profilespec&#x0A;</xsl:text>
+<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>orgid: </xsl:text><xsl:value-of select="@orgid"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>pubnum: "</xsl:text><xsl:value-of select="@pubnum"/><xsl:text>"&#x0A;</xsl:text>
+<xsl:text>date: </xsl:text><xsl:value-of select="@date"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>title: "</xsl:text><xsl:value-of select="normalize-space(document/@title)"/><xsl:text>"&#x0A;</xsl:text>
+<xsl:text>version: "</xsl:text><xsl:value-of select="@version"/><xsl:text>"&#x0A;</xsl:text>
+<xsl:text>note:</xsl:text><xsl:apply-templates select="@note"/><xsl:text>&#x0A;</xsl:text>
+<xsl:apply-templates select="uuid"/>
+<xsl:text>---&#x0A;</xsl:text>
+</xsl:result-document>
+</xsl:template>
+
+<!-- Create a YAML page of a standard -->
 
 <xsl:template match="standard">
 <xsl:variable name="myid" select="@id"/>
@@ -463,12 +516,15 @@
 <xsl:value-of select="translate(translate(normalize-space(),':',' '), $escapeChars, ' ')"/>
 </xsl:template>
 
+
+<!-- Use these following two templates to embed profilespecs in profile and serviceprofile elements -->
+
 <xsl:template match="refprofilespec">
   <xsl:variable name="myrefid" select="@refid"/>
-  <xsl:apply-templates select="/standards/records/profilespec[@id=$myrefid]"/>
+  <xsl:apply-templates select="/standards/records/profilespec[@id=$myrefid]" mode="embed"/>
 </xsl:template>
 
-<xsl:template match="profilespec">
+<xsl:template match="profilespec" mode="embed">
 <xsl:text>profilespec:&#x0A;</xsl:text>
 <xsl:text>  org: </xsl:text><xsl:value-of select="@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>  pubnum: </xsl:text><xsl:value-of select="@pubnum"/><xsl:text>&#x0A;</xsl:text>
