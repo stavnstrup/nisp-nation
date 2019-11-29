@@ -4,7 +4,7 @@
 collections:
   standard:
     output: true
-  coverpage:
+  coverdoc:
     output: true
   profilespec:
     output: true

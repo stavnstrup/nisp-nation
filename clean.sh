@@ -6,7 +6,7 @@ rm -fR _profile
 rm -fR _responsibleparty
 rm -fR _serviceprofile
 rm -fR _standard
-rm -fR _coverpage
+rm -fR _coverdoc
 rm -fR _profilespec
 rm _includes/graph*.html
 rm _includes/page*.html

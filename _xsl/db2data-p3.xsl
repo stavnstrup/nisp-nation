@@ -23,7 +23,7 @@
     <xsl:text>"serviceprofiles": "</xsl:text><xsl:value-of select="count(records/serviceprofile)"/><xsl:text>",</xsl:text>
     <xsl:text>"basicstandardsprofile": "1",</xsl:text>
     <xsl:text>"standards": "</xsl:text><xsl:value-of select="count(records/standard)"/><xsl:text>",</xsl:text>
-    <xsl:text>"coverpages": "</xsl:text><xsl:value-of select="count(records/coverpage)"/><xsl:text>",</xsl:text>
+    <xsl:text>"coverdocs": "</xsl:text><xsl:value-of select="count(records/coverdoc)"/><xsl:text>",</xsl:text>
     <xsl:text>"profilespecs": "</xsl:text><xsl:value-of select="count(records/profilespec)"/><xsl:text>",</xsl:text>
     <xsl:text>"organizations": "</xsl:text><xsl:value-of select="count(organisations/orgkey)"/><xsl:text>",</xsl:text>
     <xsl:text>"responsibleparties": "</xsl:text><xsl:value-of select="count(responsibleparties/rpkey)"/><xsl:text>",</xsl:text>
@@ -377,15 +377,15 @@
 <xsl:text>    - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
-<!-- Create a YAML page of a coverpage -->
+<!-- Create a YAML page of a coverdoc -->
 
-<xsl:template match="coverpage">
+<xsl:template match="coverdoc">
 <xsl:variable name="myid" select="@id"/>
 <xsl:if test="not(.//event[(position()=last()) and (@flag='deleted')])">
-<xsl:result-document href="_coverpage/{@id}.md">
+<xsl:result-document href="_coverdoc/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: coverpage&#x0A;</xsl:text>
-<xsl:text>element: Coverpage&#x0A;</xsl:text>
+<xsl:text>layout: coverdoc&#x0A;</xsl:text>
+<xsl:text>element: Cover Document&#x0A;</xsl:text>
 <xsl:text>complete: </xsl:text><xsl:value-of select="(document/@orgid != '') and
   (document/@pubnum != '') and (document/@title != '') and (document/@date != '')"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
@@ -397,8 +397,8 @@
 <xsl:text>  title: "</xsl:text><xsl:value-of select="normalize-space(document/@title)"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>  date: </xsl:text><xsl:value-of select="document/@date"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>  version: "</xsl:text><xsl:value-of select="document/@version"/><xsl:text>"&#x0A;</xsl:text>
-<xsl:text>coverpages:&#x0A;</xsl:text>
-<xsl:apply-templates select="coverpages"/>
+<xsl:text>coverstandards:&#x0A;</xsl:text>
+<xsl:apply-templates select="coverstandards"/>
 <xsl:text>rp: </xsl:text><xsl:value-of select="responsibleparty/@rpref"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="status"/>
 <xsl:apply-templates select="uuid"/>
@@ -408,6 +408,8 @@
 </xsl:result-document>
 </xsl:if>
 </xsl:template>
+
+<xsl:template match="coverstandards"><xsl:apply-templates/></xsl:template>
 
 
 <!-- Create a YAML page of a profilespec -->
