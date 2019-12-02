@@ -235,6 +235,7 @@
   <xsl:apply-templates select="profile[@toplevel='yes']" mode="makepage"/>
   <!-- Process all standard and profiles -->
   <xsl:apply-templates select="standard"/>
+  <xsl:apply-templates select="coverdoc"/>
   <xsl:apply-templates select="profile"/>
   <xsl:apply-templates select="serviceprofile"/>
   <xsl:apply-templates select="profilespec"/>
