@@ -167,11 +167,11 @@
 
 <xsl:template match="refstandard"  mode="makepage">
   <xsl:variable name="myrefid" select="@refid"/>
-  <li><xsl:apply-templates select="/standards//standard[@id=$myrefid]"  mode="makepage"/></li>
+  <li><xsl:apply-templates select="/standards//*[@id=$myrefid]"  mode="makepage"/></li>
 </xsl:template>
 
 
-<xsl:template match="standard" mode="makepage">
+<xsl:template match="standard|coverpage" mode="makepage">
   <xsl:variable name="myorg" select="document/@orgid"/>
   <xsl:variable name="orgname" select="ancestor::standards/organisations/orgkey[@key=$myorg]/@short"/>
   <xsl:variable name="url" select="status/uri"/>
