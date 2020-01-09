@@ -52,7 +52,7 @@ The sources to both the documents and the database viewer are stored in a Git re
   <li><a href="{{ page.archive-location}}/nisp-7.0/">NISP v7 / ADatP-34(G)</a> -
   Mar. 22, 2013 - also as <a href="{{ page.archive-location}}/nisp-web-7.0-release.zip">web archive</a></li>
   <li><a href="{{ page.archive-location}}/nisp-6.0/">NISP v6 / ADatP-34(F)</a> -
-  Jan. 19, 2012 (also as <a href="{{ page.archive-location}}/nisp-web-6.0-release.zip">web archive</a>)</li>
+  Jan. 19, 2012 - also as <a href="{{ page.archive-location}}/nisp-web-6.0-release.zip">web archive</a></li>
 </ul>
 
 <hr/>
