@@ -14,7 +14,7 @@ A capability profile is an alias for a toplevel profile. You will therefore see 
 </tr>
 {% for cp in site.capabilityprofile %}
 <tr>
-  <td><a href="/organization/{{sp.profilespec.org}}.html">{{site.data.orgs[cp.profilespec.org].short}}</a></td>
+  <td><a href="/organization/{{cp.profilespec.org}}.html">{{site.data.orgs[cp.profilespec.org].short}}</a></td>
   <td><a href="/capabilityprofile/{{cp.nisp-id}}.html">{{cp.title}}</a></td>
   <td>{{cp.profilespec.version}}</td>
 </tr>
