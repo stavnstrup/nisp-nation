@@ -65,11 +65,11 @@ The sources to both the documents and the database viewer are stored in a Git re
 
 #### Coherency Checks of the NISP Database
 
-* [Overview of all standards and profiles incl. deleted elements]({{page.debug-location}}/overview.html)
 * [Overview of all standards and profiles]({{page.debug-location}}/current.html)
-* [Events in the database]({{page.debug-location}}/dates.html)
-* [Responsible parties]({{page.debug-location}}/responsibleparties.html)
-* [Candidate and fading standards]({{page.debug-location}}/upcoming.html)
+* [Overview of all standards and profiles incl. **deleted** elements]({{page.debug-location}}/overview.html)
+* [Events in the database]({{page.debug-location}}/dates.html) - when was entities added, changed or deleted
+* [Responsible parties]({{page.debug-location}}/responsibleparties.html) - Sort all standards by responsible party
+* [Candidate standards]({{page.debug-location}}/upcoming.html)
 * [Parent/child relationship]({{page.debug-location}}/family.html)
 
 <!--
