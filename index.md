@@ -23,8 +23,11 @@ The sources to both the documents and the database viewer are stored in a Git re
     <h4>Go see draft stuff</h4>
     <ul class="daily">
       <li><a href="{{ page.live-location }}">See the latest draft of NISP</a></li>
+      <li>The database viewer is temporary unavailable.</li>
+<!--
       <li><a href="http://noswg.nw3.dk/thenispnation/dailyviewer/">Use the database viewer</a></li>
       <li><a href="http://noswg.nw3.dk/thenispnation/dailyviewer.public/">Use the database viewer (public edition)</a></li>
+-->
     </ul>
 
   </div>
