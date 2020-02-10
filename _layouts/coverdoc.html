@@ -37,6 +37,19 @@ layout: element
 
 </div>
 
+<h3>Covered Standards</h3>
+
+<div class="meta-list">
+
+  <ul>
+    {% for cs in page.coverstandards %}
+    <li>
+      {% assign s = site.standard | where:"nisp-id", cs.refid | first %}
+      <a href="/standard/{{cs.refid}}.html">{{s.document.title}} ({% if s.orgid %}{{site.data.orgs[s.orgid].short}} {% endif%}{{s.document.pubnum}}{%if s.date != '' %}:{{s.document.date | slice: 0,4}}{% endif%})</a></li>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 
 {%include responsibleparty.html %}
 
