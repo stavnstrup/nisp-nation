@@ -171,7 +171,7 @@
 </xsl:template>
 
 
-<xsl:template match="standard|coverpage" mode="makepage">
+<xsl:template match="standard|coverdoc" mode="makepage">
   <xsl:variable name="myorg" select="document/@orgid"/>
   <xsl:variable name="orgname" select="ancestor::standards/organisations/orgkey[@key=$myorg]/@short"/>
   <xsl:variable name="url" select="status/uri"/>
