@@ -35,7 +35,9 @@ layout: element
 <ul>
 {% for std in rg.standards %}
   {% assign s = site.standard | where:"nisp-id", std.refid | first %}
-  <li><a href="/standard/{{std.refid}}.html">{{s.document.title}} ({% if s.orgid %}{{site.data.orgs[s.orgid].short}} {% endif%}{{s.document.pubnum}}{%if s.date != '' %}:{{s.document.date | slice: 0,4}}{% endif%})</a></li>
+  {% assign c = site.coverdoc | where:"nisp-id", std.refid | first %}
+  {%if s.id %}<li><a href="/standard/{{std.refid}}.html">{{s.document.title}} ({% if s.orgid %}{{site.data.orgs[s.orgid].short}} {% endif%}{{s.document.pubnum}}{%if s.date != '' %}:{{s.document.date | slice: 0,4}}{% endif%})</a></li>{% endif %}
+  {%if c.id %}<li><a href="/coverdoc/{{std.refid}}.html">{{c.document.title}} ({% if c.orgid %}{{site.data.orgs[c.orgid].short}} {% endif%}{{c.document.pubnum}}{%if c.date != '' %}:{{c.document.date | slice: 0,4}}{% endif%})</a></li>{% endif %}
 {% endfor %}
 </ul>
 {% endfor %}
