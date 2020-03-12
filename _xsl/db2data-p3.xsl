@@ -149,11 +149,16 @@
 <xsl:template match="refgroup"  mode="makepage">
   <p><em>
     <xsl:choose>
-      <xsl:when test="@obligation='mandatory'">Mandatory</xsl:when>
-      <xsl:when test="@obligation='recommended'">Recommended</xsl:when>
-      <xsl:when test="@obligation='optional'">Optional</xsl:when>
-      <xsl:when test="@obligation='conditional'">Conditional</xsl:when>
-      <xsl:otherwise>ERROR</xsl:otherwise>
+      <xsl:when test="@lifecycle='current'">
+        <xsl:choose>
+          <xsl:when test="@obligation='mandatory'">Mandatory</xsl:when>
+          <xsl:when test="@obligation='recommended'">Recommended</xsl:when>
+          <xsl:when test="@obligation='optional'">Optional</xsl:when>
+          <xsl:when test="@obligation='conditional'">Conditional</xsl:when>
+          <xsl:otherwise>ERROR</xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>Candidate</xsl:otherwise>
     </xsl:choose>
   </em></p>
   <xsl:if test="./description">
