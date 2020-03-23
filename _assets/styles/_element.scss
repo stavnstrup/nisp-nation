@@ -51,8 +51,9 @@
   color: $nisp-hero-color;
   display: flex;
   justify-content: space-between;
+  margin: 0 auto;
   padding: 8px 8px 0;
-  width: 100vw;
+  width: 100%;
 
   .type {
     font-size: 1.4rem;
