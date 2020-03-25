@@ -60,3 +60,21 @@ layout: element
   <dt class="data-label">UUID</dt>
   <dd class="data-value">{{page.uuid}}</dd>
 </dl>
+
+
+{% if page.consumers.size > 0 %}
+<h3>Relationships</h3>
+
+<div class="meta-list">
+
+<p>This cover document is used by the following service profiles:</p>
+<ul>
+{% for sp in page.consumers %}
+{% assign sp-rec = site.serviceprofile | where:"nisp-id", sp | first %}
+<li><a href="/serviceprofile/{{ sp }}.html">{{sp-rec.title}}</a></li>
+{% endfor %}
+</ul>
+
+</div>
+
+{% endif %}
