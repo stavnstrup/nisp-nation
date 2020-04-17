@@ -462,6 +462,8 @@
 <xsl:text>rp: </xsl:text><xsl:value-of select="responsibleparty/@rpref"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="status"/>
 <xsl:apply-templates select="uuid"/>
+<xsl:text>coverdocument:
+<xsl:apply-templates select="/*//coverstandards/refstandard[@refid=$myid]" mode="showcoverdoc"/>
 <xsl:text>consumers:&#x0A;</xsl:text>
 <xsl:apply-templates select="/*//serviceprofile/refgroup/refstandard[@refid=$myid]" mode="sp-to-sd"/>
 <xsl:text>---&#x0A;</xsl:text>
@@ -473,6 +475,9 @@
 <xsl:text>  - </xsl:text><xsl:value-of select="../../@id"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
+<xsl:template match="refstandard" mode="showcoverdoc">
+<xsl:text>  - </xsl:text><xsl:value-of select="../../@id"/><xsl:text>&#x0A;</xsl:text>
+</xsl:template>
 
 <xsl:template match="status">
 <xsl:text>status:&#x0A;</xsl:text>
