@@ -60,6 +60,16 @@ layout: element
 
 <div class="meta-list">
 
+  {% if page.coverdocument.size > 0 %}
+  <p>This standard is covered by:</p>
+  <ul>
+  {% assign cd = page.coverdocument[0] %}
+  {% assign cd-rec = site.coverdoc  | where:"nisp-id", cd | first %}
+  <li><a href="/coverdoc/{{ cd }}.html">{{cd-rec.title}}</a></li>
+  </ul>
+  {% endif %}
+  
+
 {% if page.consumers.size > 0 %}
 <p>This standard is used by the following service profiles:</p>
 <ul>
@@ -71,15 +81,6 @@ layout: element
 {% endif %}
 
 
-{% if page.coverdocument.size = 99 %}
-<p>This standard is covered by:</p>
-<ul>
-{% for cd in page.coverdocument %}
-{% assign cd-rec = site.coverdocument | where:"nisp-id", cd | first %}
-<li><a href="/coverdocument/{{ cd }}.html">{{cd-rec.title}}</a></li>
-{% endfor %}
-</ul>
-{% endif %}
 
 </div>
 
