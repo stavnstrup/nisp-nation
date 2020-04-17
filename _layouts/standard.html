@@ -54,11 +54,9 @@ layout: element
   <dd class="data-value">{{page.uuid}}</dd>
 </dl>
 
-{% if page.consumers.size > 0 or page.coverdocs.size > 0 %}
+
+{% if page.consumers.size > 0 or page.coverdocument.size > 0 %}
 <h3>Relationships</h3>
-
-
-
 
 <div class="meta-list">
 
@@ -70,7 +68,7 @@ layout: element
 <li><a href="/serviceprofile/{{ sp }}.html">{{sp-rec.title}}</a></li>
 {% endfor %}
 </ul>
-{% endfor %}
+{% endif %}
 
 {% if page.coverdocument.size > 0 %}
 <p>This standard is covered by:</p>
@@ -80,7 +78,7 @@ layout: element
 <li><a href="/coverdocument/{{ cd }}.html">{{cd-rec.title}}</a></li>
 {% endfor %}
 </ul>
-{% endfor %}
+{% endif %}
 
 </div>
 
