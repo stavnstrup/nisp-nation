@@ -401,7 +401,7 @@
 <xsl:text>  org: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>  pubnum: "</xsl:text><xsl:value-of select="document/@pubnum"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>  title: "</xsl:text><xsl:value-of select="normalize-space(document/@title)"/><xsl:text>"&#x0A;</xsl:text>
-<xsl:text>  date: </xsl:text><xsl:value-of select="document/@date"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>  date: "</xsl:text><xsl:value-of select="document/@date"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>  version: "</xsl:text><xsl:value-of select="document/@version"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>coverstandards:&#x0A;</xsl:text>
 <xsl:apply-templates select="coverstandards"/>
@@ -429,7 +429,7 @@
 <xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>pubnum: "</xsl:text><xsl:value-of select="@pubnum"/><xsl:text>"&#x0A;</xsl:text>
-<xsl:text>pubdate: </xsl:text><xsl:value-of select="@date"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>pubdate: "</xsl:text><xsl:value-of select="@date"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>title: "</xsl:text><xsl:value-of select="normalize-space(@title)"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>version: "</xsl:text><xsl:value-of select="@version"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>note:</xsl:text><xsl:apply-templates select="@note"/><xsl:text>&#x0A;</xsl:text>
@@ -456,7 +456,7 @@
 <xsl:text>  org: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>  pubnum: "</xsl:text><xsl:value-of select="document/@pubnum"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>  title: "</xsl:text><xsl:value-of select="normalize-space(document/@title)"/><xsl:text>"&#x0A;</xsl:text>
-<xsl:text>  date: </xsl:text><xsl:value-of select="document/@date"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>  date: "</xsl:text><xsl:value-of select="document/@date"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>  version: "</xsl:text><xsl:value-of select="document/@version"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>applicability:</xsl:text><xsl:apply-templates select="applicability"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>rp: </xsl:text><xsl:value-of select="responsibleparty/@rpref"/><xsl:text>&#x0A;</xsl:text>
