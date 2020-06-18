@@ -12,8 +12,8 @@ In order for the members of IP CaT to keep up with the development, this page pr
 
 The sources to both the documents and the database viewer are stored in a Git repository at GitHub.
 
-* Any change to the NISP tool/document/database repository will immediately trigger a continous integration / continous delivery pipeline. This results in a new version of NISP and an updated statistical overview of the standards and profiles.
-* A local copy of the NISP database viewer is synchronized with the GitHub master twice a day - at 05:00 CET and 17:00 CET - and subsequently transformed and made availible on this page.
+- Any change to the NISP tool/document/database repository will immediately trigger a continous integration / continous delivery pipeline. This results in a new version of NISP and an updated statistical overview of the standards and profiles.
+- A local copy of the NISP database viewer is synchronized with the GitHub master twice a day - at 05:00 CET and 17:00 CET - and subsequently transformed and made availible on this page.
 
 <hr />
 
@@ -37,11 +37,14 @@ The sources to both the documents and the database viewer are stored in a Git re
 
     <p>The NISP sources are freely available at <a href="https://github.com/stavnstrup/nisp-tools">GitHub</a></p>
     <p>If you want to contribute to the NISP project, you can submit a <a href="https://help.github.com/articles/creating-a-pull-request/">pull request</a> to the repository.</p>
+
   </div>
 </div>
 
 <h4>Official releases</h4>
 <ul>
+  <li><a href="{{ page.archive-location}}/nisp-13.0/">NISP v13 / ADatP-34(M)</a> -
+  Apr. 4, 2020  - also as <a href="{{ page.archive-location}}/nisp-web-13.0-release.zip">web archive</a></li>
   <li><a href="{{ page.archive-location}}/nisp-12.0/">NISP v12 / ADatP-34(L)</a> -
   Jul. 19, 2019  - also as <a href="{{ page.archive-location}}/nisp-web-12.0-release.zip">web archive</a></li>
   <li><a href="{{ page.archive-location}}/nisp-11.0/">NISP v11 / ADatP-34(K)</a> -
@@ -61,19 +64,19 @@ The sources to both the documents and the database viewer are stored in a Git re
 <hr/>
 
 #### Statistics
- 
+
 {% include stat.html %}
 
 <hr />
 
 #### Coherency Checks of the NISP Database
 
-* [Overview of all standards and profiles]({{page.debug-location}}/current.html)
-* [Overview of all standards and profiles incl. **deleted** elements]({{page.debug-location}}/overview.html)
-* [Events in the database]({{page.debug-location}}/dates.html) - when was entities added, changed or deleted
-* [Responsible parties]({{page.debug-location}}/responsibleparties.html) - Sort all standards by responsible party
-* [Candidate standards]({{page.debug-location}}/upcoming.html)
-* [Parent/child relationship]({{page.debug-location}}/family.html)
+- [Overview of all standards and profiles]({{page.debug-location}}/current.html)
+- [Overview of all standards and profiles incl. **deleted** elements]({{page.debug-location}}/overview.html)
+- [Events in the database]({{page.debug-location}}/dates.html) - when was entities added, changed or deleted
+- [Responsible parties]({{page.debug-location}}/responsibleparties.html) - Sort all standards by responsible party
+- [Candidate standards]({{page.debug-location}}/upcoming.html)
+- [Parent/child relationship]({{page.debug-location}}/family.html)
 
 <!--
 * [Overview of all standards and profiles](/debug/overview.html)
