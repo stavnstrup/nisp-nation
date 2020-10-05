@@ -29,7 +29,7 @@ script:
   - mkdir -p _temp/standards/ _temp/schema/dtd/docbkx45/
   - curl -o _temp/standards/standards.xml https://raw.githubusercontent.com/stavnstrup/nisp-tools/master/src/standards/standards.xml
   - cp -r /usr/share/xml/docbook/schema/dtd/4.5/* _temp/schema/dtd/docbkx45/
-  - curl -o _temp/schema/dtd/stddb47.dtd https://raw.githubusercontent.com/stavnstrup/nisp-tools/master/src/schema/dtd/stddb47.dtd
+  - curl -o _temp/schema/dtd/stddb48.dtd https://raw.githubusercontent.com/stavnstrup/nisp-tools/master/src/schema/dtd/stddb48.dtd
   - xmllint --noout --valid _temp/standards/standards.xml
   - saxonb-xslt -ext:on _temp/standards/standards.xml _xsl/db2data.xsl
   - bundle exec jekyll build
