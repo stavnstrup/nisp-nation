@@ -6,14 +6,13 @@ debug-location: https://live.nisp.nw3.dk/debug
 archive-location: https://archive.nisp.nw3.dk
 ---
 
-The NISP tools and the NISP database viewer are continously being updated, but only officially released once a year.
+The NISP tools is continously being updated, but only officially released once a year.
 
 In order for the members of IP CaT to keep up with the development, this page provides online access to draft HTML5 and PDF editions of the NISP and the database viewer.
 
-The sources to both the documents and the database viewer are stored in a Git repository at GitHub.
+The sources to the documents are stored in a Git repository at GitHub.
 
-- Any change to the NISP tool/document/database repository will immediately trigger a continous integration / continous delivery pipeline. This results in a new version of NISP and an updated statistical overview of the standards and profiles.
-- A local copy of the NISP database viewer is synchronized with the GitHub master twice a day - at 05:00 CET and 17:00 CET - and subsequently transformed and made availible on this page.
+- Any change to the NISP tool/document repository will immediately trigger a continous integration / continous delivery pipeline. This results in a new version of NISP and an updated statistical overview of the standards and profiles.
 
 <hr />
 
@@ -23,8 +22,9 @@ The sources to both the documents and the database viewer are stored in a Git re
     <h4>Go see draft stuff</h4>
     <ul class="daily">
       <li><a href="{{ page.live-location }}">See the latest draft of NISP</a></li>
-      <li>The database viewer is temporary unavailable.</li>
 <!--
+- A local copy of the NISP database viewer is synchronized with the GitHub master twice a day - at 05:00 CET and 17:00 CET - and subsequently transformed and made availible on this page.
+      <li>The database viewer is temporary unavailable.</li>
       <li><a href="http://noswg.nw3.dk/thenispnation/dailyviewer/">Use the database viewer</a></li>
       <li><a href="http://noswg.nw3.dk/thenispnation/dailyviewer.public/">Use the database viewer (public edition)</a></li>
 -->
