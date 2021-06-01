@@ -43,7 +43,7 @@ The sources to the documents are stored in a Git repository at GitHub.
 
 <h4>Official releases</h4>
 <ul>
-  <li><a href="{{ page.archive-location}}/nisp-14.0/">NISP v14 / ADatP-34(N)</a> -
+  <li>Draft <a href="{{ page.archive-location}}/nisp-14.0/">NISP v14 / ADatP-34(N)</a> -
   May. 26, 2021  - also as <a href="{{ page.archive-location}}/nisp-web-14.0-release.zip">web archive</a></li>
   <li><a href="{{ page.archive-location}}/nisp-13.0/">NISP v13 / ADatP-34(M)</a> -
   Apr. 4, 2020  - also as <a href="{{ page.archive-location}}/nisp-web-13.0-release.zip">web archive</a></li>
