@@ -301,7 +301,6 @@ DEPENDENCIES
   jekyll-paginate
   jekyll-picture-tag
   jekyll-twitter-plugin
-  jemoji
   json
   mdl
   scss_lint
