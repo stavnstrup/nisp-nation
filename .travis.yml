@@ -15,6 +15,7 @@ cache:
 before_install:
   - sudo apt-get -qq update
   - gem install bundler
+  - bundle config git.allow_insecure true
   - bundle check || bundle install
 
 install:
