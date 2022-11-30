@@ -47,19 +47,19 @@ The sources to the documents are stored in a Git repository at GitHub.
   May. 26, 2021  - also as <a href="{{ page.archive-location}}/nisp-web-14.0-release.zip">web archive</a></li>
   <li><a href="{{ page.archive-location}}/nisp-13.0/">NISP v13 / ADatP-34(M)(1)</a> -
   Apr. 4, 2020  - also as <a href="{{ page.archive-location}}/nisp-web-13.0-release.zip">web archive</a></li>
-  <li><a href="{{ page.archive-location}}/nisp-12.0/">NISP v12 / ADatP-34(L)</a> -
+  <li><a href="{{ page.archive-location}}/nisp-12.0/">NISP v12 / ADatP-34(L)(1)</a> -
   Jul. 19, 2019  - also as <a href="{{ page.archive-location}}/nisp-web-12.0-release.zip">web archive</a></li>
-  <li><a href="{{ page.archive-location}}/nisp-11.0/">NISP v11 / ADatP-34(K)</a> -
+  <li><a href="{{ page.archive-location}}/nisp-11.0/">NISP v11 / ADatP-34(K)(1)</a> -
   Aug. 3, 2018  - also as <a href="{{ page.archive-location}}/nisp-web-11.0-release.zip">web archive</a></li>
-  <li><a href="{{ page.archive-location}}/nisp-10.0/">NISP v10 / ADatP-34(J)</a> -
+  <li><a href="{{ page.archive-location}}/nisp-10.0/">NISP v10 / ADatP-34(J)(1)</a> -
   Oct. 2, 2017  - also as <a href="{{ page.archive-location}}/nisp-web-10.0-release.zip">web archive</a></li>
-  <li><a href="{{ page.archive-location}}/nisp-9.0/">NISP v9 / ADatP-34(I)</a> -
+  <li><a href="{{ page.archive-location}}/nisp-9.0/">NISP v9 / ADatP-34(I)(1)</a> -
   Jul. 4, 2016 - also as <a href="{{ page.archive-location}}/nisp-web-9.0-release.zip">web archive</a></li>
-  <li><a href="{{ page.archive-location}}/nisp-8.0/">NISP v8 / ADatP-34(H)</a> -
+  <li><a href="{{ page.archive-location}}/nisp-8.0/">NISP v8 / ADatP-34(H)(1)</a> -
   Aug. 22, 2014  - also as <a href="{{ page.archive-location}}/nisp-web-8.0-release.zip">web archive</a></li>
-  <li><a href="{{ page.archive-location}}/nisp-7.0/">NISP v7 / ADatP-34(G)</a> -
+  <li><a href="{{ page.archive-location}}/nisp-7.0/">NISP v7 / ADatP-34(G)(1)</a> -
   Mar. 22, 2013 - also as <a href="{{ page.archive-location}}/nisp-web-7.0-release.zip">web archive</a></li>
-  <li><a href="{{ page.archive-location}}/nisp-6.0/">NISP v6 / ADatP-34(F)</a> -
+  <li><a href="{{ page.archive-location}}/nisp-6.0/">NISP v6 / ADatP-34(F)(1)</a> -
   Jan. 19, 2012 - also as <a href="{{ page.archive-location}}/nisp-web-6.0-release.zip">web archive</a></li>
 </ul>
 
