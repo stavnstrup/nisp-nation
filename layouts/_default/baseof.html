@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% include head.html %}
+  {{ partial "head.html" }}
   <body>
     <div class="main-content">
-      {{ content }}
+      {{ block "main" . }}{{ end }}
     </div>
   </body>
 </html>

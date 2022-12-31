@@ -1,0 +1,14 @@
+{{ define "main" }}
+
+<table>
+<tr>
+  <th>Basic Standards Service Profiles</th>
+</tr>
+{{ range where .Pages .type "serviceprofile" }}
+{{ if eq .type "bsp" }}<tr>
+  <td><a href="{{ .id }}.html">{{ .title }}</a></td>
+</tr>{{ end }}
+{{ end }}
+</table>
+
+{{ end }}

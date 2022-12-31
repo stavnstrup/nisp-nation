@@ -1,0 +1,21 @@
+
+{{ define "main"}}
+
+A capability profile is an alias for a toplevel profile. You will therefore see these profiles are also listed at the the [profile](/profile/) page.
+
+<table>
+<tr>
+  <th>Organization</th>
+  <th>Title of Capability Profiles</th>
+  <th>Version</th>
+</tr>
+{{ range where .Pages "Section" "capabilityprofile" }}
+<tr>
+  <td><a href="/organization/{{.profilespec.org}}.html">{{ Site.data.orgs[.Page.profilespec.org].short}}</a></td>
+  <td><a href="/capabilityprofile/{{cp.nisp-id}}.html">{{ .title }}</a></td>
+  <td>{{ .profile.version }}</td>
+</tr>
+{{ end }}
+</table>
+
+{{ end }}

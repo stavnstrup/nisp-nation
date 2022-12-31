@@ -1,12 +1,9 @@
----
-layout: default
----
-
-
+{{ define "main" }}
 <div class="nisp-hero">
   <h2>{{ page.title }}</h2>
 </div>
 
 <div class="nisp-content">
-  {{ content }}
+  {{ .Content }}
 </div>
+{{ end }}
