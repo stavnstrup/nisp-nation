@@ -1,6 +1,6 @@
----
-layout: element
----
+{{ define "main" }}
+
+{{ partial "element-head.html" . }}
 
 <div class="meta-block">
 
@@ -10,29 +10,29 @@ layout: element
 
 <dl class="ref-org">
   <dt class="data-label">Org</dt>
-  <dd class="data-value">{{ site.data.orgs[page.document.org].short }}</dd>
+  <dd class="data-value">{{ .Site.data.orgs[.document.org].short }}</dd>
 </dl>
 
 <dl class="ref-pubnum">
   <dt class="data-label">Pubnum</dt>
-  <dd class="data-value">{{ page.document.pubnum }}</dd>
+  <dd class="data-value">{{ .document.pubnum }}</dd>
 </dl>
 
 <dl class="ref-date">
   <dt class="data-label">Date</dt>
-  <dd class="data-value">{{ page.document.date }}</dd>
+  <dd class="data-value">{{ .document.date }}</dd>
 </dl>
 
 <dl class="ref-version">
   <dt class="data-label">Version</dt>
-  <dd class="data-value">{{ page.document.version }}</dd>
+  <dd class="data-value">{{ .document.version }}</dd>
 </dl>
 
 </div>
 
 <dl>
   <dt class="data-label">Title</dt>
-  <dd class="data-value">{{ page.document.title }}</dd>
+  <dd class="data-value">{{ .document.title }}</dd>
 </dl>
 
 </div>
@@ -42,39 +42,41 @@ layout: element
 <div class="meta-list">
 
   <ul>
-    {% for cs in page.coverstandards %}
+    {{ range where .Pages "Section" "coverstandard" }}
     <li>
       {% assign s = site.standard | where:"nisp-id", cs.refid | first %}
       <a href="/standard/{{cs.refid}}.html">{{s.document.title}} ({% if s.orgid %}{{site.data.orgs[s.orgid].short}} {% endif%}{{s.document.pubnum}}{% if s.date != '' %}:{{s.document.date | slice: 0,4}}{% endif%})</a></li>
     </li>
-    {% endfor %}
+    {{ end }}
   </ul>
 </div>
 
-{%include responsibleparty.html %}
+{{ partial "responsibleparty.html" . }}
 
 
-{%include status.html %}
+{{ partial "status.html" . }}
 
 <dl>
   <dt class="data-label">UUID</dt>
-  <dd class="data-value">{{page.uuid}}</dd>
+  <dd class="data-value">{{ .uuid }}</dd>
 </dl>
 
 
-{% if page.consumers.size > 0 %}
+{{ if ge .consumers.size 0 }}
 <h3>Relationships</h3>
 
 <div class="meta-list">
 
 <p>This cover document is used by the following service profiles:</p>
 <ul>
-{% for sp in page.consumers %}
+{{ range .consumers }}
 {% assign sp-rec = site.serviceprofile | where:"nisp-id", sp | first %}
 <li><a href="/serviceprofile/{{ sp }}.html">{{sp-rec.title}}</a></li>
-{% endfor %}
+{{ end }}
 </ul>
 
 </div>
 
-{% endif %}
+{{ end }}
+
+{{ end }}

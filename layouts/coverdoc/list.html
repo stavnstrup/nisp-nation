@@ -1,0 +1,20 @@
+{{ define "main" }}
+
+{{ partial "element-head.html" . }}
+
+<table>
+<tr>
+  <th>Pubnum</th>
+  <th>Title</th>
+  <th>Date</th>
+</tr>
+{{ range .Site.coverdoc }}
+<tr>
+  <td>{{ .document.pubnum }}</td>
+  <td><a href="/coverdoc/{{ .nisp-id }}.html">{{ .document.title }}</a></td>
+  <td>{{ slicestr .document.date 0 4 }}</td>
+</tr>
+{{ end }}
+</table>
+
+{{ end }}
