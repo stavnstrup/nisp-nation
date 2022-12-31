@@ -11,13 +11,13 @@
 
 <!-- ==================================================================== -->
 
-<!-- Add type attribute to all service profile. This is done be able to differentiate serviceprofiles,
+<!-- Add sptype attribute to all service profile. This is done be able to differentiate serviceprofiles,
      which is part of the Base Standards Profile and those which are COI (e.g. FMN or the archive) -->
 
 <xsl:template match="serviceprofile">
   <xsl:variable name="myid" select="@id"/>
   <serviceprofile>
-    <xsl:attribute name="type">
+    <xsl:attribute name="sptype">
       <xsl:choose>
         <!-- Does the BSP refere to this serviceprofile? -->
         <xsl:when test="/standards//profile[@id='bsp']//refprofile[@refid=$myid]">
