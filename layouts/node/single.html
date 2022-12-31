@@ -2,41 +2,43 @@
 layout: element
 ---
 
-<h3>Reference document</h3>
+{{ define "main" }}
 
+<h3>Reference document</h3>
 
 <dl>
   <dt class="data-label">Title</dt>
-  <dd class="data-value">{{page.title}}</dd>
+  <dd class="data-value">{{ .title }}</dd>
 </dl>
-
 
 <dl>
   <dt class="data-label">Description</dt>
-  <dd class="data-value">{{page.description | replace: '&#xA;', '\n\n' | markdownify }}</dd>
+  <dd class="data-value">{{ markdownify (replace .description "&#xA;" "\n\n" ) }}</dd>
 </dl>
 
 <dl>
   <dt class="data-label">Level</dt>
-  <dd class="data-value">{{page.level}}</dd>
+  <dd class="data-value">{{ .level }}</dd>
 </dl>
 
 <dl>
   <dt class="data-label">emUUID</dt>
-  <dd class="data-value">{{page.emUUID}}</dd>
+  <dd class="data-value">{{ .emUUID }}</dd>
 </dl>
 
 <dl>
   <dt class="data-label">Parent</dt>
-  <dd class="data-value"><a href="/node/{{page.parent}}.html">{{site.data.nodes[page.parent].title}}</a></dd>
+  <dd class="data-value"><a href="/node/{{ .parent }}.html">{{ (index .Site.Data.nodes .parent).title }}</a></dd>
 </dl>
-{% if page.consumers.size > 0 %}
+{{ if ge .consumers.size  0 }}
 <h3>Relationships</h3>
 <p>Service profiles which uses this standard.</p>
 <ul>
-{% for sp in page.consumers %}
+{{ range .consumers }} {{/* was sp in a for loop */}}
 {% assign sp-rec = site.serviceprofile | where:"nisp-id", sp | first %}
 <li><a href="/serviceprofile/{{ sp }}.html">{{sp-rec.title}}</a></li>
-{% endfor %}
+{{ end }}
 </ul>
-{% endif %}
+{{ endif }}
+
+{{ end }}
