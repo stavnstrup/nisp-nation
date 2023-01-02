@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-{{ partial "element-head" . }}
+{{ partial "element-head.html" . }}
 
 <table>
 <tr>
@@ -9,11 +9,11 @@
   <th>Version</th>
 </tr>
 {{ range where .Pages "Section" "profile" }}
-<tr>
-  <td><a href="/organization/{{ .profilespec.org }}.html">{{(index site.Data.orgs .profilespec.org).short}}</a></td>
-  <td><a href="/profile/{{ .nispId }}.html">{{ .title }}</a></td>
-  <td>{{ .profilespec.version }}</td>
-</tr>
+  <tr>
+    <td><a href="/organization/{{ .profilespec.org }}.html">{{(index site.Data.orgs .profilespec.org).short}}</a></td>
+    <td><a href="/profile/{{ .nispId }}.html">{{ .title }}</a></td>
+    <td>{{ .profilespec.version }}</td>
+  </tr>
 {{ end }}
 </table>
 

@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-{{ partial "element-head" . }}
+{{ partial "element-head.html" . }}
 
 <p>
 <ul class="legendbox">
@@ -19,7 +19,7 @@
 {{ $allOrgs = sort uniq $allOrgs }}
 
 
-{{ range grp $allOrgs %}
+{{ range $allOrgs }}
 
 <div class="collection-group">
 
@@ -27,7 +27,7 @@
 
 <ul class="stdgroup">
 {{ range $stdindex, $std := .items }}
-<li class="collection-item std-{{ if $std.complete }}complete{{ else }}incomplete{{ end }}"><a href="/standard/{{std.nisp-id}}.html" title="{{std.document.title}}">{{   if ne .document.pubnum "" }}{{ .document.pubnum }}{{ else }}{{ .nispId }}{{ end }}</a></li>
+<li class="collection-item std-{{ if .complete }}complete{{ else }}incomplete{{ end }}"><a href="/standard/{{ .nispId }}.html" title="{{ .document.title }}">{{   if ne .document.pubnum "" }}{{ .document.pubnum }}{{ else }}{{ .nispId }}{{ end }}</a></li>
 
 {{ if eq (mod $stdindex 10) 0 }}
 </ul>

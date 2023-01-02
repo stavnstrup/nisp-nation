@@ -47,18 +47,20 @@
       <th>Date</th>
     </tr>
   </thead>
-  {% for std in page.stuff.capabilityprofiles.references %}
-  {% assign s = site.capabilityprofile | where:"nisp-id", std | first %}
-  <tr>
-    <td>{{ .profilespec.pubnum }}</td>
-    <td><a href="/capabilityprofile/{{ std }}.html">{{s.title}}</a></td>
-    <td>{{ slice .profilespec.date 0 4 }}</td>
-  </tr>
-  {% endfor %}
+  {{ range .stuff.capabilityprofiles.references }}
+    {{ $cpId := . }}
+    {{ range where .Pages "nispId" $cpId }}
+    <tr>
+      <td>{{ .profilespec.pubnum }}</td>
+      <td><a href="/capabilityprofile/{{ $cpId }}.html">{{ .title }}</a></td>
+      <td>{{ slice .profilespec.date 0 4 }}</td>
+    </tr>
+    {{ end }}
+  {{ end }}
 </table>
 {{ end }}
 
-{{ if gt page.stuff.profiles.owns  0 }}
+{{ if gt .stuff.profiles.owns  0 }}
 {{ $plural := cond (gt .stuff.standards.owns  1) "s" "" }}
 <p>{{ .short }} own{{ $plural }} {{ .stuff.profiles.owns }} profile{{ $plural }}, which are:</p>
 
@@ -70,14 +72,16 @@
       <th>Date</th>
     </tr>
   </thead>
-  {% for std in page.stuff.profiles.references %}
-  {% assign s = site.profile | where:"nisp-id", std | first %}
-  <tr>
-    <td>{{s.profilespec.pubnum}}</td>
-    <td><a href="/profile/{{ std }}.html">{{s.title}}</a></td>
-    <td>{{s.profilespec.date | slice: 0,4}}</td>
-  </tr>
-  {% endfor %}
+  {{ range .stuff.profiles.references }}
+    {{ $pId := . }}
+    {{ range where .Pages "nispId" $pId }}
+    <tr>
+      <td>{{ .profilespec.pubnum }}</td>
+      <td><a href="/profile/{{ $pId }}.html">{{ .title }}</a></td>
+      <td>{{ slice .profilespec.date 0 4 }}</td>
+    </tr>
+    {{ end }}
+  {{ end }}
 </table>
 {{ end }}
 
@@ -94,14 +98,14 @@
     </tr>
   </thead>
   {{ range .stuff.serviceprofiles.references }}
-  {{ $stdId := . }}
-  {{ range (where .site.Pages .nispId $stdId) }}
-  <tr>
-    <td>{{.profilespec.pubnum}}</td>
-    <td><a href="/serviceprofile/{{ $stdId }}.html">{{ .title }}</a></td>
-    <td>{{ slice .profilespec.date 0 4 }}</td>
-  </tr>
-  {{ end }}
+    {{ $spId := . }}
+    {{ range where .site.Pages .nispId $spId }}
+    <tr>
+      <td>{{.profilespec.pubnum}}</td>
+      <td><a href="/serviceprofile/{{ $spId }}.html">{{ .title }}</a></td>
+      <td>{{ slice .profilespec.date 0 4 }}</td>
+    </tr>
+    {{ end }}
   {{ end }}
 </table>
 {{ end }}

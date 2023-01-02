@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-{{ partial "element-head" . }}
+{{ partial "element-head.html" . }}
 
 <h4>{{ .long }} ({{ .short }})</h4>
 
@@ -16,13 +16,13 @@
     </tr>
   </thead>
   {{ range .responsible.standards }}
-  {{ stdId := . }}
+  {{ $stdId := . }}
   {{ range where site.Pages "nispId" $stdId }}
   <tr>
     <td>{{(index site.Data.orgs .orgid).short }}</td>
     <td>{{ .document.pubnum }}</td>
-    <td><a href="/standard/{{ stdId }}.html">{{ .document.title }} {{ .document.version }}</a></td>
-    <td>{{ slice .document.date 0 4}}</td>
+    <td><a href="/standard/{{ $stdId }}.html">{{ .document.title }} {{ .document.version }}</a></td>
+    <td>{{ slice .document.date 0 4 }}</td>
   </tr>
   {{ end }}
   {{ end }}

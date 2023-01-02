@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-{{ partial "element-head" . }}
+{{ partial "element-head.html" . }}
 
 <dl>
   <dt class="data-label">Title</dt>
@@ -20,7 +20,7 @@
 <div class="meta-list">
 <ul>
 {{ range .taxonomy }}
-<li><a href="/node/{{ . }}.html">{{ (index site.Data.nodes . ).title }}</a></li>
+  <li><a href="/node/{{ . }}.html">{{ (index site.Data.nodes . ).title }}</a></li>
 {{ end }}
 </ul>
 </div>
@@ -36,7 +36,7 @@
 {{ range .standards }}
   {{ $refid := . }}
   {{ range where .Pages "Section" $refid }}
-    <li><a href="/{{ .type }}/{{ $refid }}.html"></a>{{ .document.title }} ({% if .orgid %}{{(index site.Data.orgs .orgid).short }} {% endif%}{{ .document.pubnum }}{{ if ne .date "" }}:{{ slice .document.date 0 4 }}{{ endif }})</a></li>
+    <li><a href="/{{ .type }}/{{ $refid }}.html"></a>{{ .document.title }} ({{ if .orgid }}{{(index site.Data.orgs .orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ne .date "" }}:{{ slice .document.date 0 4 }}{{ end }})</a></li>
   {{ end }}
 {{ end }}
 </ul>

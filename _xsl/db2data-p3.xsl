@@ -335,7 +335,6 @@
 
 <!-- Create a YAML page of a Service  Profile -->
 
-<xsl:template match="serviceprofile1[@sptype='bsp']"/>
 
 <xsl:template match="serviceprofile">
 <xsl:variable name="myid" select="@id"/>
@@ -344,7 +343,7 @@
 <xsl:text>layout: serviceprofile&#x0A;</xsl:text>
 <xsl:text>element: Serviceprofile&#x0A;</xsl:text>
 <xsl:text>nispId: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>sptype: </xsl:text><xsl:value-of select="@type"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>sptype: </xsl:text><xsl:value-of select="@sptype"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="refprofilespec"/>
 <xsl:if test="description">
