@@ -1,6 +1,6 @@
----
-layout: element
----
+{{ define "main" }}
+
+{{ partial "element-head" . }}
 
 <div class="meta-block">
 
@@ -10,34 +10,36 @@ layout: element
 
 <dl class="ref-org">
   <dt class="data-label">Org</dt>
-  <dd class="data-value">{{ site.data.orgs[page.orgid].short }}</dd>
+  <dd class="data-value">{{ (index site.Data.orgs .orgid).short }}</dd>
 </dl>
 
 <dl class="ref-pubnum">
   <dt class="data-label">Pubnum</dt>
-  <dd class="data-value">{{ page.pubnum }}</dd>
+  <dd class="data-value">{{ .pubnum }}</dd>
 </dl>
 
 <dl class="ref-date">
   <dt class="data-label">Date</dt>
-  <dd class="data-value">{{ page.pubdate }}</dd>
+  <dd class="data-value">{{ .pubdate }}</dd>
 </dl>
 
 <dl class="ref-version">
   <dt class="data-label">Version</dt>
-  <dd class="data-value">{{ page.version }}</dd>
+  <dd class="data-value">{{ .version }}</dd>
 </dl>
 
 </div>
 
 <dl>
   <dt class="data-label">Title</dt>
-  <dd class="data-value">{{ page.title }}</dd>
+  <dd class="data-value">{{ .title }}</dd>
 </dl>
 
 </div>
 
 <dl>
   <dt class="data-label">UUID</dt>
-  <dd class="data-value">{{page.uuid}}</dd>
+  <dd class="data-value">{{ .uuid }}</dd>
 </dl>
+
+{{ end }}

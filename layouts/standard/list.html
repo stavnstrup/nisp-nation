@@ -1,0 +1,45 @@
+{{ define "main" }}
+
+{{ partial "element-head" . }}
+
+<p>
+<ul class="legendbox">
+  <li class="std-complete">Complete</li>
+  <li class="std-incomplete">Incomplete</li>
+</ul>
+</p>
+
+<div class="collection-wrap">
+
+
+{{ $allOrgs := slice "ietf" }}
+{{ range where .Pages "Section" "standard" }}
+  {{ $allOrgs = $allOrgs | append .document.orgid }}
+{{ end }}
+{{ $allOrgs = sort uniq $allOrgs }}
+
+
+{{ range grp $allOrgs %}
+
+<div class="collection-group">
+
+<h4><a href="/organization/{{ .name }}.html">{{ (index site.Data.orgs .name).short }}</a></h4>
+
+<ul class="stdgroup">
+{{ range $stdindex, $std := .items }}
+<li class="collection-item std-{{ if $std.complete }}complete{{ else }}incomplete{{ end }}"><a href="/standard/{{std.nisp-id}}.html" title="{{std.document.title}}">{{   if ne .document.pubnum "" }}{{ .document.pubnum }}{{ else }}{{ .nispId }}{{ end }}</a></li>
+
+{{ if eq (mod $stdindex 10) 0 }}
+</ul>
+</div>
+<div  class="collection-group">
+<ul>
+{{ end }}
+{{ end }}
+</ul>
+</div>
+{{ end }}
+
+</div>
+
+{{ end }}

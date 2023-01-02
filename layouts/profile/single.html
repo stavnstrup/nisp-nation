@@ -1,30 +1,32 @@
 {{ define "main" }}
 
+{{ partial "element-head" . }}
+
 <dl>
   <dt class="data-label">Title</dt>
-  <dd class="data-value">{{page.title}}</dd>
+  <dd class="data-value">{{ .title }}</dd>
 </dl>
 
 
-{%include profilereference.html %}
+{{ partial "profilereference.html" . }}
 
 <h3>Subprofiles</h3>
 
 <div class="meta-list">
 <ul>
-  {% for ref in page.subprofiles %}
-  <li><a href="/{{ref.type}}/{{ref.refid}}.html">{{ref.title}}</a> - (<strong>{{ref.type}}</strong>)</li>
-  {% endfor %}
+  {{ range .subprofiles }}
+  <li><a href="/{{ .type }}/{{ .refid }}.html">{{ .title }}</a> - (<strong>{{ .type }}</strong>)</li>
+  {{ end }}
 </ul>
 </div>
 
-{%include status.html %}
+{{ partial "status.html" . }}
 
 <div class="meta-block">
 
 <dl>
   <dt class="data-label">UUID</dt>
-  <dd class="data-value">{{page.uuid}}</dd>
+  <dd class="data-value">{{ .uuid }}</dd>
 </dl>
 
 </div>
@@ -35,8 +37,10 @@
 <p>This profile is used by the following profiles:</p>
 
 <ul>
-  {% for ref in page.parents %}
-  <li><a href="/{{ref.type}}/{{ref.refid}}.html">{{ref.title}}</a> - (<strong>{{ref.type}}</strong>)</li>
-  {% endfor %}
+  {{ range.parents }}
+  <li><a href="/{{ .type }}/{{ .refid }}.html">{{ .title }}</a> - (<strong>{{ .type }}</strong>)</li>
+  {{ end }}
 </ul>
 </div>
+
+{{ end }}

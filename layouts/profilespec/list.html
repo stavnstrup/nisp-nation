@@ -1,0 +1,20 @@
+{{ define "main" }}
+
+{{ partial "element-head" . }}
+
+<table>
+<tr>
+  <th>Organization</th>
+  <th>Pub number</th>
+  <th>Title of Profile Specification</th>
+</tr>
+{{ range where site.Pages "Section" "profilespec" }}
+<tr>
+  <td><a href="/organization/{{ .orgid }}.html">{{(index site.Data.orgs .orgid).short}}</a></td>
+  <td>{{ .pubnum }}</td>
+  <td><a href="/profilespec/{{ .nispId }}.html">{{ .title }}</a></td>
+</tr>
+{{ end }}
+</table>
+
+{{ end }}

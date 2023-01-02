@@ -5,7 +5,7 @@
 <p>Each organisation is postfixed by a tuple with four values, which shows how the organisations creates/owns a number of standards, capability profiles, profiles and service profiles.</p>
 
 <ul>
-{{ range .Site.Pages "Section" "organization" }}
+{{ range where .Pages "Section" "organization" }}
 <li><a href="/organization/{{ .key }}.html" title="{{ .long }}">{{ .short }}</a>
 ({{ .stuff.standards.owns }}, {{ .stuff.capabilityprofiles.owns }},
 {{ .stuff.profiles.owns }},

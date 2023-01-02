@@ -8,7 +8,7 @@
   <th>Title</th>
   <th>Date</th>
 </tr>
-{{ range .Site.coverdoc }}
+{{ range where .Pages "Section" "coverdoc" }}
 <tr>
   <td>{{ .document.pubnum }}</td>
   <td><a href="/coverdoc/{{ .nispId }}.html">{{ .document.title }}</a></td>

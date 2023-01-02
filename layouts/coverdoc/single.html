@@ -10,7 +10,7 @@
 
 <dl class="ref-org">
   <dt class="data-label">Org</dt>
-  <dd class="data-value">{{ .Site.data.orgs[.document.org].short }}</dd>
+  <dd class="data-value">{{ (index site.Data.orgs .document.org).short }}</dd>
 </dl>
 
 <dl class="ref-pubnum">
@@ -42,11 +42,13 @@
 <div class="meta-list">
 
   <ul>
-    {{ range where .Pages "Section" "coverstandard" }}
+    {{ range .coverstandards }}
+    {{ $csId := .}}
+    {{ range where .Pages "nispId" $csId }}
     <li>
-      {% assign s = site.standard | where:"nisp-id", cs.refid | first %}
-      <a href="/standard/{{cs.refid}}.html">{{s.document.title}} ({% if s.orgid %}{{site.data.orgs[s.orgid].short}} {% endif%}{{s.document.pubnum}}{% if s.date != '' %}:{{s.document.date | slice: 0,4}}{% endif%})</a></li>
+      <a href="/standard/{{ .nispId}}.html">{{ .document.title }} ({{ if .orgid }}{{ (index site.Data.orgs .orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ne .date "" }}:{{ slice .document.date 0 4 }}{{ end }})</a></li>
     </li>
+    {{ end }}
     {{ end }}
   </ul>
 </div>
@@ -70,8 +72,10 @@
 <p>This cover document is used by the following service profiles:</p>
 <ul>
 {{ range .consumers }}
-{% assign sp-rec = site.serviceprofile | where:"nisp-id", sp | first %}
-<li><a href="/serviceprofile/{{ sp }}.html">{{sp-rec.title}}</a></li>
+{{/*
+  {% assign sp-rec = site.serviceprofile | where:"nisp-id", sp | first %}
+  <li><a href="/serviceprofile/{{ sp }}.html">{{sp-rec.title}}</a></li>
+*/}}
 {{ end }}
 </ul>
 

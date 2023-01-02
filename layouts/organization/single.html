@@ -4,7 +4,7 @@
 
 <h4>{{ .long }} ({{ .short }})</h4>
 
-{{ if ne .uri '' }}
+{{ if ne .uri "" }}
 <p>URL: <a href="{{ .uri }}">{{ .uri }}</a><p>
 {{ end }}
 
@@ -50,9 +50,9 @@
   {% for std in page.stuff.capabilityprofiles.references %}
   {% assign s = site.capabilityprofile | where:"nisp-id", std | first %}
   <tr>
-    <td>{{s.profilespec.pubnum}}</td>
+    <td>{{ .profilespec.pubnum }}</td>
     <td><a href="/capabilityprofile/{{ std }}.html">{{s.title}}</a></td>
-    <td>{{s.profilespec.date | slice: 0,4}}</td>
+    <td>{{ slice .profilespec.date 0 4 }}</td>
   </tr>
   {% endfor %}
 </table>

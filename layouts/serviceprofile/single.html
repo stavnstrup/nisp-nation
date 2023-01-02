@@ -1,27 +1,27 @@
----
-layout: element
----
+{{ define "main" }}
+
+{{ partial "element-head" . }}
 
 <dl>
   <dt class="data-label">Title</dt>
-  <dd class="data-value">{{page.title}}</dd>
+  <dd class="data-value">{{ .title }}</dd>
 </dl>
 
 <dl>
   <dt class="data-label">Description</dt>
-  <dd class="data-value">{{page.description}}</dd>
+  <dd class="data-value">{{ .description }}</dd>
 </dl>
 
-{%include profilereference.html %}
+{{ partial "profilereference.html" . }}
 
 
 <h3>Taxonomy</h3>
 
 <div class="meta-list">
 <ul>
-{% for t in page.taxonomy %}
-<li><a href="/node/{{t}}.html">{{ site.data.nodes[t].title }}</a></li>
-{% endfor %}
+{{ range .taxonomy }}
+<li><a href="/node/{{ . }}.html">{{ (index site.Data.nodes . ).title }}</a></li>
+{{ end }}
 </ul>
 </div>
 
@@ -29,28 +29,28 @@ layout: element
 
 <div class="meta-list">
 
-{% for rg in page.refgroup %}
-<p><strong>Obligation</strong>: {{ rg.obligation | capitalize }}, <strong>Lifecycle</strong>: {{ rg.lifecycle | capitalize }}</p>
-<p>{{rg.description}}</p>
+{{ range .refgroup }}
+<p><strong>Obligation</strong>: {{ upper .obligation }}, <strong>Lifecycle</strong>: {{ upper .lifecycle }}</p>
+<p>{{ .description }}</p>
 <ul>
-{% for std in rg.standards %}
-  {% assign s = site.standard | where:"nisp-id", std.refid | first %}
-  {% assign c = site.coverdoc | where:"nisp-id", std.refid | first %}
-  {%if s.id %}<li><a href="/standard/{{std.refid}}.html">{{s.document.title}} ({% if s.orgid %}{{site.data.orgs[s.orgid].short}} {% endif%}{{s.document.pubnum}}{%if s.date != '' %}:{{s.document.date | slice: 0,4}}{% endif%})</a></li>{% endif %}
-  {%if c.id %}<li><a href="/coverdoc/{{std.refid}}.html">{{c.document.title}} ({% if c.orgid %}{{site.data.orgs[c.orgid].short}} {% endif%}{{c.document.pubnum}}{%if c.date != '' %}:{{c.document.date | slice: 0,4}}{% endif%})</a></li>{% endif %}
-{% endfor %}
+{{ range .standards }}
+  {{ $refid := . }}
+  {{ range where .Pages "Section" $refid }}
+    <li><a href="/{{ .type }}/{{ $refid }}.html"></a>{{ .document.title }} ({% if .orgid %}{{(index site.Data.orgs .orgid).short }} {% endif%}{{ .document.pubnum }}{{ if ne .date "" }}:{{ slice .document.date 0 4 }}{{ endif }})</a></li>
+  {{ end }}
+{{ end }}
 </ul>
-{% endfor %}
+{{ end }}
 
 </div>
 
-{%include status.html %}
+{{ partial "status.html" . }}
 
 <div class="meta-block">
 
 <dl>
   <dt class="data-label">UUID</dt>
-  <dd class="data-value">{{page.uuid}}</dd>
+  <dd class="data-value">{{ .uuid }}</dd>
 </dl>
 
 </div>
@@ -62,9 +62,11 @@ layout: element
 <p>This profile is used by the following profiles:</p>
 
 <ul>
-  {% for ref in page.parents %}
-  <li><a href="/{{ref.type}}/{{ref.refid}}.html">{{ref.title}}</a> - (<strong>{{ref.type}}</strong>)</li>
-  {% endfor %}
+  {{ range .parents }}
+  <li><a href="/{{ .type }}/{{ .refid }}.html">{{ .title }}</a> - (<strong>{{ .type }}</strong>)</li>
+  {{ end }}
 </ul>
 
 </div>
+
+{{ end }}
