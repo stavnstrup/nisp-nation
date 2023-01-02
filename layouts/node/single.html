@@ -34,11 +34,15 @@ layout: element
 <h3>Relationships</h3>
 <p>Service profiles which uses this standard.</p>
 <ul>
-{{ range .consumers }} {{/* was sp in a for loop */}}
-{% assign sp-rec = site.serviceprofile | where:"nisp-id", sp | first %}
-<li><a href="/serviceprofile/{{ sp }}.html">{{sp-rec.title}}</a></li>
+{{ range .consumers }} {{/* The consumer array contains Service Profile ids for those service profiles, 
+                            which references the node */}}
+  {{ $spId := .  }}
+  {{ range where .Site.Pages .nispId $spId }}
+    {{  $sp := . }}
+    <li><a href="/serviceprofile/{{ $spId }}.html">{{ $sp.title }}</a></li>
+  {{ end }}
 {{ end }}
 </ul>
-{{ endif }}
+{{ end }}
 
 {{ end }}

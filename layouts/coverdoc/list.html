@@ -11,7 +11,7 @@
 {{ range .Site.coverdoc }}
 <tr>
   <td>{{ .document.pubnum }}</td>
-  <td><a href="/coverdoc/{{ .nisp-id }}.html">{{ .document.title }}</a></td>
+  <td><a href="/coverdoc/{{ .nispId }}.html">{{ .document.title }}</a></td>
   <td>{{ slicestr .document.date 0 4 }}</td>
 </tr>
 {{ end }}

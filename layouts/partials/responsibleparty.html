@@ -4,7 +4,7 @@
 
 <dl>
   <dt class="data-label">Name</dt>
-  <dd class="data-value"><a href="/responsibleparty/{{page.rp}}.html">{{site.data.rp[page.rp].long}}</a></dd>
+  <dd class="data-value"><a href="/responsibleparty/{{ .rp }}.html">{{ (index site.Data.rp .rp).long }}</a></dd>
 </dl>
 
 </div>
