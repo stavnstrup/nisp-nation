@@ -1,17 +1,47 @@
 {{ define "main" }}
 <div class="nisp-hero">
-  <h2>{{ .title }}</h2>
+  <h2>{{ .Title }}</h2>
 </div>
 
 <div class="nisp-content">
   {{ .Content }}
 
+  <hr />
+  
+  <div class="link-box">
+
+    <div class="quick-links">
+      <h4>Go see draft stuff</h4>
+      <ul class="daily">
+        <li><a href="{{ .Params.liveLocation }}">See the latest draft of NISP</a></li>
+  {{/*
+
+  - A local copy of the NISP database viewer is synchronized with the GitHub master twice a day - at 05:00 CET and 17:00 CET - and subsequently transformed and made availible on this page.
+        <li>The database viewer is temporary unavailable.</li>
+        <li><a href="http://noswg.nw3.dk/thenispnation/dailyviewer/">Use the database viewer</a></li>
+        <li><a href="http://noswg.nw3.dk/thenispnation/dailyviewer.public/">Use the database viewer (public edition)</a></li>
+    */}}
+      </ul>
+  
+    </div>
+  
+    <div class="git-links">
+      <h4>Get the sources</h4>
+  
+      <p>The NISP sources are freely available at <a href="https://github.com/stavnstrup/nisp-tools">GitHub</a></p>
+      <p>If you want to contribute to the NISP project, you can submit a <a href="https://help.github.com/articles/creating-a-pull-request/">pull request</a> to the repository.</p>
+  
+    </div>
+  </div>
+  
+
+
   <h4>Official releases</h4>
   {{ $p := . }}
   <ul>
     {{ range site.Data.releaseHistory }}
-    <li><a href="{{ $p.archiveLocation }}/ {{ .url }}/">{{ .title }}</a> - {{ .date }} - also as
-        <a href="{{ $p.archiveLocation }}/{{ .archive }}">web archive</a></li>
+    <li><a href="{{ $p.Params.archiveLocation }}/ {{ .url }}/">{{ .title }}</a> - {{ .date }} - also as
+        <a href="{{ $p.Params.archiveLocation }}/{{ .archive }}">web archive</a></li>
     {{ end}}
   </ul>
 
@@ -26,12 +56,12 @@
   <h4>Coherency Checks of the NISP Database</h4>
 
   <ul>
-    <li><a href="{{ $p.debugLocation }}/current.html">Overview of all standards and profiles</a></li>
-    <li><a href="{{ $p.debugLocation }}/overview.html">Overview of all standards and profiles incl. <strong>deleted</strong> elements</a></li>
-    <li><a href="{{ $p.debugLocation }}/dates.html">Events in the database - when was entities added, changed or deleted</a></li>
-    <li><a href="{{ $p.debugLocation }}/responsibleparties.html">Responsible parties - Sort all standards by responsible party</a></li>
-    <li><a href="{{ $p.debugLocation }}/upcoming.html">Candidate standards</a></li>
-    <li><a href="{{ $p.debugLocation }}/family.html">Parent/child relationship</a></li>
+    <li><a href="{{ $p.Params.debugLocation }}/current.html">Overview of all standards and profiles</a></li>
+    <li><a href="{{ $p.Params.debugLocation }}/overview.html">Overview of all standards and profiles incl. <strong>deleted</strong> elements</a></li>
+    <li><a href="{{ $p.Params.debugLocation }}/dates.html">Events in the database - when was entities added, changed or deleted</a></li>
+    <li><a href="{{ $p.Params.debugLocation }}/responsibleparties.html">Responsible parties - Sort all standards by responsible party</a></li>
+    <li><a href="{{ $p.Params.debugLocation }}/upcoming.html">Candidate standards</a></li>
+    <li><a href="{{ $p.Params.debugLocation }}/family.html">Parent/child relationship</a></li>
 </ul>
       <!--
         * [Overview of all standards and profiles](/debug/overview.html)
@@ -41,7 +71,7 @@
 <hr />
 
 <div class="footer">
-  <p>Last updated on {{ site.time | date_to_rfc822 }}</p>
+  <p>Last updated on {{ time  }}</p>
 </div>
 
 </div>

@@ -11,7 +11,7 @@
 {{ range where site.Pages "Section" "profilespec" }}
   <tr>
     {{ with .Params }}
-    <td><a href="/organization/{{ .orgid }}.html">{{(index site.Data.orgs .orgid).short}}</a></td>
+    <td><a href="/organization/{{ .orgid }}.html">{{ (index site.Data.orgs (string .orgid)).short }}</a></td>
     <td>{{ .pubnum }}</td>
     <td><a href="/profilespec/{{ .nispid }}.html">{{ .title }}</a></td>
     {{ end }}

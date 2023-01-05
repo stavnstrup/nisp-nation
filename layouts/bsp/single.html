@@ -6,10 +6,14 @@
 <tr>
   <th>Basic Standards Service Profiles</th>
 </tr>
-{{ range where .Pages .type "serviceprofile" }}
-{{ if eq .sptype "bsp" }}<tr>
+{{ range where .Pages "Section" "serviceprofile" }}
+{{ with .Params }}
+{{ if eq .sptype "bsp" }}
+<tr>
   <td><a href="/serviceprofile/{{ .nispid }}.html">{{ .title }}</a></td>
-</tr>{{ end }}
+</tr>
+{{ end }}
+{{ end }}
 {{ end }}
 </table>
 
