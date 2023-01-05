@@ -14,34 +14,35 @@
   <label for="tab3">Table</label>
 
   <section id="content1">
-
     <dl>
       <dt class="data-label">Title</dt>
-      <dd class="data-value">{{ .title }}</dd>
+      <dd class="data-value">{{ .Title }}</dd>
     </dl>
-    {{ partial "profilereference.html" . }}
+    {{ partial "profilereference.html" .Params.profilespec }}
     <h3>Subprofiles</h3>
     <div class="meta-list">
     <ul>
-      {{ range .subprofiles }}
+      {{ range .Params.subprofiles }}
       <li><a href="/{{ .type }}/{{ .refid }}.html">{{ .title }}</a> - (<strong>{{ .type }}</strong>)</li>
       {{ end }}
     </ul>
     </div>
-    {{ partial "status.html" . }}
+    {{ partial "status.html" .Params }}
     <div class="meta-block">
       <dl>
         <dt class="data-label">UUID</dt>
-        <dd class="data-value">{{ .uuid }}</dd>
+        <dd class="data-value">{{ .Params.uuid }}</dd>
       </dl>
     </div>
   </section>
+{{/*
   <section id="content2">
-    {{ partial "graph-{{ .nispId }}.html" . }}
+    {{ partial "graph-{{ .Params.nispid }}.html" . }}
   </section>
   <section id="content3">
-    {{ partial "page-{{ .nispId }}.html" . }}
+    {{ partial "page-{{ .Params.nispid }}.html" . }}
   </section>
+  */}}  
 </main>
 
 {{ end }}

@@ -35,7 +35,7 @@
 <!-- Create a graph illustrating the composite structure of profile with toplevel="yes" (capability profiles) -->
 
 <xsl:template match="profile[@toplevel='yes']" mode="makegraph">
-<xsl:result-document href="_includes/graph-{@id}.html" method="html">
+<xsl:result-document href="layouts/partials/graph-{@id}.html" method="html">
 <ul class="tree">
   <li class="capability-color"><a href="/capabilityprofile/{@id}.html"><xsl:value-of select="@title"/></a>
   <ul>
@@ -69,7 +69,7 @@
 <!-- Create a page illustrating the composite structure of capability profiles -->
 
 <xsl:template match="profile[@toplevel='yes']" mode="makepage">
-<xsl:result-document href="_includes/page-{@id}.html" method="html">
+<xsl:result-document href="layouts/partials/page-{@id}.html" method="html">
   <h2><xsl:value-of select="@title"/></h2>
   <xsl:for-each select="subprofiles/refprofile">
     <xsl:variable name="thisref" select="@refid"/>
@@ -250,7 +250,7 @@
     <xsl:apply-templates select=".//event" mode="allevents">
       <xsl:sort select="@date" order="descending"/>
     </xsl:apply-templates>
-    <xsl:text>{"rec": "0", "nispId": "", "tag": "", "date": "", "flag": "", "version": "0.0"}</xsl:text>
+    <xsl:text>{"rec": "0", "nispid": "", "tag": "", "date": "", "flag": "", "version": "0.0"}</xsl:text>
     <xsl:text>]</xsl:text>
   </xsl:result-document>
 </xsl:template>
@@ -259,7 +259,7 @@
 <xsl:template match="event" mode="allevents">
   <xsl:text>{</xsl:text>
   <xsl:text>"rec": "</xsl:text><xsl:number from="standards" count="standard|serviceprofile|profile" format="1" level="any"/><xsl:text>", </xsl:text>
-  <xsl:text>"nispId": "</xsl:text><xsl:value-of select="../../../@id"/><xsl:text>",</xsl:text>
+  <xsl:text>"nispid": "</xsl:text><xsl:value-of select="../../../@id"/><xsl:text>",</xsl:text>
   <xsl:choose>
     <xsl:when test="ancestor::standard">
       <xsl:text>"tag": "</xsl:text><xsl:value-of select="../../../@tag"/><xsl:text>",</xsl:text>
@@ -284,7 +284,7 @@
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: capabilityprofile&#x0A;</xsl:text>
 <xsl:text>element: Capabilityprofile&#x0A;</xsl:text>
-<xsl:text>nispId: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="refprofilespec"/>
 <xsl:text>subprofiles:&#x0A;</xsl:text>
@@ -303,7 +303,7 @@
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: profile&#x0A;</xsl:text>
 <xsl:text>element: Profile&#x0A;</xsl:text>
-<xsl:text>nispId: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="refprofilespec"/>
 <xsl:text>subprofiles:&#x0A;</xsl:text>
@@ -342,7 +342,7 @@
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: serviceprofile&#x0A;</xsl:text>
 <xsl:text>element: Serviceprofile&#x0A;</xsl:text>
-<xsl:text>nispId: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>sptype: </xsl:text><xsl:value-of select="@sptype"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="refprofilespec"/>
@@ -393,7 +393,7 @@
 <xsl:text>element: Cover Document&#x0A;</xsl:text>
 <xsl:text>complete: </xsl:text><xsl:value-of select="(document/@orgid != '') and
   (document/@pubnum != '') and (document/@title != '') and (document/@date != '')"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>nispId: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>tag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>document:&#x0A;</xsl:text>
@@ -425,7 +425,7 @@
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: profilespec&#x0A;</xsl:text>
 <xsl:text>element: Profilespec&#x0A;</xsl:text>
-<xsl:text>nispId: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>pubnum: "</xsl:text><xsl:value-of select="@pubnum"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>pubdate: "</xsl:text><xsl:value-of select="@date"/><xsl:text>"&#x0A;</xsl:text>
@@ -448,7 +448,7 @@
 <xsl:text>element: Standard&#x0A;</xsl:text>
 <xsl:text>complete: </xsl:text><xsl:value-of select="(document/@orgid != '') and
   (document/@pubnum != '') and (document/@title != '') and (document/@date != '')"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>nispId: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>tag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>document:&#x0A;</xsl:text>
@@ -557,7 +557,7 @@
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: organization&#x0A;</xsl:text>
 <xsl:text>element: Organizations&#x0A;</xsl:text>
-<xsl:text>nispId: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>long: </xsl:text><xsl:value-of select="@long"/><xsl:text>&#x0A;</xsl:text>
@@ -631,7 +631,7 @@
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: responsibleparty&#x0A;</xsl:text>
 <xsl:text>element: Responsible Party&#x0A;</xsl:text>
-<xsl:text>nispId: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>long: </xsl:text><xsl:value-of select="@long"/><xsl:text>&#x0A;</xsl:text>
@@ -682,7 +682,7 @@
 <xsl:text>---&#x0A;</xsl:text>
 <xsl:text>layout: node&#x0A;</xsl:text>
 <xsl:text>element: node&#x0A;</xsl:text>
-<xsl:text>nispId: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>parent: </xsl:text><xsl:value-of select="$parent"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>description: </xsl:text><xsl:value-of select="translate(normalize-space(@description),':',' ')"/><xsl:text>&#x0A;</xsl:text>
@@ -721,7 +721,7 @@
 <!-- Create Taxonomy Tree -->
 
 <xsl:template match="taxonomy" mode="taxonomy">
-  <xsl:result-document href="_includes/taxonomy.html" method="html">
+  <xsl:result-document href="layouts/partials/taxonomy.html" method="html">
     <div class="taxonomy">
       <ul>
         <xsl:apply-templates mode="taxonomy"/>

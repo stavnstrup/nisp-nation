@@ -10,9 +10,11 @@
 </tr>
 {{ range where .Pages "Section" "coverdoc" }}
 <tr>
+  {{ with .Params }}
   <td>{{ .document.pubnum }}</td>
-  <td><a href="/coverdoc/{{ .nispId }}.html">{{ .document.title }}</a></td>
-  <td>{{ slicestr .document.date 0 4 }}</td>
+  <td><a href="/coverdoc/{{ .nispid }}.html">{{ .document.title }}</a></td>
+  <td>{{ if ge (len .document.date) 4 }}{{ slicestr .document.date 0 4 }}{{ end }}</td>
+  {{ end }}
 </tr>
 {{ end }}
 </table>

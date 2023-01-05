@@ -4,7 +4,7 @@
 
 <dl>
   <dt class="data-label">Title</dt>
-  <dd class="data-value">{{ .title }}</dd>
+  <dd class="data-value">{{ .Title }}</dd>
 </dl>
 
 
@@ -14,8 +14,8 @@
 
 <div class="meta-list">
 <ul>
-  {{ range .subprofiles }}
-  <li><a href="/{{ .type }}/{{ .refid }}.html">{{ .title }}</a> - (<strong>{{ .type }}</strong>)</li>
+  {{ range .Params.subprofiles }}
+  <li><a href="/{{ .type }}/{{ .Params.refid }}.html">{{ .Title }}</a> - (<strong>{{ .type }}</strong>)</li>
   {{ end }}
 </ul>
 </div>
@@ -26,7 +26,7 @@
 
 <dl>
   <dt class="data-label">UUID</dt>
-  <dd class="data-value">{{ .uuid }}</dd>
+  <dd class="data-value">{{ .Params.uuid }}</dd>
 </dl>
 
 </div>
@@ -37,7 +37,7 @@
 <p>This profile is used by the following profiles:</p>
 
 <ul>
-  {{ range.parents }}
+  {{ range .Params.parents }}
   <li><a href="/{{ .type }}/{{ .refid }}.html">{{ .title }}</a> - (<strong>{{ .type }}</strong>)</li>
   {{ end }}
 </ul>

@@ -14,7 +14,7 @@
 
 {{ $allOrgs := slice "ietf" }}
 {{ range where .Pages "Section" "standard" }}
-  {{ $allOrgs = $allOrgs | append .document.orgid }}
+  {{ $allOrgs = $allOrgs | append .Params.document.orgid }}
 {{ end }}
 {{ $allOrgs = sort uniq $allOrgs }}
 
@@ -35,6 +35,7 @@
 <div  class="collection-group">
 <ul>
 {{ end }}
+
 {{ end }}
 </ul>
 </div>

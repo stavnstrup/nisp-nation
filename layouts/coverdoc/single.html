@@ -6,6 +6,7 @@
 
 <h3>Reference document</h3>
 
+{{ with .Params }}
 <div class="meta-element-set">
 
 <dl class="ref-org">
@@ -36,19 +37,23 @@
 </dl>
 
 </div>
+{{ end }}
+
+
 
 <h3>Covered Standards</h3>
 
 <div class="meta-list">
-
   <ul>
-    {{ range .coverstandards }}
-    {{ $csId := .}}
-    {{ range where .Pages "nispId" $csId }}
-    <li>
-      <a href="/standard/{{ .nispId}}.html">{{ .document.title }} ({{ if .orgid }}{{ (index site.Data.orgs .orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ne .date "" }}:{{ slice .document.date 0 4 }}{{ end }})</a></li>
-    </li>
-    {{ end }}
+    {{ range .Params.coverstandards }}
+      {{ $csId := .}}
+      {{ range where $.Pages "nispid" $csId }}
+        <li>
+          {{ with .Params }}
+          <a href="/standard/{{ .nispid}}.html">{{ .document.title }} ({{ if .orgid }}{{ (index site.Data.orgs .orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
+          {{ end }}
+        </li>
+      {{ end }}
     {{ end }}
   </ul>
 </div>
@@ -60,18 +65,18 @@
 
 <dl>
   <dt class="data-label">UUID</dt>
-  <dd class="data-value">{{ .uuid }}</dd>
+  <dd class="data-value">{{ .Params.uuid }}</dd>
 </dl>
 
 
-{{ if ge .consumers.size 0 }}
+{{ if ge .Params.consumers.size 0 }}
 <h3>Relationships</h3>
 
 <div class="meta-list">
 
 <p>This cover document is used by the following service profiles:</p>
 <ul>
-{{ range .consumers }}
+{{ range .Params.consumers }}
 {{/*
   {% assign sp-rec = site.serviceprofile | where:"nisp-id", sp | first %}
   <li><a href="/serviceprofile/{{ sp }}.html">{{sp-rec.title}}</a></li>

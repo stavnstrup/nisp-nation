@@ -4,12 +4,12 @@
 
 <dl>
   <dt class="data-label">Title</dt>
-  <dd class="data-value">{{ .title }}</dd>
+  <dd class="data-value">{{ .Title }}</dd>
 </dl>
 
 <dl>
   <dt class="data-label">Description</dt>
-  <dd class="data-value">{{ .description }}</dd>
+  <dd class="data-value">{{ .Params.description }}</dd>
 </dl>
 
 {{ partial "profilereference.html" . }}
@@ -19,7 +19,7 @@
 
 <div class="meta-list">
 <ul>
-{{ range .taxonomy }}
+{{ range .Params.taxonomy }}
   <li><a href="/node/{{ . }}.html">{{ (index site.Data.nodes . ).title }}</a></li>
 {{ end }}
 </ul>
@@ -29,14 +29,16 @@
 
 <div class="meta-list">
 
-{{ range .refgroup }}
+{{ range .Params.refgroup }}
 <p><strong>Obligation</strong>: {{ upper .obligation }}, <strong>Lifecycle</strong>: {{ upper .lifecycle }}</p>
 <p>{{ .description }}</p>
 <ul>
-{{ range .standards }}
+{{ range .Params.standards }}
   {{ $refid := . }}
   {{ range where .Pages "Section" $refid }}
-    <li><a href="/{{ .type }}/{{ $refid }}.html"></a>{{ .document.title }} ({{ if .orgid }}{{(index site.Data.orgs .orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ne .date "" }}:{{ slice .document.date 0 4 }}{{ end }})</a></li>
+    {{ with .Params }}
+    <li><a href="/{{ .type }}/{{ $refid }}.html"></a>{{ .document.title }} ({{ if .document.orgid }}{{(index site.Data.orgs .document.orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
+    {{ end }}
   {{ end }}
 {{ end }}
 </ul>
@@ -50,7 +52,7 @@
 
 <dl>
   <dt class="data-label">UUID</dt>
-  <dd class="data-value">{{ .uuid }}</dd>
+  <dd class="data-value">{{ .Params.uuid }}</dd>
 </dl>
 
 </div>
@@ -62,7 +64,7 @@
 <p>This profile is used by the following profiles:</p>
 
 <ul>
-  {{ range .parents }}
+  {{ range .Params.parents }}
   <li><a href="/{{ .type }}/{{ .refid }}.html">{{ .title }}</a> - (<strong>{{ .type }}</strong>)</li>
   {{ end }}
 </ul>

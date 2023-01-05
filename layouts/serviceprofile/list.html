@@ -10,9 +10,9 @@
 </tr>
 {{ range where .Pages "Section" "serviceprofile" }}
   <tr>
-    <td><a href="/organization/{{ .profilespec.org }}.html">{{ (index site.Data.orgs .profilespec.org).short}}</a></td>
-    <td><a href="/serviceprofile/{{ .nispId }}.html">{{ .title }}</a></td>
-    <td>{{ .profilespec.version }}</td>
+    <td><a href="/organization/{{ .Params.profilespec.org }}.html">{{ (index site.Data.orgs .Params.profilespec.org).short}}</a></td>
+    <td><a href="/serviceprofile/{{ .Params.nispId }}.html">{{ .Title }}</a></td>
+    <td>{{ .Params.profilespec.version }}</td>
   </tr>
 {{ end }}
 </table>

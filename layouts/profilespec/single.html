@@ -8,6 +8,8 @@
 
 <div class="meta-element-set">
 
+{{ with .Params.profilespec }}
+
 <dl class="ref-org">
   <dt class="data-label">Org</dt>
   <dd class="data-value">{{ (index site.Data.orgs .orgid).short }}</dd>
@@ -37,9 +39,11 @@
 
 </div>
 
+{{ end }}
+
 <dl>
   <dt class="data-label">UUID</dt>
-  <dd class="data-value">{{ .uuid }}</dd>
+  <dd class="data-value">{{ .Params.uuid }}</dd>
 </dl>
 
 {{ end }}

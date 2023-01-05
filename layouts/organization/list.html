@@ -6,10 +6,12 @@
 
 <ul>
 {{ range where .Pages "Section" "organization" }}
+  {{ with .Params }}
   <li><a href="/organization/{{ .key }}.html" title="{{ .long }}">{{ .short }}</a>
-  ({{ .stuff.standards.owns }}, {{ .stuff.capabilityprofiles.owns }},
-  {{ .stuff.profiles.owns }},
-  {{ .stuff.serviceprofiles.owns }})</li>
+    ({{ .stuff.standards.owns }}, {{ .stuff.capabilityprofiles.owns }},
+    {{ .stuff.profiles.owns }},
+    {{ .stuff.serviceprofiles.owns }})</li>
+  {{ end }}
 {{ end }}
 </ul>
 

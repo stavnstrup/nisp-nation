@@ -14,8 +14,9 @@ content/profilespec
 content/responsibleparty
 content/serviceprofile
 content/standard
-data
-_includes/taxonomy.html
-_includes/graph-*.html
-_includes/page-*.html
+data/
+layouts/partials/taxonomy.html
+layouts/partials/graph-*.html
+layouts/partials/page-*.html
 public/
+resources/

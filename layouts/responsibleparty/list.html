@@ -4,7 +4,9 @@
 
 <ul>
 {{ range where .Pages "Section" "responsibleparty" }}
-<li><a href="/responsibleparty/{{ .key }}.html" title="{{ .long }}">{{ .short }}</a> ({{ .responsible.number }})</li>
+  {{ with .Params }}
+  <li><a href="/responsibleparty/{{ .key }}.html" title="{{ .long }}">{{ .short }}</a> ({{ .responsible.number }})</li>
+  {{ end }}
 {{ end }}
 </ul>
 

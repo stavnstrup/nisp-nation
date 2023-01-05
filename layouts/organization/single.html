@@ -2,6 +2,8 @@
 
 {{ partial "element-head.html" . }}
 
+{{ with .Params }}
+
 <h4>{{ .long }} ({{ .short }})</h4>
 
 {{ if ne .uri "" }}
@@ -26,7 +28,7 @@
     <tr>
       <td>{{.document.pubnum}}</td>
       <td><a href="/standard/{{ $stdId }}.html">{{ .document.title }}</a></td>
-      <td>{{ slice .document.date 0 4 }}</td>
+      <td>{{ if ge (len .document.date) 4 }}{{ slicestr .document.date 0 4 }}{{ end }}</td>
     </tr>
     {{ end }}
   {{ end }}
@@ -53,7 +55,7 @@
     <tr>
       <td>{{ .profilespec.pubnum }}</td>
       <td><a href="/capabilityprofile/{{ $cpId }}.html">{{ .title }}</a></td>
-      <td>{{ slice .profilespec.date 0 4 }}</td>
+      <td>{{ if ge (len .document.date) 4 }}{{ slicestr .profilespec.date 0 4 }}{{ end }}</td>
     </tr>
     {{ end }}
   {{ end }}
@@ -78,7 +80,7 @@
     <tr>
       <td>{{ .profilespec.pubnum }}</td>
       <td><a href="/profile/{{ $pId }}.html">{{ .title }}</a></td>
-      <td>{{ slice .profilespec.date 0 4 }}</td>
+      <td>{{ if ge (len .document.date) 4 }}{{ slicestr .profilespec.date 0 4 }}{{ end }}</td>
     </tr>
     {{ end }}
   {{ end }}
@@ -103,12 +105,13 @@
     <tr>
       <td>{{.profilespec.pubnum}}</td>
       <td><a href="/serviceprofile/{{ $spId }}.html">{{ .title }}</a></td>
-      <td>{{ slice .profilespec.date 0 4 }}</td>
+      <td>{{ if ge (len .document.date) 4 }}{{ slicestr .profilespec.date 0 4 }}{{ end }}</td>
     </tr>
     {{ end }}
   {{ end }}
 </table>
 {{ end }}
 
+{{ end }} {{/* with .Params */}}
 
 {{ end }}

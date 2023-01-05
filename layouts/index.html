@@ -5,6 +5,45 @@
 
 <div class="nisp-content">
   {{ .Content }}
+
+  <h4>Official releases</h4>
+  {{ $p := . }}
+  <ul>
+    {{ range site.Data.releaseHistory }}
+    <li><a href="{{ $p.archiveLocation }}/ {{ .url }}/">{{ .title }}</a> - {{ .date }} - also as
+        <a href="{{ $p.archiveLocation }}/{{ .archive }}">web archive</a></li>
+    {{ end}}
+  </ul>
+
+  <hr/>
+
+  <h4>Statistics</h4>
+
+  {{ partial "stat.html" . }}
+
+  <hr />
+
+  <h4>Coherency Checks of the NISP Database</h4>
+
+  <ul>
+    <li><a href="{{ $p.debugLocation }}/current.html">Overview of all standards and profiles</a></li>
+    <li><a href="{{ $p.debugLocation }}/overview.html">Overview of all standards and profiles incl. <strong>deleted</strong> elements</a></li>
+    <li><a href="{{ $p.debugLocation }}/dates.html">Events in the database - when was entities added, changed or deleted</a></li>
+    <li><a href="{{ $p.debugLocation }}/responsibleparties.html">Responsible parties - Sort all standards by responsible party</a></li>
+    <li><a href="{{ $p.debugLocation }}/upcoming.html">Candidate standards</a></li>
+    <li><a href="{{ $p.debugLocation }}/family.html">Parent/child relationship</a></li>
+</ul>
+      <!--
+        * [Overview of all standards and profiles](/debug/overview.html)
+        * [Events in the database](/debug/dates.html)
+      -->
+
+<hr />
+
+<div class="footer">
+  <p>Last updated on {{ site.time | date_to_rfc822 }}</p>
+</div>
+
 </div>
 
 {{ end }}

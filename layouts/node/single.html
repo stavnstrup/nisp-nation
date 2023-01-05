@@ -6,36 +6,22 @@
 
 <dl>
   <dt class="data-label">Title</dt>
-  <dd class="data-value">{{ .title }}</dd>
+  <dd class="data-value">{{ .Title }}</dd>
 </dl>
 
 <dl>
   <dt class="data-label">Description</dt>
-  <dd class="data-value">{{ markdownify (replace .description "&#xA;" "\n\n" ) }}</dd>
+  <dd class="data-value">{{ markdownify (replace .Params.description "&#xA;" "\n\n" ) }}</dd>
+</dl>parent).title }}</a></dd>
 </dl>
-
-<dl>
-  <dt class="data-label">Level</dt>
-  <dd class="data-value">{{ .level }}</dd>
-</dl>
-
-<dl>
-  <dt class="data-label">emUUID</dt>
-  <dd class="data-value">{{ .emUUID }}</dd>
-</dl>
-
-<dl>
-  <dt class="data-label">Parent</dt>
-  <dd class="data-value"><a href="/node/{{ .parent }}.html">{{ (index .Site.Data.nodes .parent).title }}</a></dd>
-</dl>
-{{ if ge .consumers.size  0 }}
+{{ if ge .Params.consumers.size  0 }}
 <h3>Relationships</h3>
 <p>Service profiles which uses this standard.</p>
 <ul>
-{{ range .consumers }} {{/* The consumer array contains Service Profile ids for those service profiles, 
-                            which references the node */}}
+{{ range .Params.consumers }} {{/* The consumer array contains Service Profile ids for those service profiles, 
+                                    which references the node */}}
   {{ $spId := .  }}
-  {{ range where .Site.Pages .nispId $spId }}
+  {{ range where .Site.Pages .Params.nispid $spId }}
     {{  $sp := . }}
     <li><a href="/serviceprofile/{{ $spId }}.html">{{ $sp.title }}</a></li>
   {{ end }}

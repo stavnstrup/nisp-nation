@@ -7,8 +7,8 @@
   <th>Basic Standards Service Profiles</th>
 </tr>
 {{ range where .Pages .type "serviceprofile" }}
-{{ if eq .type "bsp" }}<tr>
-  <td><a href="{{ .id }}.html">{{ .title }}</a></td>
+{{ if eq .sptype "bsp" }}<tr>
+  <td><a href="/serviceprofile/{{ .nispid }}.html">{{ .title }}</a></td>
 </tr>{{ end }}
 {{ end }}
 </table>
