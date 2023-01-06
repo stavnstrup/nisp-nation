@@ -12,23 +12,26 @@
 <div class="collection-wrap">
 
 
-{{ $allOrgs := slice "ietf" }}
-{{ range where .Pages "Section" "standard" }}
-  {{ $allOrgs = $allOrgs | append (string .Params.document.orgid) }}
-{{ end }}
-{{ $allOrgs = sort (uniq $allOrgs) }}
 
 
-{{ range $allOrgs }}
+{{ $allorgs := where .Site.Pages "Section" "standard" }}
 
-<div class="collection-group">
 
+
+{{ range uniq (sort $allorgs ".Params.document.orgid") }}
+
+{{/*
+  <div class="collection-group">
+*/}}
+
+{{ with .Params.document.org }}
 <h4><a href="/organization/{{ . }}.html">{{ (index site.Data.orgs (string .)).short }}</a></h4>
+{{ end }}
 
 {{/*
 <ul class="stdgroup">
 {{ range $stdindex, $std := .items }}
-<li class="collection-item std-{{ if .complete }}complete{{ else }}incomplete{{ end }}"><a href="/standard/{{ .nispId }}.html" title="{{ .document.title }}">{{   if ne .document.pubnum "" }}{{ .document.pubnum }}{{ else }}{{ .nispId }}{{ end }}</a></li>
+<li class="collection-item std-{{ if .complete }}complete{{ else }}incomplete{{ end }}"><a href="/standard/{{ .nispid }}.html" title="{{ .document.title }}">{{   if ne .document.pubnum "" }}{{ .document.pubnum }}{{ else }}{{ .nispId }}{{ end }}</a></li>
 
 {{ if eq (mod $stdindex 10) 0 }}
 </ul>

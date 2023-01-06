@@ -8,6 +8,13 @@
 <xsl:output method="text" indent="yes"/>
 
 <xsl:template match="standards">
+  <xsl:result-document href="data/standardlist.json">
+    <xsl:text>{</xsl:text>
+      <xsl:apply-templates select="organisations/orgkey" mode="make-standard-list">
+        <xsl:sort select="@key"/>
+      </xsl:apply-templates>
+    <xsl:text>}</xsl:text>
+  </xsl:result-document>
   <xsl:apply-templates select="records"/>
   <xsl:apply-templates select="organisations"/>
   <xsl:apply-templates select="organisations" mode="data"/>
@@ -31,6 +38,30 @@
     <xsl:text>}</xsl:text>
   </xsl:result-document>
 </xsl:template>
+
+<!-- Create a list of standards sorted by organisation. This is done because -->
+
+<xsl:template match="orgkey" mode="make-standard-list">
+  <xsl:variable name="mykey" select="./@key"/>
+  <xsl:if test="count(/standards//standard[document/@orgid=$mykey])>0">
+    <xsl:text>"</xsl:text><xsl:value-of select="$mykey"/><xsl:text>": [</xsl:text>
+      <xsl:apply-templates select="/standards//standard[document/@orgid=$mykey]" mode="make-standard-list">
+        <xsl:sort select="@id"/>
+      </xsl:apply-templates>
+    <xsl:text>]</xsl:text>
+    <xsl:if test="not(position()=last())">
+      <xsl:text>,</xsl:text>
+    </xsl:if>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="standard" mode="make-standard-list">
+  <xsl:text>"</xsl:text><xsl:value-of select="@id"/> <xsl:text>"</xsl:text>
+  <xsl:if test="not(position()=last())">
+    <xsl:text>, </xsl:text>
+  </xsl:if>
+</xsl:template>
+
 
 <!-- Create a graph illustrating the composite structure of profile with toplevel="yes" (capability profiles) -->
 
