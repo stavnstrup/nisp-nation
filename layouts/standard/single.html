@@ -1,5 +1,7 @@
 {{ define "main" }}
 
+{{ with .Params }}
+
 <div class="meta-block">
 
 <h3>Reference document</h3>
@@ -42,6 +44,8 @@
   <dd class="data-value">{{ markdownify .applicability }}</dd>
 </dl>
 
+{{ end }}
+
 {{ partial "responsibleparty.html" . }}
 
 
@@ -49,8 +53,11 @@
 
 <dl>
   <dt class="data-label">UUID</dt>
-  <dd class="data-value">{{ .uuid }}</dd>
+  <dd class="data-value">{{ .Params.uuid }}</dd>
 </dl>
+
+{{/*
+
 
 
 {{ if or (gt page.consumers.size 0) (gt page.coverdocument.size  0) }}
@@ -83,5 +90,7 @@
 </div>
 
 {% endif %}
+
+*/}}
 
 {{ end }}
