@@ -2,7 +2,7 @@
 *~
 _site
 .DS_Store
-node_modules/
+node_modules/*
 .vagrant
 content/bsp
 content/capabilityprofile
