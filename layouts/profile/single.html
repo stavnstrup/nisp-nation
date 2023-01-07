@@ -1,14 +1,12 @@
 {{ define "main" }}
 
-{{ partial "element-head.html" . }}
-
 <dl>
   <dt class="data-label">Title</dt>
   <dd class="data-value">{{ .Title }}</dd>
 </dl>
 
 
-{{ partial "profilereference.html" . }}
+{{ partial "profilereference.html" .Params.profilespec }}
 
 <h3>Subprofiles</h3>
 

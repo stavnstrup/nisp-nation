@@ -1,7 +1,5 @@
 {{ define "main" }}
 
-{{ partial "element-head.html" . }}
-
 <table>
 <tr>
   <th>Organization</th>
@@ -11,8 +9,8 @@
 {{ range where .Pages "Section" "profile" }}
   <tr>
     {{ with .Params }}
-    <td><a href="/organization/{{ .profilespec.org }}.html">{{(index site.Data.orgs .profilespec.org).short}}</a></td>
-    <td><a href="/profile/{{ .nispId }}.html">{{ .title }}</a></td>
+    <td><a href="/organization/{{ .profilespec.org }}.html">{{ (index site.Data.orgs .profilespec.org).short }}</a></td>
+    <td><a href="/profile/{{ .nispid }}.html">{{ .title }}</a></td>
     <td>{{ .profilespec.version }}</td>
     {{ end }}
   </tr>

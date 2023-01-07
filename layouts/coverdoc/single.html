@@ -1,7 +1,5 @@
 {{ define "main" }}
 
-{{ partial "element-head.html" . }}
-
 <div class="meta-block">
 
 <h3>Reference document</h3>
@@ -40,17 +38,18 @@
 {{ end }}
 
 
-
 <h3>Covered Standards</h3>
 
 <div class="meta-list">
   <ul>
     {{ range .Params.coverstandards }}
-      {{ $csId := .}}
-      {{ range where $.Pages "nispid" $csId }}
+      {{ $csid := index . "refid"}}
+      {{ $s := where $.Pages "nispid" $csid }}
+      <li>{{ $csid }}</li>
+      {{ range where $.Pages "nispid" $csid }}
         <li>
           {{ with .Params }}
-          <a href="/standard/{{ .nispid}}.html">{{ .document.title }} ({{ if .orgid }}{{ (index site.Data.orgs .orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
+          <a href="/standard/{{ .nispid }}.html">{{ .document.title }} ({{ if .orgid }}{{ (index site.Data.orgs .orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
           {{ end }}
         </li>
       {{ end }}
@@ -69,23 +68,34 @@
 </dl>
 
 
+{{/*
+
+We no longer refer to a coverdoc in a serviceprofile, but only a standard.
+
+The Go template code below does not work anyway.
+
 {{ if ge .Params.consumers.size 0 }}
 <h3>Relationships</h3>
 
 <div class="meta-list">
-
-<p>This cover document is used by the following service profiles:</p>
-<ul>
-{{ range .Params.consumers }}
-{{/*
-  {% assign sp-rec = site.serviceprofile | where:"nisp-id", sp | first %}
-  <li><a href="/serviceprofile/{{ sp }}.html">{{sp-rec.title}}</a></li>
-*/}}
-{{ end }}
-</ul>
-
+  <p>This cover document is used by the following service profiles:</p>
+  <ul>
+    {{ range .Params.consumers }}
+      {{ $spid := index . "refid"}}
+      {{ $s := where $.Pages "nispid" $spid }}
+      <li>{{ $spid }}</li>
+      {{ range where $.Pages "nispid" $spid }}
+        <li>
+          {{ with .Params }}
+          <a href="/standard/{{ .nispid }}.html">{{ .document.title }} ({{ if .orgid }}{{ (index site.Data.orgs .orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
+          {{ end }}
+        </li>
+      {{ end }}
+    {{ end }}
+  </ul>
 </div>
 
 {{ end }}
+*/}}
 
 {{ end }}

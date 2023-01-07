@@ -7,7 +7,7 @@
   {{ .Content }}
 
   <hr />
-  
+
   <div class="link-box">
 
     <div class="quick-links">
@@ -22,25 +22,25 @@
         <li><a href="http://noswg.nw3.dk/thenispnation/dailyviewer.public/">Use the database viewer (public edition)</a></li>
     */}}
       </ul>
-  
+
     </div>
-  
+
     <div class="git-links">
       <h4>Get the sources</h4>
-  
+
       <p>The NISP sources are freely available at <a href="https://github.com/stavnstrup/nisp-tools">GitHub</a></p>
       <p>If you want to contribute to the NISP project, you can submit a <a href="https://help.github.com/articles/creating-a-pull-request/">pull request</a> to the repository.</p>
-  
+
     </div>
   </div>
-  
+
 
 
   <h4>Official releases</h4>
   {{ $p := . }}
   <ul>
     {{ range site.Data.releaseHistory }}
-    <li><a href="{{ $p.Params.archiveLocation }}/ {{ .url }}/">{{ .title }}</a> - {{ .date }} - also as
+    <li><a href="{{ $p.Params.archiveLocation }}/ {{ .url }}">{{ .title }}</a> - {{ .date }} - also as
         <a href="{{ $p.Params.archiveLocation }}/{{ .archive }}">web archive</a></li>
     {{ end}}
   </ul>

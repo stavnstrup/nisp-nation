@@ -9,11 +9,11 @@
 
 <xsl:template match="standards">
   <xsl:result-document href="data/standardlist.json">
-    <xsl:text>{</xsl:text>
+    <xsl:text>[</xsl:text>
       <xsl:apply-templates select="organisations/orgkey" mode="make-standard-list">
         <xsl:sort select="@key"/>
       </xsl:apply-templates>
-    <xsl:text>}</xsl:text>
+    <xsl:text>]</xsl:text>
   </xsl:result-document>
   <xsl:apply-templates select="records"/>
   <xsl:apply-templates select="organisations"/>
@@ -44,11 +44,11 @@
 <xsl:template match="orgkey" mode="make-standard-list">
   <xsl:variable name="mykey" select="./@key"/>
   <xsl:if test="count(/standards//standard[document/@orgid=$mykey])>0">
-    <xsl:text>"</xsl:text><xsl:value-of select="$mykey"/><xsl:text>": [</xsl:text>
+    <xsl:text>{"</xsl:text><xsl:value-of select="$mykey"/><xsl:text>": [</xsl:text>
       <xsl:apply-templates select="/standards//standard[document/@orgid=$mykey]" mode="make-standard-list">
         <xsl:sort select="@id"/>
       </xsl:apply-templates>
-    <xsl:text>]</xsl:text>
+    <xsl:text>]}</xsl:text>
     <xsl:if test="not(position()=last())">
       <xsl:text>,</xsl:text>
     </xsl:if>
@@ -316,6 +316,7 @@
 <xsl:text>layout: capabilityprofile&#x0A;</xsl:text>
 <xsl:text>element: Capabilityprofile&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /capabilityprofile/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="refprofilespec"/>
 <xsl:text>subprofiles:&#x0A;</xsl:text>
@@ -335,6 +336,7 @@
 <xsl:text>layout: profile&#x0A;</xsl:text>
 <xsl:text>element: Profile&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /profile/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="refprofilespec"/>
 <xsl:text>subprofiles:&#x0A;</xsl:text>
@@ -374,6 +376,7 @@
 <xsl:text>layout: serviceprofile&#x0A;</xsl:text>
 <xsl:text>element: Serviceprofile&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /serviceprofile/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>sptype: </xsl:text><xsl:value-of select="@sptype"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="refprofilespec"/>
@@ -425,6 +428,7 @@
 <xsl:text>complete: </xsl:text><xsl:value-of select="(document/@orgid != '') and
   (document/@pubnum != '') and (document/@title != '') and (document/@date != '')"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /coverdoc/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>tag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>document:&#x0A;</xsl:text>
@@ -457,6 +461,7 @@
 <xsl:text>layout: profilespec&#x0A;</xsl:text>
 <xsl:text>element: Profilespec&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /profilespec/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>pubnum: "</xsl:text><xsl:value-of select="@pubnum"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>pubdate: "</xsl:text><xsl:value-of select="@date"/><xsl:text>"&#x0A;</xsl:text>
@@ -480,6 +485,7 @@
 <xsl:text>complete: </xsl:text><xsl:value-of select="(document/@orgid != '') and
   (document/@pubnum != '') and (document/@title != '') and (document/@date != '')"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /standard/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>tag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>document:&#x0A;</xsl:text>
@@ -589,6 +595,7 @@
 <xsl:text>layout: organization&#x0A;</xsl:text>
 <xsl:text>element: Organizations&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /organization/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>long: </xsl:text><xsl:value-of select="@long"/><xsl:text>&#x0A;</xsl:text>
@@ -663,6 +670,7 @@
 <xsl:text>layout: responsibleparty&#x0A;</xsl:text>
 <xsl:text>element: Responsible Party&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /responsibleparty/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>long: </xsl:text><xsl:value-of select="@long"/><xsl:text>&#x0A;</xsl:text>
@@ -714,6 +722,7 @@
 <xsl:text>layout: node&#x0A;</xsl:text>
 <xsl:text>element: node&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /node/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>parent: </xsl:text><xsl:value-of select="$parent"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>description: </xsl:text><xsl:value-of select="translate(normalize-space(@description),':',' ')"/><xsl:text>&#x0A;</xsl:text>

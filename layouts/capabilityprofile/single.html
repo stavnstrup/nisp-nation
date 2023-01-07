@@ -1,7 +1,5 @@
 {{ define "main" }}
 
-{{ partial "element-head.html" . }}
-
 <main>
 
   <input id="tab1" type="radio" name="tabs" checked>
@@ -27,7 +25,7 @@
       {{ end }}
     </ul>
     </div>
-    {{ partial "status.html" .Params }}
+    {{ partial "status.html" . }}
     <div class="meta-block">
       <dl>
         <dt class="data-label">UUID</dt>
@@ -35,14 +33,15 @@
       </dl>
     </div>
   </section>
-{{/*
+
   <section id="content2">
-    {{ partial "graph-{{ .Params.nispid }}.html" . }}
+    {{ partial (printf "graph-%s.html" .Params.nispid) . }}
+    {{/* partial "graph-{{ .Params.nispid }}.html" . */}}
   </section>
   <section id="content3">
-    {{ partial "page-{{ .Params.nispid }}.html" . }}
+    {{ partial (printf "page-%s.html" .Params.nispid) . }}
+    {{/* partial "page-{{ .Params.nispid }}.html" . */}}
   </section>
-  */}}  
 </main>
 
 {{ end }}

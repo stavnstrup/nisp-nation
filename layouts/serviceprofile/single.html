@@ -1,7 +1,5 @@
 {{ define "main" }}
 
-{{ partial "element-head.html" . }}
-
 <dl>
   <dt class="data-label">Title</dt>
   <dd class="data-value">{{ .Title }}</dd>
@@ -12,7 +10,7 @@
   <dd class="data-value">{{ .Params.description }}</dd>
 </dl>
 
-{{ partial "profilereference.html" . }}
+{{ partial "profilereference.html" .Params.profilespec }}
 
 
 <h3>Taxonomy</h3>

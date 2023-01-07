@@ -1,7 +1,5 @@
 {{ define "main" }}
 
-{{ partial "element-head.html" . }}
-
 <ul>
 {{ range where .Pages "Section" "responsibleparty" }}
   {{ with .Params }}

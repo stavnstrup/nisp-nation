@@ -2,8 +2,14 @@
 <html lang="en">
   {{ partial "head.html" . }}
   <body>
-    <div class="main-content">
+    {{ partial "element-head.html" . }}
+    <div class="main-content element-content">
       {{ block "main" . }}{{ end }}
+      <div class="footer">
+        <div>Last updated on {{ time }}</div>
+        <div>This page is work in progress</div>
+      </div>
     </div>
+
   </body>
 </html>
