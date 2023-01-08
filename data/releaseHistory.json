@@ -9,6 +9,48 @@
         "title": "NISP v13 / ADatP-34 Ed M Ver 1",
         "date": "2020-04-04",
         "url": "nisp-13.0/",
-        "archive": "nisp-web-14.0-release.zip"
+        "archive": "nisp-web-13.0-release.zip"
+    },
+    {
+        "title": "NISP v12 / ADatP-34 Ed L Ver 1",
+        "date": "2019-07-19",
+        "url": "nisp-12.0/",
+        "archive": "nisp-web-12.0-release.zip"
+    },
+    {
+        "title": "NISP v11 / ADatP-34 Ed K Ver 1",
+        "date": "2018-08-03",
+        "url": "nisp-11.0/",
+        "archive": "nisp-web-11.0-release.zip"
+    },
+    {
+        "title": "NISP v10 / ADatP-34 Ed J Ver 1",
+        "date": "2017-10-02",
+        "url": "nisp-10.0/",
+        "archive": "nisp-web-10.0-release.zip"
+    },
+    {
+        "title": "NISP v9 / ADatP-34 Ed I Ver 1",
+        "date": "2016-07-04",
+        "url": "nisp-9.0/",
+        "archive": "nisp-web-9.0-release.zip"
+    },
+    {
+        "title": "NISP v8 / ADatP-34 Ed H Ver 1",
+        "date": "2014-08-22",
+        "url": "nisp-8.0/",
+        "archive": "nisp-web-8.0-release.zip"
+    },
+    {
+        "title": "NISP v7 / ADatP-34 Ed G Ver 1",
+        "date": "2013-03-22",
+        "url": "nisp-7.0/",
+        "archive": "nisp-web-7.0-release.zip"
+    },
+    {
+        "title": "NISP v6 / ADatP-34 Ed F Ver 1",
+        "date": "2012-01-19",
+        "url": "nisp-6.0/",
+        "archive": "nisp-web-6.0-release.zip"
     }
 ]
