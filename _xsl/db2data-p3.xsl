@@ -595,7 +595,7 @@
 <xsl:text>layout: organization&#x0A;</xsl:text>
 <xsl:text>element: Organizations&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>url: /organization/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
+<xsl:text>url: /organization/</xsl:text><xsl:value-of select="@key"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>long: </xsl:text><xsl:value-of select="@long"/><xsl:text>&#x0A;</xsl:text>
