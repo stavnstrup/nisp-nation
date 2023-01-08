@@ -40,7 +40,7 @@
   {{ $p := . }}
   <ul>
     {{ range site.Data.releaseHistory }}
-    <li><a href="{{ $p.Params.archiveLocation }}/ {{ .url }}">{{ .title }}</a> - {{ .date }} - also as
+    <li><a href="{{ $p.Params.archiveLocation }}/ {{ .url }}">{{ .title }}</a> - {{ time.Format ":date_medium" .date  }} - also as
         <a href="{{ $p.Params.archiveLocation }}/{{ .archive }}">web archive</a></li>
     {{ end}}
   </ul>
