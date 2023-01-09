@@ -22,12 +22,11 @@
   <dd class="data-value">{{.Params.emUUID}}</dd>
 </dl>
 
-{{ with .Params.parent }}
 <dl>
   <dt class="data-label">Parent</dt>
-  <dd class="data-value"><a href="/node/{{ . }}.html">{{ (index site.Data.nodes .).title }}</a></dd>
+  <dd class="data-value">{{ with .Params.parent }}<a href="/node/{{ . }}.html">{{ 
+      (index site.Data.nodes .).title }}</a></dd>{{ end }}
 </dl>
-{{ end }}
 
 
 {{/* The consumer array contains Service Profile ids for those service profiles, 
