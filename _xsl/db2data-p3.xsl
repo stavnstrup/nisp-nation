@@ -464,7 +464,7 @@
 <xsl:text>url: /profilespec/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>pubnum: "</xsl:text><xsl:value-of select="@pubnum"/><xsl:text>"&#x0A;</xsl:text>
-<xsl:text>pubdate: "</xsl:text><xsl:value-of select="@date"/><xsl:text>"&#x0A;</xsl:text>
+<xsl:text>psdate: "</xsl:text><xsl:value-of select="@date"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>title: "</xsl:text><xsl:value-of select="normalize-space(@title)"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>version: "</xsl:text><xsl:value-of select="@version"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>note:</xsl:text><xsl:apply-templates select="@note"/><xsl:text>&#x0A;</xsl:text>
