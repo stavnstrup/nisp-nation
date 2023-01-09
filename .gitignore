@@ -15,8 +15,8 @@ content/responsibleparty
 content/serviceprofile
 content/standard
 data/
-layouts/partials/taxonomy.html
-layouts/partials/graph-*.html
-layouts/partials/page-*.html
+layouts/partials/cpfragments/taxonomy.html
+layouts/partials/cpfragments/graph-*.html
+layouts/partials/cpfragments/page-*.html
 public/
 resources/

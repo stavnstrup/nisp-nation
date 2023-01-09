@@ -66,7 +66,7 @@
 <!-- Create a graph illustrating the composite structure of profile with toplevel="yes" (capability profiles) -->
 
 <xsl:template match="profile[@toplevel='yes']" mode="makegraph">
-<xsl:result-document href="layouts/partials/graph-{@id}.html" method="html">
+<xsl:result-document href="layouts/partials/cpfragments/graph-{@id}.html" method="html">
 <ul class="tree">
   <li class="capability-color"><a href="/capabilityprofile/{@id}.html"><xsl:value-of select="@title"/></a>
   <ul>
@@ -100,7 +100,7 @@
 <!-- Create a page illustrating the composite structure of capability profiles -->
 
 <xsl:template match="profile[@toplevel='yes']" mode="makepage">
-<xsl:result-document href="layouts/partials/page-{@id}.html" method="html">
+<xsl:result-document href="layouts/partials/cpfragments/page-{@id}.html" method="html">
   <h2><xsl:value-of select="@title"/></h2>
   <xsl:for-each select="subprofiles/refprofile">
     <xsl:variable name="thisref" select="@refid"/>
@@ -761,7 +761,7 @@
 <!-- Create Taxonomy Tree -->
 
 <xsl:template match="taxonomy" mode="taxonomy">
-  <xsl:result-document href="layouts/partials/taxonomy.html" method="html">
+  <xsl:result-document href="layouts/partials/cpfragments/taxonomy.html" method="html">
     <div class="taxonomy">
       <ul>
         <xsl:apply-templates mode="taxonomy"/>

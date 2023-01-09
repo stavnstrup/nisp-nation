@@ -35,12 +35,10 @@
   </section>
 
   <section id="content2">
-    {{ partial (printf "graph-%s.html" .Params.nispid) . }}
-    {{/* partial "graph-{{ .Params.nispid }}.html" . */}}
+    {{ partial (printf "cpfragments/graph-%s.html" .Params.nispid) . }}
   </section>
   <section id="content3">
-    {{ partial (printf "page-%s.html" .Params.nispid) . }}
-    {{/* partial "page-{{ .Params.nispid }}.html" . */}}
+    {{ partial (printf "cpfragments/page-%s.html" .Params.nispid) . }}
   </section>
 </main>
 
