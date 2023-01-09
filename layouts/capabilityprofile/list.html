@@ -10,7 +10,7 @@
   <th>Title of Capability Profiles</th>
   <th>Version</th>
 </tr>
-{{ range where .Pages "Section" "capabilityprofile" }}
+{{ range where .RegularPages "Section" "capabilityprofile" }}
 <tr>
   {{ with .Params }}
   <td><a href="/organization/{{ .profilespec.org }}.html">{{ (index site.Data.orgs .profilespec.org).short}}</a></td>

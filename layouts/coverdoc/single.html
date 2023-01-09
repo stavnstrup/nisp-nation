@@ -42,18 +42,14 @@
 
 <div class="meta-list">
   <ul>
-    {{ range .Params.coverstandards }}
-      {{ $csid := index . "refid"}}
-      {{ $s := where $.Pages "nispid" $csid }}
-      <li>{{ $csid }}</li>
-      {{ range where $.Pages "nispid" $csid }}
-        <li>
-          {{ with .Params }}
-          <a href="/standard/{{ .nispid }}.html">{{ .document.title }} ({{ if .orgid }}{{ (index site.Data.orgs .orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
-          {{ end }}
-        </li>
+  {{ range .Params.coverstandards }}
+    {{ $csid := index . "refid"}}
+    {{ range where site.RegularPages "Params.nispid" $csid }}
+      {{ with .Params }}
+      <li><a href="/standard/{{ .nispid }}.html">{{ .document.title }} ({{ if .document.orgid }}{{ (index site.Data.orgs .document.orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
       {{ end }}
     {{ end }}
+  {{ end }}
   </ul>
 </div>
 

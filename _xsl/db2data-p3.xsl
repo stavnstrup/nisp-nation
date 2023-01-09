@@ -670,7 +670,7 @@
 <xsl:text>layout: responsibleparty&#x0A;</xsl:text>
 <xsl:text>element: Responsible Party&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>url: /responsibleparty/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
+<xsl:text>url: /responsibleparty/</xsl:text><xsl:value-of select="@key"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>long: </xsl:text><xsl:value-of select="@long"/><xsl:text>&#x0A;</xsl:text>

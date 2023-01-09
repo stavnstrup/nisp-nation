@@ -6,7 +6,7 @@
   <th>Title</th>
   <th>Date</th>
 </tr>
-{{ range where .Pages "Section" "coverdoc" }}
+{{ range where .RegularPages "Section" "coverdoc" }}
 <tr>
   {{ with .Params }}
   <td>{{ .document.pubnum }}</td>

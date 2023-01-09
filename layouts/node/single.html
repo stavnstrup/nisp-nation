@@ -10,8 +10,8 @@
 <dl>
   <dt class="data-label">Description</dt>
   <dd class="data-value">{{ markdownify (replace .Params.description "&#xA;" "\n\n" ) }}</dd>
-</dl>parent).title }}</a></dd>
 </dl>
+
 {{ if ge .Params.consumers.size  0 }}
 <h3>Relationships</h3>
 <p>Service profiles which uses this standard.</p>

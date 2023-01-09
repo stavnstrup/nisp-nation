@@ -16,7 +16,7 @@
 
     <ul class="stdgroup">
     {{ range $stdindex, $stdid := $stdarray }}
-    {{ $std := where (where site.Pages "Section" "standard") "Params.nispid" $stdid }}
+    {{ $std := where (where site.RegularPages "Section" "standard") "Params.nispid" $stdid }}
     {{ with (index $std 0).Params }}
       <li class="collection-item std-{{ if .complete }}complete{{ else }}incomplete{{ end }}"><a href="/standard/{{ .nispid }}.html" title="{{ .document.title }}">{{   if ne .document.pubnum "" }}{{ .document.pubnum }}{{ else }}{{ .nispId }}{{ end }}</a></li>
     {{ end }}

@@ -41,7 +41,7 @@
 
 <dl>
   <dt class="data-label"></dt>
-  <dd class="data-value">{{ markdownify .applicability }}</dd>
+  <dd class="data-value">{{ .applicability | markdownify }}</dd>
 </dl>
 
 {{ end }}
@@ -56,41 +56,49 @@
   <dd class="data-value">{{ .Params.uuid }}</dd>
 </dl>
 
-{{/*
+{{/* Both coverdocument and consumers is assigned to a an array of strings.
+     If there is no strings array, then the XSLT stylesheet might generate
+     nothing instead of an array, which means the value of the variable is nil.
+     If we use an if statement, the program fails, which is why we use the "with"
+     statement here 
+  */}}
+
+{{ $sizecoverdocument := 0 }} {{ $sizeconsumers := 0 }}
+{{ with .Params.coverdocument }}{{ $sizecoverdocument =  (len .) }}{{ end }}
+{{ with .Params.consumers }}{{ $sizeconsumers =  (len .) }}{{ end }}
 
 
+{{ if or (gt $sizecoverdocument 0) (gt $sizeconsumers 0) }}
 
-{{ if or (gt page.consumers.size 0) (gt page.coverdocument.size  0) }}
 <h3>Relationships</h3>
 
 <div class="meta-list">
-
-  {{ if gt .coverdocument.size  0 }}
+  {{ if gt $sizecoverdocument 0 }}
   <p>This standard is covered by:</p>
   <ul>
-  {% assign cd = page.coverdocument[0] %}
-  {% assign cd-rec = site.coverdoc  | where:"nisp-id", cd | first %}
-  <li><a href="/coverdoc/{{ cd }}.html">{{cd-rec.title}}</a></li>
-  </ul>
-  {% endif %}
-  
+    {{ $stdid := index .Params.coverdocument 0 }}
+    {{ range where site.RegularPages "Params.nispid" $stdid }}
+       {{ with .Params}}
+       <li><a href="/coverdoc/{{ .nispid }}.html">{{ .document.pubnum }}</a></li>
+       {{ end }}
+    {{ end }}
+</ul>
+{{ end }}
 
-{% if page.consumers.size > 0 %}
+{{ if gt $sizeconsumers 0 }}
 <p>This standard is used by the following service profiles:</p>
 <ul>
-{% for sp in page.consumers %}
-{% assign sp-rec = site.serviceprofile | where:"nisp-id", sp | first %}
-<li><a href="/serviceprofile/{{ sp }}.html">{{sp-rec.title}}</a></li>
-{% endfor %}
+  {{ range .Params.consumers }}
+    {{ range where site.RegularPages "Params.nispid" . }}
+      <li><a href="/serviceprofile/{{ .Params.nispid }}.html">{{ .Title }}</a></li>
+    {{ end }}
+  {{ end }}
 </ul>
-{% endif %}
-
-
+{{ end }}
 
 </div>
 
-{% endif %}
+{{ end }}
 
-*/}}
 
 {{ end }}

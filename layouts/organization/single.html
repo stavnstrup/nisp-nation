@@ -22,11 +22,13 @@
   </thead>
   {{ range .stuff.standards.references }}
     {{ $stdId := . }}
-    {{ range where site.Pages "nispId" $stdId }}
+    {{ range where site.Pages "Params.nispid" $stdId }}
     <tr>
+      {{ with .Params }}
       <td>{{.document.pubnum}}</td>
       <td><a href="/standard/{{ $stdId }}.html">{{ .document.title }}</a></td>
       <td>{{ if ge (len .document.date) 4 }}{{ slicestr .document.date 0 4 }}{{ end }}</td>
+      {{ end }}
     </tr>
     {{ end }}
   {{ end }}

@@ -6,7 +6,7 @@
   <th>Pub number</th>
   <th>Title of Profile Specification</th>
 </tr>
-{{ range where site.Pages "Section" "profilespec" }}
+{{ range where .RegularPages "Section" "profilespec" }}
   <tr>
     {{ with .Params }}
     <td><a href="/organization/{{ .orgid }}.html">{{ (index site.Data.orgs (string .orgid)).short }}</a></td>

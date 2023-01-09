@@ -17,10 +17,10 @@
   </thead>
   {{ range .Params.responsible.standards }}
   {{ $stdId := . }}
-  {{ range where site.Pages "nispId" $stdId }}
+  {{ range where site.Pages "Params.nispid" $stdId }}
   <tr>
     {{ with .Params }}
-    <td>{{(index site.Data.orgs .Params.orgid).short }}</td>
+    <td>{{(index site.Data.orgs .orgid).short }}</td>
     <td>{{ .document.pubnum }}</td>
     <td><a href="/standard/{{ $stdId }}.html">{{ .document.title }} {{ .document.version }}</a></td>
     <td>{{ if ge (len .document.date) 4 }}{{ slicestr .document.date 0 4 }}{{ end }}</td>

@@ -1,7 +1,7 @@
 {{ define "main" }}
 
 <ul>
-{{ range where .Pages "Section" "responsibleparty" }}
+{{ range where .RegularPages "Section" "responsibleparty" }}
   {{ with .Params }}
   <li><a href="/responsibleparty/{{ .key }}.html" title="{{ .long }}">{{ .short }}</a> ({{ .responsible.number }})</li>
   {{ end }}
