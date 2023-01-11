@@ -313,7 +313,6 @@
 <xsl:template match="profile[@toplevel='yes']">
 <xsl:result-document href="content/capabilityprofile/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: capabilityprofile&#x0A;</xsl:text>
 <xsl:text>element: Capabilityprofile&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>url: /capabilityprofile/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
@@ -333,7 +332,6 @@
 <xsl:variable name="myid" select="@id"/>
 <xsl:result-document href="content/profile/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: profile&#x0A;</xsl:text>
 <xsl:text>element: Profile&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>url: /profile/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
@@ -373,7 +371,6 @@
 <xsl:variable name="myid" select="@id"/>
 <xsl:result-document href="content/serviceprofile/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: serviceprofile&#x0A;</xsl:text>
 <xsl:text>element: Serviceprofile&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>url: /serviceprofile/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
@@ -423,7 +420,6 @@
 <xsl:if test="not(.//event[(position()=last()) and (@flag='deleted')])">
 <xsl:result-document href="content/coverdoc/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: coverdoc&#x0A;</xsl:text>
 <xsl:text>element: Cover Document&#x0A;</xsl:text>
 <xsl:text>complete: </xsl:text><xsl:value-of select="(document/@orgid != '') and
   (document/@pubnum != '') and (document/@title != '') and (document/@date != '')"/><xsl:text>&#x0A;</xsl:text>
@@ -458,7 +454,6 @@
 <xsl:variable name="myid" select="@myid"/>
 <xsl:result-document href="content/profilespec/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: profilespec&#x0A;</xsl:text>
 <xsl:text>element: Profilespec&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>url: /profilespec/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
@@ -480,7 +475,6 @@
 <xsl:if test="not(.//event[(position()=last()) and (@flag='deleted')])">
 <xsl:result-document href="content/standard/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: standard&#x0A;</xsl:text>
 <xsl:text>element: Standard&#x0A;</xsl:text>
 <xsl:text>complete: </xsl:text><xsl:value-of select="(document/@orgid != '') and
   (document/@pubnum != '') and (document/@title != '') and (document/@date != '')"/><xsl:text>&#x0A;</xsl:text>
@@ -592,7 +586,6 @@
 <xsl:variable name="mykey" select="@key"/>
 <xsl:result-document href="content/organization/{@key}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: organization&#x0A;</xsl:text>
 <xsl:text>element: Organizations&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>url: /organization/</xsl:text><xsl:value-of select="@key"/><xsl:text>.html&#x0A;</xsl:text>
@@ -667,7 +660,6 @@
 <xsl:if test="count(/standards//standard[responsibleparty/@rpref=$mykey]) > 0">
 <xsl:result-document href="content/responsibleparty/{@key}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: responsibleparty&#x0A;</xsl:text>
 <xsl:text>element: Responsible Party&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>url: /responsibleparty/</xsl:text><xsl:value-of select="@key"/><xsl:text>.html&#x0A;</xsl:text>
@@ -719,7 +711,6 @@
 <xsl:variable name="myid" select="@id"/>
 <xsl:result-document href="content/node/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: node&#x0A;</xsl:text>
 <xsl:text>element: node&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>url: /node/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
