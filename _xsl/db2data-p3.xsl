@@ -425,7 +425,7 @@
   (document/@pubnum != '') and (document/@title != '') and (document/@date != '')"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>url: /coverdoc/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
-<xsl:text>tag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
+<xsl:text>nisptag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>document:&#x0A;</xsl:text>
 <xsl:text>  org: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
@@ -480,7 +480,7 @@
   (document/@pubnum != '') and (document/@title != '') and (document/@date != '')"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>url: /standard/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
-<xsl:text>tag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
+<xsl:text>nisptag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>document:&#x0A;</xsl:text>
 <xsl:text>  org: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
