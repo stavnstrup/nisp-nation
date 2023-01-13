@@ -29,16 +29,17 @@
 
 {{ range .Params.refgroup }}
 <p><strong>Obligation</strong>: {{ upper .obligation }}, <strong>Lifecycle</strong>: {{ upper .lifecycle }}</p>
-<p>{{ .description }}</p>
+{{ with .description }}<p>{{ . }}</p>{{ end }}
 <ul>
-{{ range .Params.standards }}
-  {{ $refid := . }}
-  {{ range where .Pages "Section" $refid }}
-    {{ with .Params }}
-    <li><a href="/{{ .type }}/{{ $refid }}.html"></a>{{ .document.title }} ({{ if .document.orgid }}{{(index site.Data.orgs .document.orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
-    {{ end }}
+  {{ range .standards }}
+  {{ $refid := index . "refid" }}
+  {{ range where site.RegularPages ".Params.nispid" $refid }}
+  {{ with .Params }}
+  <li><a href="/standard/{{ $refid }}.html">{{ .document.title }} ({{ if .document.orgid }}{{(index site.Data.orgs .document.orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
   {{ end }}
-{{ end }}
+
+  {{ end }}
+  {{ end }}
 </ul>
 {{ end }}
 
