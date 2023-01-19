@@ -44,7 +44,7 @@ The sources to the documents are stored in a Git repository at GitHub.
 <h4>Official releases</h4>
 <ul>
   <li><a href="{{ page.archive-location}}/nisp-14.0/">NISP v14 / ADatP-34 Ed N Ver 1</a> -
-  May. 26, 2021  - also as <a href="{{ page.archive-location}}/nisp-web-14.0-release.zip">web archive</a></li>
+  May. 26, 2021  - also as <a href="{{ page.archive-location}}/nisp-web-14.0-release.zip">web archive</a> and in <a href="{{ page.archive-location}}/nisp-14.0-archimate.xml">ArchiMate Exchange Format</a></li>
   <li><a href="{{ page.archive-location}}/nisp-13.0/">NISP v13 / ADatP-34 Ed M Ver 1</a> -
   Apr. 4, 2020  - also as <a href="{{ page.archive-location}}/nisp-web-13.0-release.zip">web archive</a></li>
   <li><a href="{{ page.archive-location}}/nisp-12.0/">NISP v12 / ADatP-34 Ed L Ver 1</a> -
