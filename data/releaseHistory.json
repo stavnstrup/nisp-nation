@@ -3,7 +3,8 @@
         "title": "NISP v14 / ADatP-34 Ed N Ver 1",
         "date": "2021-05-26",
         "url": "nisp-14.0/",
-        "archive": "nisp-web-14.0-release.zip"
+        "archive": "nisp-web-14.0-release.zip",
+        "archimate": "nisp-14.0-archimate.xml"
     },
     {
         "title": "NISP v13 / ADatP-34 Ed M Ver 1",
