@@ -1,10 +1,10 @@
-dist: xenial
+dist: jammy
 
 os: linux
 
 branches:
   only:
-  - master
+  - hugo
 
 language: java
 
@@ -18,12 +18,15 @@ cache:
 
 before_install:
   - sudo apt-get -qq update
-  - gem install bundler -v2.3.6
-  - bundle config git.allow_insecure true
-  - bundle check || bundle install
+
 
 install:
   - sudo apt-get install -qq libxml2-utils libsaxonb-java docbook-xml
+  - mkdir -p _temp/hugo/
+  - curl -L "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_extended_0.110.0_Linux-64bit.tar.gz" --output _temp/hugo/hugo.tar.gz
+  - tar xvfz _temp/hugo/hugo.tar.gz -C _temp/hugo/
+  - sudo mv _temp/hugo/hugo /usr/local/bin
+  - npm install
 
 notifications:
   email:
@@ -37,7 +40,7 @@ script:
   - curl -o _temp/schema/dtd/stddb48.dtd https://raw.githubusercontent.com/stavnstrup/nisp-tools/master/src/schema/dtd/stddb48.dtd
   - xmllint --noout --valid _temp/standards/standards.xml
   - saxonb-xslt -ext:on _temp/standards/standards.xml _xsl/db2data.xsl
-  - bundle exec jekyll build
+  - hugo
 
 deploy:
   - provider: script
