@@ -59,5 +59,7 @@ jobs:
         external_repository: nispworld/nispworld.github.io
         publish_branch: master
         publish_dir: ./public
+        user_name: 'nisp-bot'
+        user_email: 'nisp-bot@nw3.dk'
         keep_files: true
-        cname: nisp.nw3.dk
+        # cname: nisp.nw3.dk
