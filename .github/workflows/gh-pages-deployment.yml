@@ -18,8 +18,8 @@ jobs:
 
     - name: Install XML Tools
       run: |
-        sudo apt get update
-        sudo apt-get install -qq libxml2-utils libsaxonb-java docbook-xml
+        sudo apt update
+        sudo apt install -qq libxml2-utils libsaxonb-java docbook-xml
 
     - name: Extract NISP data to YAML/Markdown files
       run: |
