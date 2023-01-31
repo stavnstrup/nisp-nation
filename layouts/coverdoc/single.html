@@ -1,0 +1,97 @@
+{{ define "main" }}
+
+<div class="meta-block">
+
+<h3>Reference document</h3>
+
+{{ with .Params }}
+<div class="meta-element-set">
+
+<dl class="ref-org">
+  <dt class="data-label">Org</dt>
+  <dd class="data-value">{{ (index site.Data.orgs .document.org).short }}</dd>
+</dl>
+
+<dl class="ref-pubnum">
+  <dt class="data-label">Pubnum</dt>
+  <dd class="data-value">{{ .document.pubnum }}</dd>
+</dl>
+
+<dl class="ref-date">
+  <dt class="data-label">Date</dt>
+  <dd class="data-value">{{ .document.date }}</dd>
+</dl>
+
+<dl class="ref-version">
+  <dt class="data-label">Version</dt>
+  <dd class="data-value">{{ .document.version }}</dd>
+</dl>
+
+</div>
+
+<dl>
+  <dt class="data-label">Title</dt>
+  <dd class="data-value">{{ .document.title }}</dd>
+</dl>
+
+</div>
+{{ end }}
+
+
+<h3>Covered Standards</h3>
+
+<div class="meta-list">
+  <ul>
+  {{ range .Params.coverstandards }}
+    {{ $csid := index . "refid"}}
+    {{ range where site.RegularPages "Params.nispid" $csid }}
+      {{ with .Params }}
+      <li><a href="/standard/{{ .nispid }}.html">{{ .document.title }} ({{ if .document.orgid }}{{ (index site.Data.orgs .document.orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  </ul>
+</div>
+
+{{ partial "responsibleparty.html" . }}
+
+
+{{ partial "status.html" . }}
+
+<dl>
+  <dt class="data-label">UUID</dt>
+  <dd class="data-value">{{ .Params.uuid }}</dd>
+</dl>
+
+
+{{/*
+
+We no longer refer to a coverdoc in a serviceprofile, but only a standard.
+
+The Go template code below does not work anyway.
+
+{{ if ge .Params.consumers.size 0 }}
+<h3>Relationships</h3>
+
+<div class="meta-list">
+  <p>This cover document is used by the following service profiles:</p>
+  <ul>
+    {{ range .Params.consumers }}
+      {{ $spid := index . "refid"}}
+      {{ $s := where $.Pages "nispid" $spid }}
+      <li>{{ $spid }}</li>
+      {{ range where $.Pages "nispid" $spid }}
+        <li>
+          {{ with .Params }}
+          <a href="/standard/{{ .nispid }}.html">{{ .document.title }} ({{ if .orgid }}{{ (index site.Data.orgs .orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
+          {{ end }}
+        </li>
+      {{ end }}
+    {{ end }}
+  </ul>
+</div>
+
+{{ end }}
+*/}}
+
+{{ end }}

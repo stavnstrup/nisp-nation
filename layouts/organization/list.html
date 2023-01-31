@@ -1,0 +1,16 @@
+{{ define "main" }}
+
+<p>Each organisation is postfixed by a tuple with four values, which shows how the organisations creates/owns a number of standards, capability profiles, profiles and service profiles.</p>
+
+<ul>
+{{ range where .RegularPages "Section" "organization" }}
+  {{ with .Params }}
+  <li><a href="/organization/{{ .key }}.html" title="{{ .long }}">{{ .short }}</a>
+    ({{ .stuff.standards.owns }}, {{ .stuff.capabilityprofiles.owns }},
+    {{ .stuff.profiles.owns }},
+    {{ .stuff.serviceprofiles.owns }})</li>
+  {{ end }}
+{{ end }}
+</ul>
+
+{{ end }}

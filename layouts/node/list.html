@@ -1,0 +1,17 @@
+{{ define "main" }}
+
+<p>The taxonomy below consists of a subset of nodes from the C3 Taxonomy version 5.0 released on Sep 23, 2021.</p>
+
+<p>Each node in the tree is prefixed with a number describing the level of the node in the tree (i.e. the distance from the root node).</p>
+
+<p>Each node may also be postfixed with a tuple with three values, indicating:</p>
+
+<ul>
+  <li>The number of times a <em>mandatory</em> standard references a node in the taxonomy</li>
+  <li>The number of times a <em>candidate</em> standard references a node in the taxonomy</li>
+  <li>The number of times a taxonomy node is referenced from a <em>service profile</em></li>
+</ul>
+
+{{ partial "cpfragments/taxonomy.html" . }}
+
+{{ end }}

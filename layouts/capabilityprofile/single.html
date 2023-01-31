@@ -1,0 +1,45 @@
+{{ define "main" }}
+
+<main>
+
+  <input id="tab1" type="radio" name="tabs" checked>
+  <label for="tab1">Record</label>
+
+  <input id="tab2" type="radio" name="tabs">
+  <label for="tab2">Topography</label>
+
+  <input id="tab3" type="radio" name="tabs">
+  <label for="tab3">Table</label>
+
+  <section id="content1">
+    <dl>
+      <dt class="data-label">Title</dt>
+      <dd class="data-value">{{ .Title }}</dd>
+    </dl>
+    {{ partial "profilereference.html" .Params.profilespec }}
+    <h3>Subprofiles</h3>
+    <div class="meta-list">
+    <ul>
+      {{ range .Params.subprofiles }}
+      <li><a href="/{{ .type }}/{{ .refid }}.html">{{ .title }}</a> - (<strong>{{ .type }}</strong>)</li>
+      {{ end }}
+    </ul>
+    </div>
+    {{ partial "status.html" . }}
+    <div class="meta-block">
+      <dl>
+        <dt class="data-label">UUID</dt>
+        <dd class="data-value">{{ .Params.uuid }}</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section id="content2">
+    {{ partial (printf "cpfragments/graph-%s.html" .Params.nispid) . }}
+  </section>
+  <section id="content3">
+    {{ partial (printf "cpfragments/page-%s.html" .Params.nispid) . }}
+  </section>
+</main>
+
+{{ end }}

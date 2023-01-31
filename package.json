@@ -1,39 +1,8 @@
 {
-  "name": "thenispnation",
-  "version": "1.0.0",
-  "description": "The NISP nation website",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:nispworld/nispworld.github.io.git"
-  },
-  "author": "Jens Stavnstrup <stavnstrup@gmail.com>",
-  "license": "ISC",
+  "private": true,
   "devDependencies": {
-    "autoprefixer": "^6.4.0",
-    "browser-sync": "^2.26.7",
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-append-prepend": "^1.0.3",
-    "gulp-cache": "^0.4.6",
-    "gulp-clean-css": "^2.0.12",
-    "gulp-concat": "^2.6.0",
-    "gulp-imagemin": "^3.0.3",
-    "gulp-jshint": "^2.0.1",
-    "gulp-notify": "^2.2.0",
-    "gulp-postcss": "^6.1.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-ruby-sass": "^2.1.0",
-    "gulp-run": "^1.7.1",
-    "gulp-sass": "^2.3.2",
-    "gulp-shell": "^0.5.2",
-    "gulp-uglify": "^2.0.0",
-    "gulp-util": "^3.0.7",
-    "imagemin-jpeg-recompress": "^5.1.0",
-    "jshint": "^2.10.2",
-    "run-sequence": "^1.2.2"
+    "autoprefixer": "^10.3.3",
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1"
   }
 }

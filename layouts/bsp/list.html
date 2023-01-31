@@ -1,0 +1,18 @@
+{{ define "main" }}
+
+<table>
+<tr>
+  <th>Basic Standards Service Profiles</th>
+</tr>
+{{ range where site.RegularPages "Section" "serviceprofile" }}
+{{ with .Params }}
+{{ if eq .sptype "bsp" }}
+<tr>
+  <td><a href="/serviceprofile/{{ .nispid }}.html">{{ .Title }}</a></td>
+</tr>
+{{ end }}
+{{ end }}
+{{ end }}
+</table>
+
+{{ end }}

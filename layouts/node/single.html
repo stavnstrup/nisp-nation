@@ -1,0 +1,52 @@
+{{ define "main" }}
+
+<h3>Reference document</h3>
+
+<dl>
+  <dt class="data-label">Title</dt>
+  <dd class="data-value">{{ .Title }}</dd>
+</dl>
+
+<dl>
+  <dt class="data-label">Description</dt>
+  <dd class="data-value">{{ markdownify (replace .Params.description "&#xA;" "\n\n" ) }}</dd>
+</dl>
+
+<dl>
+  <dt class="data-label">Level</dt>
+  <dd class="data-value">{{.Params.level}}</dd>
+</dl>
+
+<dl>
+  <dt class="data-label">emUUID</dt>
+  <dd class="data-value">{{.Params.emUUID}}</dd>
+</dl>
+
+<dl>
+  <dt class="data-label">Parent</dt>
+  <dd class="data-value">{{ with .Params.parent }}<a href="/node/{{ . }}.html">{{ 
+      (index site.Data.nodes .).title }}</a></dd>{{ end }}
+</dl>
+
+
+{{/* The consumer array contains Service Profile ids for those service profiles, 
+  which references the node */}}
+{{/*
+
+{{ if ge .Params.consumers.size  0 }}
+<h3>Relationships</h3>
+<p>Service profiles which uses this standard.</p>
+<ul>
+{{ range .Params.consumers }} 
+  {{ $spId := .  }}
+  {{ range where .Site.Pages .Params.nispid $spId }}
+    {{  $sp := . }}
+    <li><a href="/serviceprofile/{{ $spId }}.html">{{ $sp.title }}</a></li>
+  {{ end }}
+{{ end }}
+</ul>
+{{ end }}
+
+  */}}
+
+{{ end }}

@@ -1,0 +1,155 @@
+$nisp-orange: #f7751f;
+
+$background-color: #f8f8f8;
+
+$nisp-hero-bg: #222;
+$nisp-hero-color: #fff;
+$nisp-hero-bottom: #ffa500;
+
+$nisp-big-number: #f7751f;
+
+$nisp-gray: #ddd;
+
+$nisp-box-bg: #fff;
+
+$std-complete: #39aa56;
+$std-incomplete: #db4545;
+
+$font-size: 16px;
+
+$header-color: #222;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: $background-color;
+  font-family: 'Open Sans', sans-serif;
+  font-size: $font-size;
+}
+
+
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+p,
+blockquote,
+th,
+td {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.main-content {
+  margin: 0 auto;
+  max-width: 100%;
+  min-width: 768px;
+  padding: 0 8px;
+  width: 1000px;
+}
+
+.nisp-hero {
+  background: $nisp-hero-bg url('/images/skyline.jpg') no-repeat scroll 0% 60%;
+  border-bottom: 3px solid $nisp-hero-bottom;
+  height: 150px;
+  width: 100%;
+
+  h2 {
+    color: $nisp-hero-color;
+    margin-top: 0;
+    padding-left: 40px;
+    padding-top: 36px;
+  }
+}
+
+.nisp-content {
+  margin-top: 32px;
+  padding: 0 16px;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $header-color;
+  font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  text-rendering: optimizeLegibility;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+
+p {
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+hr {
+  border: solid $nisp-gray;
+  border-width: 1px 0 0;
+  clear: both;
+  height: 0;
+  margin: 22px 0 16px;
+}
+
+ul {
+  margin-left: 2em;
+}
+
+ul,
+ol,
+dl {
+  font-size: 14px;
+  line-height: 1.6;
+  list-style-position: outside;
+  margin-bottom: 16px;
+}
+
+a {
+  color: #2ba6cb;
+  line-height: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #a41;
+}
+
+a:link {
+    color: #c63;
+}
+
+a,
+a * {
+  text-decoration: underline;
+}

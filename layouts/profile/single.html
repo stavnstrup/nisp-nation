@@ -1,0 +1,44 @@
+{{ define "main" }}
+
+<dl>
+  <dt class="data-label">Title</dt>
+  <dd class="data-value">{{ .Title }}</dd>
+</dl>
+
+
+{{ partial "profilereference.html" .Params.profilespec }}
+
+<h3>Subprofiles</h3>
+
+<div class="meta-list">
+<ul>
+  {{ range .Params.subprofiles }}
+  <li><a href="/{{ .type }}/{{ .refid }}.html">{{ .title }}</a> - (<strong>{{ .type }}</strong>)</li>
+  {{ end }}
+</ul>
+</div>
+
+{{ partial "status.html" . }}
+
+<div class="meta-block">
+
+<dl>
+  <dt class="data-label">UUID</dt>
+  <dd class="data-value">{{ .Params.uuid }}</dd>
+</dl>
+
+</div>
+
+<h3>Utilization</h3>
+
+<div class="meta-list">
+<p>This profile is used by the following profiles:</p>
+
+<ul>
+  {{ range .Params.parents }}
+  <li><a href="/{{ .type }}/{{ .refid }}.html">{{ .title }}</a> - (<strong>{{ .type }}</strong>)</li>
+  {{ end }}
+</ul>
+</div>
+
+{{ end }}

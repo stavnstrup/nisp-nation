@@ -8,6 +8,13 @@
 <xsl:output method="text" indent="yes"/>
 
 <xsl:template match="standards">
+  <xsl:result-document href="data/standardlist.json">
+    <xsl:text>[</xsl:text>
+      <xsl:apply-templates select="organisations/orgkey" mode="make-standard-list">
+        <xsl:sort select="@key"/>
+      </xsl:apply-templates>
+    <xsl:text>]</xsl:text>
+  </xsl:result-document>
   <xsl:apply-templates select="records"/>
   <xsl:apply-templates select="organisations"/>
   <xsl:apply-templates select="organisations" mode="data"/>
@@ -16,7 +23,7 @@
   <xsl:apply-templates select="taxonomy"/>
   <xsl:apply-templates select="taxonomy" mode="taxonomy"/>
   <xsl:apply-templates select="taxonomy" mode="data"/>
-  <xsl:result-document href="_data/stat.json">
+  <xsl:result-document href="data/stat.json">
     <xsl:text>{</xsl:text>
     <xsl:text>"capabilityprofiles": "</xsl:text><xsl:value-of select="count(records/profile[@toplevel='yes'])"/><xsl:text>",</xsl:text>
     <xsl:text>"profiles": "</xsl:text><xsl:value-of select="count(records/profile[@toplevel='no'])"/><xsl:text>",</xsl:text>
@@ -32,10 +39,34 @@
   </xsl:result-document>
 </xsl:template>
 
+<!-- Create a list of standards sorted by organisation. This is done because -->
+
+<xsl:template match="orgkey" mode="make-standard-list">
+  <xsl:variable name="mykey" select="./@key"/>
+  <xsl:if test="count(/standards//standard[document/@orgid=$mykey])>0">
+    <xsl:text>{"</xsl:text><xsl:value-of select="$mykey"/><xsl:text>": [</xsl:text>
+      <xsl:apply-templates select="/standards//standard[document/@orgid=$mykey]" mode="make-standard-list">
+        <xsl:sort select="@id"/>
+      </xsl:apply-templates>
+    <xsl:text>]}</xsl:text>
+    <xsl:if test="not(position()=last())">
+      <xsl:text>,</xsl:text>
+    </xsl:if>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="standard" mode="make-standard-list">
+  <xsl:text>"</xsl:text><xsl:value-of select="@id"/> <xsl:text>"</xsl:text>
+  <xsl:if test="not(position()=last())">
+    <xsl:text>, </xsl:text>
+  </xsl:if>
+</xsl:template>
+
+
 <!-- Create a graph illustrating the composite structure of profile with toplevel="yes" (capability profiles) -->
 
 <xsl:template match="profile[@toplevel='yes']" mode="makegraph">
-<xsl:result-document href="_includes/graph-{@id}.html" method="html">
+<xsl:result-document href="layouts/partials/cpfragments/graph-{@id}.html" method="html">
 <ul class="tree">
   <li class="capability-color"><a href="/capabilityprofile/{@id}.html"><xsl:value-of select="@title"/></a>
   <ul>
@@ -69,7 +100,7 @@
 <!-- Create a page illustrating the composite structure of capability profiles -->
 
 <xsl:template match="profile[@toplevel='yes']" mode="makepage">
-<xsl:result-document href="_includes/page-{@id}.html" method="html">
+<xsl:result-document href="layouts/partials/cpfragments/page-{@id}.html" method="html">
   <h2><xsl:value-of select="@title"/></h2>
   <xsl:for-each select="subprofiles/refprofile">
     <xsl:variable name="thisref" select="@refid"/>
@@ -245,12 +276,12 @@
   <xsl:apply-templates select="serviceprofile"/>
   <xsl:apply-templates select="profilespec"/>
   <!-- List all events in descending order in all standards and profiles -->
-  <xsl:result-document href="_data/events.json">
+  <xsl:result-document href="data/events.json">
     <xsl:text>[</xsl:text>
     <xsl:apply-templates select=".//event" mode="allevents">
       <xsl:sort select="@date" order="descending"/>
     </xsl:apply-templates>
-    <xsl:text>{"rec": "0", "nisp-id": "", "tag": "", "date": "", "flag": "", "version": "0.0"}</xsl:text>
+    <xsl:text>{"rec": "0", "nispid": "", "tag": "", "date": "", "flag": "", "version": "0.0"}</xsl:text>
     <xsl:text>]</xsl:text>
   </xsl:result-document>
 </xsl:template>
@@ -259,7 +290,7 @@
 <xsl:template match="event" mode="allevents">
   <xsl:text>{</xsl:text>
   <xsl:text>"rec": "</xsl:text><xsl:number from="standards" count="standard|serviceprofile|profile" format="1" level="any"/><xsl:text>", </xsl:text>
-  <xsl:text>"nisp-id": "</xsl:text><xsl:value-of select="../../../@id"/><xsl:text>",</xsl:text>
+  <xsl:text>"nispid": "</xsl:text><xsl:value-of select="../../../@id"/><xsl:text>",</xsl:text>
   <xsl:choose>
     <xsl:when test="ancestor::standard">
       <xsl:text>"tag": "</xsl:text><xsl:value-of select="../../../@tag"/><xsl:text>",</xsl:text>
@@ -277,14 +308,14 @@
 
 <!-- Create a YAML page of a Capability Profile -->
 
-<xsl:template match="profile[@type='bsp']"/>
+<xsl:template match="profile[@sptype='bsp']"/>
 
 <xsl:template match="profile[@toplevel='yes']">
-<xsl:result-document href="_capabilityprofile/{@id}.md">
+<xsl:result-document href="content/capabilityprofile/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: capabilityprofile&#x0A;</xsl:text>
 <xsl:text>element: Capabilityprofile&#x0A;</xsl:text>
-<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /capabilityprofile/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="refprofilespec"/>
 <xsl:text>subprofiles:&#x0A;</xsl:text>
@@ -299,11 +330,11 @@
 
 <xsl:template match="profile">
 <xsl:variable name="myid" select="@id"/>
-<xsl:result-document href="_profile/{@id}.md">
+<xsl:result-document href="content/profile/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: profile&#x0A;</xsl:text>
 <xsl:text>element: Profile&#x0A;</xsl:text>
-<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /profile/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="refprofilespec"/>
 <xsl:text>subprofiles:&#x0A;</xsl:text>
@@ -335,16 +366,15 @@
 
 <!-- Create a YAML page of a Service  Profile -->
 
-<xsl:template match="serviceprofile1[@type='bsp']"/>
 
 <xsl:template match="serviceprofile">
 <xsl:variable name="myid" select="@id"/>
-<xsl:result-document href="_serviceprofile/{@id}.md">
+<xsl:result-document href="content/serviceprofile/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: serviceprofile&#x0A;</xsl:text>
 <xsl:text>element: Serviceprofile&#x0A;</xsl:text>
-<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>type: </xsl:text><xsl:value-of select="@type"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /serviceprofile/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
+<xsl:text>sptype: </xsl:text><xsl:value-of select="@sptype"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="refprofilespec"/>
 <xsl:if test="description">
@@ -388,14 +418,14 @@
 <xsl:template match="coverdoc">
 <xsl:variable name="myid" select="@id"/>
 <xsl:if test="not(.//event[(position()=last()) and (@flag='deleted')])">
-<xsl:result-document href="_coverdoc/{@id}.md">
+<xsl:result-document href="content/coverdoc/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: coverdoc&#x0A;</xsl:text>
 <xsl:text>element: Cover Document&#x0A;</xsl:text>
 <xsl:text>complete: </xsl:text><xsl:value-of select="(document/@orgid != '') and
   (document/@pubnum != '') and (document/@title != '') and (document/@date != '')"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>tag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /coverdoc/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
+<xsl:text>nisptag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>document:&#x0A;</xsl:text>
 <xsl:text>  org: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
@@ -422,14 +452,14 @@
 
 <xsl:template match="profilespec">
 <xsl:variable name="myid" select="@myid"/>
-<xsl:result-document href="_profilespec/{@id}.md">
+<xsl:result-document href="content/profilespec/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: profilespec&#x0A;</xsl:text>
 <xsl:text>element: Profilespec&#x0A;</xsl:text>
-<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /profilespec/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>pubnum: "</xsl:text><xsl:value-of select="@pubnum"/><xsl:text>"&#x0A;</xsl:text>
-<xsl:text>pubdate: "</xsl:text><xsl:value-of select="@date"/><xsl:text>"&#x0A;</xsl:text>
+<xsl:text>psdate: "</xsl:text><xsl:value-of select="@date"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>title: "</xsl:text><xsl:value-of select="normalize-space(@title)"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>version: "</xsl:text><xsl:value-of select="@version"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>note:</xsl:text><xsl:apply-templates select="@note"/><xsl:text>&#x0A;</xsl:text>
@@ -443,14 +473,14 @@
 <xsl:template match="standard">
 <xsl:variable name="myid" select="@id"/>
 <xsl:if test="not(.//event[(position()=last()) and (@flag='deleted')])">
-<xsl:result-document href="_standard/{@id}.md">
+<xsl:result-document href="content/standard/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: standard&#x0A;</xsl:text>
 <xsl:text>element: Standard&#x0A;</xsl:text>
 <xsl:text>complete: </xsl:text><xsl:value-of select="(document/@orgid != '') and
   (document/@pubnum != '') and (document/@title != '') and (document/@date != '')"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>tag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /standard/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
+<xsl:text>nisptag: "</xsl:text><xsl:value-of select="@tag"/><xsl:text>"&#x0A;</xsl:text>
 <xsl:text>orgid: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>document:&#x0A;</xsl:text>
 <xsl:text>  org: </xsl:text><xsl:value-of select="document/@orgid"/><xsl:text>&#x0A;</xsl:text>
@@ -554,11 +584,11 @@
 
 <xsl:template match="orgkey">
 <xsl:variable name="mykey" select="@key"/>
-<xsl:result-document href="_organization/{@key}.md">
+<xsl:result-document href="content/organization/{@key}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: organization&#x0A;</xsl:text>
 <xsl:text>element: Organizations&#x0A;</xsl:text>
-<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /organization/</xsl:text><xsl:value-of select="@key"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>long: </xsl:text><xsl:value-of select="@long"/><xsl:text>&#x0A;</xsl:text>
@@ -599,7 +629,7 @@
 <!-- Create JSON file with all organisations -->
 
 <xsl:template match="organisations" mode="data">
-  <xsl:result-document href="_data/orgs.json">
+  <xsl:result-document href="data/orgs.json">
     <xsl:text>{</xsl:text>
     <xsl:apply-templates mode="data"/>
     <xsl:text>}</xsl:text>
@@ -628,11 +658,11 @@
 <xsl:template match="rpkey">
 <xsl:variable name="mykey" select="@key"/>
 <xsl:if test="count(/standards//standard[responsibleparty/@rpref=$mykey]) > 0">
-<xsl:result-document href="_responsibleparty/{@key}.md">
+<xsl:result-document href="content/responsibleparty/{@key}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: responsibleparty&#x0A;</xsl:text>
 <xsl:text>element: Responsible Party&#x0A;</xsl:text>
-<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /responsibleparty/</xsl:text><xsl:value-of select="@key"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>key: </xsl:text><xsl:value-of select="@key"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>short: </xsl:text><xsl:value-of select="@short"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>long: </xsl:text><xsl:value-of select="@long"/><xsl:text>&#x0A;</xsl:text>
@@ -652,7 +682,7 @@
 <!-- Create JSON file listing all responsible parties -->
 
 <xsl:template match="responsibleparties" mode="data">
-  <xsl:result-document href="_data/rp.json">
+  <xsl:result-document href="data/rp.json">
     <xsl:text>{</xsl:text>
     <xsl:apply-templates mode="data"/>
     <xsl:text>}</xsl:text>
@@ -679,11 +709,11 @@
 <xsl:template match="node">
 <xsl:param name="parent"/>
 <xsl:variable name="myid" select="@id"/>
-<xsl:result-document href="_node/{@id}.md">
+<xsl:result-document href="content/node/{@id}.md">
 <xsl:text>---&#x0A;</xsl:text>
-<xsl:text>layout: node&#x0A;</xsl:text>
 <xsl:text>element: node&#x0A;</xsl:text>
-<xsl:text>nisp-id: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>nispid: </xsl:text><xsl:value-of select="@id"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>url: /node/</xsl:text><xsl:value-of select="@id"/><xsl:text>.html&#x0A;</xsl:text>
 <xsl:text>parent: </xsl:text><xsl:value-of select="$parent"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>title: </xsl:text><xsl:value-of select="@title"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>description: </xsl:text><xsl:value-of select="translate(normalize-space(@description),':',' ')"/><xsl:text>&#x0A;</xsl:text>
@@ -722,7 +752,7 @@
 <!-- Create Taxonomy Tree -->
 
 <xsl:template match="taxonomy" mode="taxonomy">
-  <xsl:result-document href="_includes/taxonomy.html" method="html">
+  <xsl:result-document href="layouts/partials/cpfragments/taxonomy.html" method="html">
     <div class="taxonomy">
       <ul>
         <xsl:apply-templates mode="taxonomy"/>
@@ -770,7 +800,7 @@
 <!-- Create JSON representation of the taxonomy -->
 
 <xsl:template match="taxonomy" mode="data">
-  <xsl:result-document href="_data/nodes.json">
+  <xsl:result-document href="data/nodes.json">
     <xsl:text>{</xsl:text>
     <xsl:apply-templates mode="data"/>
     <xsl:text>"eof-node-tree": {}</xsl:text>

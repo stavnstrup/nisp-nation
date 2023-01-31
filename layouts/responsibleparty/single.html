@@ -1,0 +1,33 @@
+{{ define "main" }}
+
+{{ with .Params }}
+<h4>{{ .long }} ({{ .short }})</h4>
+
+<p>{{ .short }} is responsible for {{ .responsible.number }} standard{{ if gt .responsible.number 1 }}s{{ end }}, which are:</p>
+{{ end }}
+
+<table>
+  <thead>
+    <tr>
+      <th>Org</th>
+      <th>Pubnum</th>
+      <th>Title</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  {{ range .Params.responsible.standards }}
+  {{ $stdId := . }}
+  {{ range where site.Pages "Params.nispid" $stdId }}
+  <tr>
+    {{ with .Params }}
+    <td>{{(index site.Data.orgs .orgid).short }}</td>
+    <td>{{ .document.pubnum }}</td>
+    <td><a href="/standard/{{ $stdId }}.html">{{ .document.title }} {{ .document.version }}</a></td>
+    <td>{{ if ge (len .document.date) 4 }}{{ slicestr .document.date 0 4 }}{{ end }}</td>
+    {{ end }}
+  </tr>
+  {{ end }}
+  {{ end }}
+</table>
+
+{{ end }}

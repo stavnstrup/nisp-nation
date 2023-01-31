@@ -1,0 +1,5 @@
+baseURL = ''
+languageCode = 'en-uk'
+title = 'NISP Nation'
+
+disableKinds = ["taxonomy", "taxonomyTerm"]

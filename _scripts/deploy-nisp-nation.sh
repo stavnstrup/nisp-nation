@@ -13,7 +13,7 @@ rm -rf *
 
 # Copy generated HTML site from nisp-nation.
 # Now the master branch will contain only the contents of the _site directory.
-cp -R ../nisp-nation/_site/* .
+cp -R ../nisp-nation/public/* .
 
 # Configure bot data
 git config user.email ${GH_EMAIL}

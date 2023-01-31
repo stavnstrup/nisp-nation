@@ -1,0 +1,34 @@
+<div class="meta-block">
+
+<h3>Reference document</h3>
+
+<div class="meta-element-set">
+
+<dl class="ref-org">
+  <dt class="data-label">Org</dt>
+  <dd class="data-value">{{ (index site.Data.orgs .org).short }}</dd>
+</dl>
+
+<dl class="ref-pubnum">
+  <dt class="data-label">Pubnum</dt>
+  <dd class="data-value">{{ .pubnum }}</dd>
+</dl>
+
+<dl class="ref-date">
+  <dt class="data-label">Date</dt>
+  <dd class="data-value">{{ .date }}</dd>
+</dl>
+
+<dl class="ref-version">
+  <dt class="data-label">Version</dt>
+  <dd class="data-value">{{ .version }}</dd>
+</dl>
+
+</div>
+
+<dl>
+  <dt class="data-label">Title</dt>
+  <dd class="data-value">{{ .title }}</dd>
+</dl>
+
+</div>
