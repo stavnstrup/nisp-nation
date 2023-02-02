@@ -1,4 +1,4 @@
-name: Deploy NISP Nation to GitHub pages
+name: NISP Nation
 
 on:
   push:
