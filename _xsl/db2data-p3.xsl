@@ -352,7 +352,8 @@
 
 <xsl:template match="refprofile" mode="listparent">
 <xsl:text>  - refid: </xsl:text><xsl:value-of select="../../@id"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>    type: </xsl:text><xsl:if test="../../@toplevel='yes'">capability</xsl:if><xsl:value-of select="local-name(../..)"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    type: </xsl:text><xsl:value-of select="local-name(../..)"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    path: </xsl:text><xsl:if test="../../@toplevel='yes'">capability</xsl:if><xsl:value-of select="local-name(../..)"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>    title: </xsl:text><xsl:value-of select="../../@title"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
