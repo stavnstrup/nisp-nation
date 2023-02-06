@@ -1,6 +1,6 @@
 # nisp-nation
 
-[![Linux Build Status](https://github.com/stavnstrup/nisp-nation/actions/workflows/gh-pages-deployment.yml/badge.svg))](https://github.com/stavnstrup/nisp-nation/actions)
+[![Linux Build Status](https://github.com/stavnstrup/nisp-nation/actions/workflows/gh-pages-deployment.yml/badge.svg)](https://github.com/stavnstrup/nisp-nation/actions)
 
 Hugo based generation of the NISP website
 
