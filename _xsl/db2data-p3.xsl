@@ -721,6 +721,10 @@
 <xsl:text>level: </xsl:text><xsl:value-of select="@level"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>emUUID: </xsl:text><xsl:value-of select="@emUUID"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>usage:&#x0A;</xsl:text>
+<xsl:text>  count:&#x0A;</xsl:text>
+<xsl:text>    mandatory: </xsl:text><xsl:value-of select="count(refstandard[(@obligation='mandatory') and (@lifecycle='current')])"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    candidate: </xsl:text><xsl:value-of select="count(.//refstandard[@lifecycle='candidate'])"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    serviceprofile: </xsl:text><xsl:value-of select="count(//reftaxonomy[@refid=$myid])"/><xsl:text>&#x0A;</xsl:text>
 <xsl:if test="count(//bprefstandard[(../../@tref=$myid) and (../@mode='mandatory')]) > 0">
 <xsl:text>  mandatory:&#x0A;</xsl:text>
 <xsl:apply-templates select="//bprefstandard[(../@mode='mandatory') and (../../@tref=$myid)]" mode="listbpstandards"/>
@@ -739,14 +743,14 @@
 </xsl:template>
 
 <xsl:template match="bprefstandard" mode="listbpstandards">
-  <xsl:text>    - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
+  <xsl:text>    - </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
 <xsl:template match="reftaxonomy[../name()='serviceprofile']" mode="nodeserviceprofiles">
 <xsl:text>    - spid: </xsl:text><xsl:value-of select="../@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>      standards:&#x0A;</xsl:text>
 <xsl:for-each select="../refgroup[@obligation='mandatory']/refstandard">
-<xsl:text>        - refid: </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>        - </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
 </xsl:for-each>
 </xsl:template>
 

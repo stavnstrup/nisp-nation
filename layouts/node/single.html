@@ -31,7 +31,18 @@
 
 {{/* The consumer array contains Service Profile ids for those service profiles, 
   which references the node */}}
-{{/*
+ 
+  {{/*
+{{ with .Params.usage }}
+{{ if or (gt .count.mandatory 0) (or (gt .count.candidate 0)  (gt .count.services 0 )) }}
+
+<hr />
+
+<h3>Usage</h3>
+{{ end }}
+{{ end }}
+
+
 
 {{ if ge .Params.consumers.size  0 }}
 <h3>Relationships</h3>
