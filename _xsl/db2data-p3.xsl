@@ -723,7 +723,7 @@
 <xsl:text>usage:&#x0A;</xsl:text>
 <xsl:text>  count:&#x0A;</xsl:text>
 <xsl:text>    mandatory: </xsl:text><xsl:value-of select="count(refstandard[(@obligation='mandatory') and (@lifecycle='current')])"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>    candidate: </xsl:text><xsl:value-of select="count(refstandard[@lifecycle='candidate'])"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    candidate: </xsl:text><xsl:value-of select="count(refstandard[(@obligation='mandatory') and (@lifecycle='candidate')])"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>    serviceprofile: </xsl:text><xsl:value-of select="count(//reftaxonomy[(@refid=$myid) and (../@sptype='coi')])"/><xsl:text>&#x0A;</xsl:text>
 <xsl:if test="count(./refstandard[(@obligation='mandatory') and (@lifecycle='current')]) > 0">
 <xsl:text>  mandatory:&#x0A;</xsl:text>
