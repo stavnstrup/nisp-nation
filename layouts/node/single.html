@@ -79,32 +79,31 @@
 {{ end }}
 
 
-{{/*
+
 
 {{ if gt (int .count.serviceprofile) 0 }}
-
 <h4>Service Profiles</h4>
-
 <p>The following CIO serviceprofile{{ if gt (int .count.serviceprofile) 1 }}s{{ end }} references this taxonomy node. For each serviceprofile, we list the standards which will be used to implement the functionality described in the taxonomy node:</p>
-
 <ul>
-  {{ range sort .serviceprofiles }}
-<li>{{ .spid }}</li>
-
-  {{ $sp := .  }}
-  <li>SP {{  $sp }}</li>
-  <li>SPID {{ $sp.spid }}</li>
-  {{ range where site.RegularPages .Params.nispid $sp.spid }}
-    <li>{{ $sp.spid }}</li>
-    <li><a href="/serviceprofile/{{ $sp.spid }}.html">{{ .Title }}</a></li>
+  {{ range .serviceprofiles }}
+  {{ $spid := .spid  }}
+  {{ $spstd := .standards}}
+  {{ range where site.RegularPages "Params.nispid" $spid }}
+    <li><a href="/serviceprofile/{{ $spid }}.html">{{ .Title }}</a>
+      <ul>
+        {{ range  $spstd }}
+        {{ range where site.RegularPages "Params.nispid" . }}
+        {{ with .Params }}
+        <li><a href="/standard/{{ .nispid }}.html">{{ .document.title }} ({{ if .document.orgid }}{{(index site.Data.orgs .document.orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
+        {{ end }}
+        {{ end }}
+        {{ end }}
+      </ul>
+    </li>
   {{ end }}
-
   {{ end }}
 </ul>
-
 {{ end }}
-
-*/}}
 
 
 </div>
