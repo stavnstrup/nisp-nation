@@ -33,11 +33,8 @@
     <xsl:apply-templates/>
     <!-- Which standards in the best practiceprofile is referencing this node -->
     <xsl:apply-templates select="/standards//serviceprofile[@sptype='bsp']//refstandard[../../reftaxonomy/@refid=$myid]" mode="counting"/>
-    <!-- Which standards in a serviceprofile is referencing this node -->
-    <xsl:apply-templates select="/standards//refstandard[ancestor::serviceprofile/reftaxonomy/@refid=$myid]"/>
   </node>
 </xsl:template>
-
 
 <xsl:template match="refstandard" mode="counting">
   <refstandard refid="{@refid}" obligation="{../@obligation}" lifecycle="{../@lifecycle}"/>

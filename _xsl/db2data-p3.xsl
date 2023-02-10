@@ -724,14 +724,14 @@
 <xsl:text>  count:&#x0A;</xsl:text>
 <xsl:text>    mandatory: </xsl:text><xsl:value-of select="count(refstandard[(@obligation='mandatory') and (@lifecycle='current')])"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>    candidate: </xsl:text><xsl:value-of select="count(refstandard[@lifecycle='candidate'])"/><xsl:text>&#x0A;</xsl:text>
-<xsl:text>    serviceprofile: </xsl:text><xsl:value-of select="count(//reftaxonomy[@refid=$myid])"/><xsl:text>&#x0A;</xsl:text>
+<xsl:text>    serviceprofile: </xsl:text><xsl:value-of select="count(//reftaxonomy[(@refid=$myid) and (../@sptype='coi')])"/><xsl:text>&#x0A;</xsl:text>
 <xsl:if test="count(./refstandard[(@obligation='mandatory') and (@lifecycle='current')]) > 0">
 <xsl:text>  mandatory:&#x0A;</xsl:text>
 <xsl:apply-templates select="./refstandard[(@obligation='mandatory') and (@lifecycle='current')]" mode="listbpstandards"/>
 </xsl:if>
-<xsl:if test="count(./refstandard[(@obligatione='mandatory') and (@lifecycle='candidate')]) > 0">
+<xsl:if test="count(./refstandard[(@obligation='mandatory') and (@lifecycle='candidate')]) > 0">
 <xsl:text>  candidate:&#x0A;</xsl:text>
-<xsl:apply-templates select="refstandard[(@obligatione='mandatory') and (@lifecycle='candidate')]" mode="listbpstandards"/>
+<xsl:apply-templates select="refstandard[(@obligation='mandatory') and (@lifecycle='candidate')]" mode="listbpstandards"/>
 </xsl:if>
 <xsl:text>  serviceprofiles:&#x0A;</xsl:text>
 <xsl:apply-templates select="//reftaxonomy[(@refid=$myid)]" mode="nodeserviceprofiles"/>
@@ -789,8 +789,8 @@
 <xsl:template match="node" mode="count-stuff">
   <xsl:variable name="myid" select="@id"/>
   <xsl:variable name="mandatory" select="count(refstandard[(@obligation='mandatory') and (@lifecycle='current')])"/>
-  <xsl:variable name="candidate" select="count(.//refstandard[@lifecycle='candidate'])"/>
-  <xsl:variable name="services" select="count(//reftaxonomy[@refid=$myid])"/>
+  <xsl:variable name="candidate" select="count(refstandard[@lifecycle='candidate'])"/>
+  <xsl:variable name="services" select="count(//reftaxonomy[(@refid=$myid) and (../@sptype='coi')])"/>
   <xsl:if test="$mandatory+$candidate+$services &gt; 0">
     <xsl:text> (</xsl:text>
     <xsl:value-of select="$mandatory"/>
