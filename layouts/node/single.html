@@ -31,33 +31,92 @@
 
 {{/* The consumer array contains Service Profile ids for those service profiles, 
   which references the node */}}
- 
-  {{/*
+
 {{ with .Params.usage }}
-{{ if or (gt .count.mandatory 0) (or (gt .count.candidate 0)  (gt .count.services 0 )) }}
+
+{{ if or (gt (int .count.mandatory) 0) (or (gt (int .count.candidate) 0)  (gt (int .count.services) 0 )) }}
 
 <hr />
 
 <h3>Usage</h3>
-{{ end }}
-{{ end }}
 
+<div class="meta-list">
 
+{{ if gt (int .count.mandatory) 0 }}
 
-{{ if ge .Params.consumers.size  0 }}
-<h3>Relationships</h3>
-<p>Service profiles which uses this standard.</p>
+<h4>Mandatory Standards</h4>
+
+<p>The following mandatory standards are recommended for this taxonomy node:</p>
 <ul>
-{{ range .Params.consumers }} 
-  {{ $spId := .  }}
-  {{ range where .Site.Pages .Params.nispid $spId }}
-    {{  $sp := . }}
-    <li><a href="/serviceprofile/{{ $spId }}.html">{{ $sp.title }}</a></li>
+  {{ range sort .mandatory }}
+  {{ $refid := . }}
+  {{ range where site.RegularPages ".Params.nispid" $refid }}
+  {{ with .Params }}
+  <li><a href="/standard/{{ $refid }}.html">{{ .document.title }} ({{ if .document.orgid }}{{(index site.Data.orgs .document.orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
   {{ end }}
-{{ end }}
+  {{ end }}
+  {{ end }}
 </ul>
+
 {{ end }}
 
-  */}}
+{{ if gt (int .count.candidate) 0 }}
+
+<h4>Candidate Standards</h4>
+
+<p>The following candidate standards are recommended for this taxonomy node:</p>
+<ul>
+  {{ range sort .candidate }}
+  {{ $refid := . }}
+  {{ range where site.RegularPages ".Params.nispid" $refid }}
+  {{ with .Params }}
+  <li><a href="/standard/{{ $refid }}.html">{{ .document.title }} ({{ if .document.orgid }}{{(index site.Data.orgs .document.orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
+  {{ end }}
+  {{ end }}
+  {{ end }}
+</ul>
+
+{{ end }}
+
+
+{{/*
+
+{{ if gt (int .count.serviceprofile) 0 }}
+
+<h4>Service Profiles</h4>
+
+<p>The following CIO serviceprofile{{ if gt (int .count.serviceprofile) 1 }}s{{ end }} references this taxonomy node. For each serviceprofile, we list the standards which will be used to implement the functionality described in the taxonomy node:</p>
+
+<ul>
+  {{ range sort .serviceprofiles }}
+<li>{{ .spid }}</li>
+
+  {{ $sp := .  }}
+  <li>SP {{  $sp }}</li>
+  <li>SPID {{ $sp.spid }}</li>
+  {{ range where site.RegularPages .Params.nispid $sp.spid }}
+    <li>{{ $sp.spid }}</li>
+    <li><a href="/serviceprofile/{{ $sp.spid }}.html">{{ .Title }}</a></li>
+  {{ end }}
+
+  {{ end }}
+</ul>
+
+{{ end }}
+
+*/}}
+
+
+</div>
+
+{{ end }}
+
+{{ end }}
+
+
+
+
+
+  
 
 {{ end }}
