@@ -749,7 +749,7 @@
 <xsl:template match="reftaxonomy[(../name()='serviceprofile') and (../@sptype='coi')]" mode="nodeserviceprofiles">
 <xsl:text>    - spid: </xsl:text><xsl:value-of select="../@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>      standards:&#x0A;</xsl:text>
-<xsl:for-each select="../refgroup[@obligation='mandatory']/refstandard">
+<xsl:for-each select="../refgroup[@lifecycle='current']/refstandard">
 <xsl:text>        - </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
 </xsl:for-each>
 </xsl:template>
