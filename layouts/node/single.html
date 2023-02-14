@@ -34,7 +34,7 @@
 
 {{ with .Params.usage }}
 
-{{ if or (gt (int .count.mandatory) 0) (or (gt (int .count.candidate) 0)  (gt (int .count.services) 0 )) }}
+{{ if or (gt (int .count.mandatory) 0) (or (gt (int .count.candidate) 0)  (gt (int .count.serviceprofile) 0 )) }}
 
 <hr />
 
