@@ -750,6 +750,7 @@
 <xsl:text>    - spid: </xsl:text><xsl:value-of select="../@id"/><xsl:text>&#x0A;</xsl:text>
 <xsl:text>      standards:&#x0A;</xsl:text>
 <xsl:for-each select="../refgroup[@lifecycle='current']/refstandard">
+<xsl:sort select="@refid"/>
 <xsl:text>        - </xsl:text><xsl:value-of select="@refid"/><xsl:text>&#x0A;</xsl:text>
 </xsl:for-each>
 </xsl:template>
