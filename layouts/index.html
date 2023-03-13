@@ -39,14 +39,14 @@
   <h4>Official releases</h4>
   {{ $p := . }}
   <ul>
-    {{ range site.Data.releaseHistory }}
+    {{- range site.Data.releaseHistory }}
     <li><a href="{{ $p.Params.archiveLocation }}/{{ .url }}">{{ .title }}</a> - {{ time.Format ":date_medium" .date  }} - also as
         <a href="{{ $p.Params.archiveLocation }}/{{ .archive }}">web archive</a>
-      {{ with .archimate }}
+      {{- with .archimate -}}
         and in <a href="{{ $p.Params.archiveLocation }}/{{ . }}">ArchiMate Exchange Format</a>
-      {{ end }}
+      {{- end -}}
     </li>
-    {{ end}}
+    {{- end }}
   </ul>
 
   <hr/>
