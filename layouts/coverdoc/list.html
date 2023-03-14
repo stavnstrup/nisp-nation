@@ -6,15 +6,15 @@
   <th>Title</th>
   <th>Date</th>
 </tr>
-{{ range where .RegularPages "Section" "coverdoc" }}
+{{- range where .RegularPages "Section" "coverdoc" }}
 <tr>
-  {{ with .Params }}
+  {{- with .Params }}
   <td>{{ .document.pubnum }}</td>
   <td><a href="/coverdoc/{{ .nispid }}.html">{{ .document.title }}</a></td>
   <td>{{ if ge (len .document.date) 4 }}{{ slicestr .document.date 0 4 }}{{ end }}</td>
-  {{ end }}
+  {{- end }}
 </tr>
-{{ end }}
+{{- end }}
 </table>
 
 {{ end }}
