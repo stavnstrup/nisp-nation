@@ -27,20 +27,20 @@
 
 <div class="meta-list">
 
-{{ range .Params.refgroup }}
+{{- range .Params.refgroup }}
 <p><strong>Obligation</strong>: {{ upper .obligation }}, <strong>Lifecycle</strong>: {{ upper .lifecycle }}</p>
 {{ with .description }}<p>{{ . }}</p>{{ end }}
 <ul>
-  {{ range .standards }}
+  {{- range .standards }}
   {{ $refid := index . "refid" }}
-  {{ range where site.RegularPages ".Params.nispid" $refid }}
-  {{ with .Params }}
+  {{- range where site.RegularPages ".Params.nispid" $refid -}}
+  {{- with .Params -}}
   <li><a href="/standard/{{ $refid }}.html">{{ .document.title }} ({{ if .document.orgid }}{{(index site.Data.orgs .document.orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
-  {{ end }}
-  {{ end }}
-  {{ end }}
+  {{- end -}}
+  {{- end -}}
+  {{- end }}
 </ul>
-{{ end }}
+{{- end }}
 
 </div>
 
@@ -62,9 +62,9 @@
 <p>This profile is used by the following profiles:</p>
 
 <ul>
-  {{ range .Params.parents }}
+  {{- range .Params.parents }}
   <li><a href="/{{ .path }}/{{ .refid }}.html">{{ .title }}</a> - (<strong>{{ .type }}</strong>)</li>
-  {{ end }}
+  {{- end }}
 </ul>
 
 </div>
