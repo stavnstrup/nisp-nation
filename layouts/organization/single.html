@@ -20,18 +20,18 @@
       <th>Date</th>
     </tr>
   </thead>
-  {{ range .stuff.standards.references }}
+  {{- range .stuff.standards.references }}
     {{ $stdId := . }}
-    {{ range where site.Pages "Params.nispid" $stdId }}
+    {{- range where site.Pages "Params.nispid" $stdId -}}
     <tr>
-      {{ with .Params }}
+      {{- with .Params }}
       <td>{{.document.pubnum}}</td>
       <td><a href="/standard/{{ $stdId }}.html">{{ .document.title }}</a></td>
       <td>{{ if ge (len .document.date) 4 }}{{ slicestr .document.date 0 4 }}{{ end }}</td>
-      {{ end }}
+      {{- end }}
     </tr>
-    {{ end }}
-  {{ end }}
+    {{- end -}}
+  {{- end }}
 </table>
 
 {{ end }}
