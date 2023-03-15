@@ -1,11 +1,11 @@
 {{ define "main" }}
 
 <ul>
-{{ range where .RegularPages "Section" "responsibleparty" }}
-  {{ with .Params }}
+{{- range where .RegularPages "Section" "responsibleparty" }}
+  {{- with .Params }}
   <li><a href="/responsibleparty/{{ .key }}.html" title="{{ .long }}">{{ .short }}</a> ({{ .responsible.number }})</li>
-  {{ end }}
-{{ end }}
+  {{- end -}}
+{{- end }}
 </ul>
 
 {{ end }}
