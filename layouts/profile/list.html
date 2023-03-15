@@ -6,15 +6,15 @@
   <th>Title of Profiles</th>
   <th>Version</th>
 </tr>
-{{ range where .RegularPages "Section" "profile" }}
+{{- range where .RegularPages "Section" "profile" -}}
   <tr>
-    {{ with .Params }}
+    {{- with .Params }}
     <td><a href="/organization/{{ .profilespec.org }}.html">{{ (index site.Data.orgs .profilespec.org).short }}</a></td>
     <td><a href="/profile/{{ .nispid }}.html">{{ .title }}</a></td>
     <td>{{ .profilespec.version }}</td>
-    {{ end }}
+    {{- end }}
   </tr>
-{{ end }}
+{{- end }}
 </table>
 
 {{ end }}

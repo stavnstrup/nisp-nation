@@ -19,14 +19,14 @@
       <th>Version</th>
     </tr>
   </thead>
-  {{ range .status.history }}
+  {{- range .status.history }}
   <tr>
     <td>{{ .flag }}</td>
     <td>{{ .date }}</td>
     <td>{{ .rfcp }}</td>
     <td>{{ .version }}</td>
   </tr>
-  {{ end }}
+  {{- end }}
 </table>
 {{ end }}
 

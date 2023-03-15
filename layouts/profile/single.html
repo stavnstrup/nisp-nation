@@ -12,9 +12,9 @@
 
 <div class="meta-list">
 <ul>
-  {{ range .Params.subprofiles }}
+  {{- range .Params.subprofiles }}
   <li><a href="/{{ .type }}/{{ .refid }}.html">{{ .title }}</a> - (<strong>{{ .type }}</strong>)</li>
-  {{ end }}
+  {{- end }}
 </ul>
 </div>
 
