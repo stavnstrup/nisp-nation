@@ -28,7 +28,6 @@
       (index site.Data.nodes .).title }}</a></dd>{{ end }}
 </dl>
 
-
 {{/* The consumer array contains Service Profile ids for those service profiles, 
   which references the node */}}
 
@@ -48,14 +47,14 @@
 
 <p>The following mandatory standards are recommended for this taxonomy node:</p>
 <ul>
-  {{ range .mandatory}}
-  {{ $refid := . }}
-  {{ range where site.RegularPages ".Params.nispid" $refid }}
-  {{ with .Params }}
+  {{ range .mandatory -}}
+  {{- $refid := . -}}
+  {{- range where site.RegularPages ".Params.nispid" $refid -}}
+  {{- with .Params }}
   <li><a href="/standard/{{ $refid }}.html">{{ .document.title }} ({{ if .document.orgid }}{{(index site.Data.orgs .document.orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
-  {{ end }}
-  {{ end }}
-  {{ end }}
+  {{- end }}
+  {{- end }}
+  {{- end }}
 </ul>
 
 {{ end }}
@@ -66,14 +65,14 @@
 
 <p>The following candidate standards are recommended for this taxonomy node:</p>
 <ul>
-  {{ range .candidate }}
+  {{- range .candidate }}
   {{ $refid := . }}
-  {{ range where site.RegularPages ".Params.nispid" $refid }}
-  {{ with .Params }}
+  {{- range where site.RegularPages ".Params.nispid" $refid -}}
+  {{- with .Params -}}
   <li><a href="/standard/{{ $refid }}.html">{{ .document.title }} ({{ if .document.orgid }}{{(index site.Data.orgs .document.orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
-  {{ end }}
-  {{ end }}
-  {{ end }}
+  {{- end }}
+  {{- end }}
+  {{- end }}
 </ul>
 
 {{ end }}
@@ -83,23 +82,23 @@
 <h4>Service Profiles</h4>
 <p>The following CIO serviceprofile{{ if gt (int .count.serviceprofile) 1 }}s{{ end }} references this taxonomy node. For each serviceprofile, we list the standards which will be used to implement the functionality described in the taxonomy node:</p>
 <ul>
-  {{ range sort .serviceprofiles "spid" "asc" }}
-  {{ $spid := .spid  }}
-  {{ $spstd := .standards}}
-  {{ range where site.RegularPages "Params.nispid" $spid }}
+  {{- range sort .serviceprofiles "spid" "asc" }}
+  {{- $spid := .spid  -}}
+  {{- $spstd := .standards -}}
+  {{- range where site.RegularPages "Params.nispid" $spid }}
     <li><a href="/serviceprofile/{{ $spid }}.html">{{ .Title }}</a>
       <ul>
         {{ range $spstd }}
-        {{ range where site.RegularPages "Params.nispid" . }}
-        {{ with .Params }}
+        {{- range where site.RegularPages "Params.nispid" . -}}
+        {{- with .Params -}}
         <li><a href="/standard/{{ .nispid }}.html">{{ .document.title }} ({{ if .document.orgid }}{{(index site.Data.orgs .document.orgid).short }} {{ end }}{{ .document.pubnum }}{{ if ge (len .document.date) 4 }}:{{ slicestr .document.date 0 4 }}{{ end }})</a></li>
-        {{ end }}
-        {{ end }}
+        {{- end }}
+        {{- end }}
         {{ end }}
       </ul>
     </li>
-  {{ end }}
-  {{ end }}
+  {{- end }}
+  {{- end }}
 </ul>
 {{ end }}
 
@@ -109,10 +108,6 @@
 {{ end }}
 
 {{ end }}
-
-
-
-
 
   
 
