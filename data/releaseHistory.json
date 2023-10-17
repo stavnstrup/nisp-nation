@@ -1,5 +1,11 @@
 [
     {
+        "title": "NISP v15 / ADatP-34 Ed N Ver 2",
+        "date": "2023-08-18",
+        "url": "nisp-15.0/",
+        "archive": "nisp-web-15.0-release.zip"
+    },
+    {
         "title": "NISP v14 / ADatP-34 Ed N Ver 1",
         "date": "2021-05-26",
         "url": "nisp-14.0/",
