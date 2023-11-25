@@ -1,5 +1,5 @@
-baseURL = ''
+ baseURL = ''
 languageCode = 'en-uk'
 title = 'NISP Nation'
 
-disableKinds = ["taxonomy", "taxonomyTerm"]
+disableKinds = ["taxonomy", "taxonomy"]
