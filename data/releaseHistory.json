@@ -60,5 +60,18 @@
         "date": "2012-01-19",
         "url": "nisp-6.0/",
         "archive": "nisp-web-6.0-release.zip"
+    },
+    {
+        "title": "NISP v5 / ADatP-34 Ed E Ver 1",
+        "date": "2011-04-27",
+        "url": "nisp-5.0/",
+        "archive": "nisp-web-5.0-release.zip"
+    },
+    {
+        "title": "NISP v4 / ADatP-34 Ed D Ver 1",
+        "date": "2010-01-12",
+        "url": "nisp-4.0/",
+        "archive": "nisp-web-4.0-release.zip"
     }
 ]
+
