@@ -385,6 +385,7 @@
 <xsl:apply-templates select="reftaxonomy"/>
 <xsl:text>refgroup:&#x0A;</xsl:text>
 <xsl:apply-templates select="refgroup"/>
+<xsl:text>guidance:</xsl:text><xsl:apply-templates select="guide"/><xsl:text>&#x0A;</xsl:text>
 <xsl:apply-templates select="status"/>
 <xsl:apply-templates select="uuid"/>
 <xsl:text>parents:&#x0A;</xsl:text>
@@ -530,7 +531,7 @@
 <xsl:text>      version: </xsl:text><xsl:value-of select="@version"/><xsl:text>&#x0A;</xsl:text>
 </xsl:template>
 
-<xsl:template match="applicability">
+<xsl:template match="applicability|guide">
 <xsl:if test="count(./node()) &gt; 0">
 <xsl:text> >2&#x0A;</xsl:text>
 <xsl:apply-templates/>
@@ -556,7 +557,7 @@
 
 <xsl:template match="text()">
 <xsl:variable name="escapeChars" select="'\&quot;'"/>
-<xsl:if test="name(..)='applicability'"><xsl:text>  </xsl:text></xsl:if>
+<xsl:if test="name(..)='applicability' or name(..)='guide'"><xsl:text>  </xsl:text></xsl:if>
 <xsl:value-of select="translate(translate(normalize-space(),':',' '), $escapeChars, ' ')"/>
 </xsl:template>
 
